@@ -1,30 +1,36 @@
 const jwt = require("jsonwebtoken");
 
-function sign(user, password, expiration, cb){
+function firmar(user, expiration, cb){
 
     if(typeof expiration === 'function'){
-        jwt.sign({user}, password, expiration)
+        jwt.sign({user}, 'password', expiration)
     }
     else{
-        jwt.sign({user}, password, {expiresIn: expiration} , cb)
+        jwt.sign({user}, 'password' , {expiresIn: expiration} , cb)
     }
 }
 
-function verify(token, password, cb){
-    jwt.verify(token, password, cb)
-}
+function comprobarToken(req, res, callback){
+    const authToken = req.headers['auth'];
 
-function verifyToken(req, res, next){
-    const bearerHeader = req.headers['auth'];
-
-    if(typeof bearerHeader !== 'undefined'){
-        const bearerToken = bearerHeader.split(' ')[1]
-        req.token = bearerToken
-        next()
+    if(typeof authToken !== 'undefined'){    
+        jwt.verify(authToken, 'password', (err, datosUsuario) => {
+            if(err){
+                res.status(403).json({Mensaje: 'Token Invalido'})
+            }
+            else{
+                req.user = datosUsuario.user
+                callback()
+            }
+        })
     }
     else{
-        res.status(403).json({msg: 'Sin autorizacion (auth)'})
+        res.status(403).json({Mensaje: 'Necesita proporcionar un token'})
     }
 }
 
-module.exports = {sign, verify, verifyToken}
+function comprobarNivelToken(req, res, callback){
+    //ToDo: Niveles, Admin o usuario normal
+}
+
+module.exports = {firmar, comprobarToken, comprobarNivelToken}
