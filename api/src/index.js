@@ -11,8 +11,9 @@ app.use(express.json());
 app.use(cors());
 
 //Routes
-const routes = path.join(__dirname, '/routes')
-app.use(require(path.join(routes, 'login.js')))
+const rutas = path.join(__dirname, '/routes')
+app.use(require(path.join(rutas, 'login.js')))
+app.use(require(path.join(rutas, 'quack.js')))
 
 
 //Starting app

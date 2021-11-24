@@ -1,9 +1,9 @@
 const express = require("express");
 const path = require('path');
 
-const parentFolder = path.resolve(__dirname, '..')
-const userController = require(path.join(parentFolder,  '/dataaccess', 'userController.js'))
-const auth = require(path.join(parentFolder,  '/util', 'auth.js'))
+const carpeta = path.resolve(__dirname, '..')
+const userController = require(path.join(carpeta,  '/util', 'userController.js'))
+const auth = require(path.join(carpeta,  '/util', 'auth.js'))
 
 const router = express.Router();
 
@@ -14,8 +14,8 @@ router.post('/login', (req, res) =>{
         userController.validarCredenciales(user.correo, user.contrasena, (err, resultado) =>{
             if(resultado){
                 delete resultado.contrasena;
-                // auth.sign(user, 'password', '120s', (err, token) => {
-                auth.firmar(resultado, 'password', (err, token) => {
+                // auth.sign(user, '120s', (err, token) => {
+                auth.firmar(resultado, (err, token) => {
                     res.status(200).json({token})
                 })
             }
@@ -47,6 +47,7 @@ router.post('/register', (req, res) =>{
     }
 });
 
+//Aux
 router.get('/usersAuth', auth.comprobarToken, (req, res) =>{
     res.json(req.user)
 });

@@ -1,32 +1,12 @@
 const bcrypt = require('bcrypt');
-dbConnection = require('./dbConnection.js')
+const path = require('path');
 
-function getUser(correo){
-    return new Promise((resolve, reject) =>{
-        dbConnection.query('call obtenerContrasena(?);', [correo] , (err, rows, fields) =>{
-            if(err){
-                reject(err)
-            }
-            resolve(rows[0][0])
-        })
-    })
-}
-
-function insertUser(user, hashedPass){
-    return new Promise((resolve, reject) =>{
-        dbConnection.query('call registrarUsuario(?, ?, ?, ?, ?, @Respuesta); SELECT @Respuesta as Respuesta;', 
-        [user.correo, hashedPass, user.nombrePropio, user.nombreUsuario, user.fechaNacimiento] ,(err, rows, fields) =>{
-            if(err){
-                reject(err)
-            }
-            resolve(rows[1][0])
-        })
-    })
-}
+const carpeta = path.resolve(__dirname, '..')
+const usuarioDAO = require(path.join(carpeta,  '/dataAccess', 'usuarioDAO.js'))
 
 function registrarUsuario(user, cb){
     bcrypt.hash(user.contrasena, 10)
-    .then(hashedPass => insertUser(user, hashedPass))
+    .then(hashedPass => usuarioDAO.agregar(user, hashedPass))
     .then(respuesta => {
         cb(null, respuesta)
     })
@@ -37,7 +17,7 @@ function registrarUsuario(user, cb){
 }
 
 function validarCredenciales(correo, contrasena, callback){
-    getUser(correo)
+    usuarioDAO.obtener(correo)
     .then(respuesta => {
         if(respuesta && respuesta.hasOwnProperty('contrasena')){
             bcrypt.compare(contrasena, respuesta.contrasena, (err, res) =>{

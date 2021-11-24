@@ -1,12 +1,12 @@
 const jwt = require("jsonwebtoken");
 
-function firmar(user, password, expiration, cb){
+function firmar(user, expiration, cb){
 
     if(typeof expiration === 'function'){
-        jwt.sign({user}, password, expiration)
+        jwt.sign({user}, 'password', expiration)
     }
     else{
-        jwt.sign({user}, password, {expiresIn: expiration} , cb)
+        jwt.sign({user}, 'password' , {expiresIn: expiration} , cb)
     }
 }
 
