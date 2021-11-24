@@ -5,7 +5,7 @@ const router = express.Router();
 const quackDAO = require(path.join(path.resolve(__dirname, '..'), 'dataAccess', 'quackDAO.js'))
 const auth = require(path.join(path.resolve(__dirname, '..'),  '/util', 'auth.js'))
 
-router.route('/quack')
+router.route('/quacks')
     .post(auth.comprobarToken, (req, res) =>{
         const quack = req.body
         if(quackValido(quack)){
@@ -34,7 +34,7 @@ router.route('/quack')
     })
 
 
-router.route('/quack/:id')
+router.route('/quacks/:id')
     .get(auth.comprobarToken, (req, res) => {
         quackDAO.obtenerPorID(req.params.id, (err, respuesta) =>{
             if(err){
@@ -56,7 +56,7 @@ router.route('/quack/:id')
         })
     })
 
-router.route('/quack/user/:id')
+router.route('/quacks/usuario/:id')
     .get(auth.comprobarToken, (req, res) => {
         quackDAO.obtenerPorUsuario(req.params.id, (err, respuesta) =>{
             if(err){
