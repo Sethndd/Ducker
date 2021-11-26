@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     var listaQuacks = listOf<Quack>()
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         obtenerQuacks(this)
+//        publicarQuack()
 
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
@@ -36,5 +38,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+//    fun publicarQuack(){
+//        val authKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJjb3JyZW8iOiJzZXRoMjYxMDk5QGdtYWlsLmNvbSIsIm5vbWJyZVByb3BpbyI6IlNldGggTm_DqSBEw61heiBEw61heiIsIm5vbWJyZVVzdWFyaW8iOiJTZXRoIiwidGlwbyI6ImFscGhhIn0sImlhdCI6MTYzNzc5NDYxN30.UWcP6tNnR8jbZhWPB3QWS_p-nRCzJfA5VfpuuDSmKd8"
+//        val quack = Quack(0, 6, "a ver jsjsj", 0, Date(), "activo", 0, "Angel", "Angel")
+//        CoroutineScope(Dispatchers.IO).launch {
+//            println(QuackDAO.crearQuack(authKey, quack))
+//        }
+//    }
 
 }

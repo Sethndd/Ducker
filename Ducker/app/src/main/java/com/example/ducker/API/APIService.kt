@@ -2,6 +2,7 @@ package com.example.ducker.API
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import com.google.gson.annotations.SerializedName
 
 class APIService {
     companion object{
@@ -12,4 +13,7 @@ class APIService {
                 .build()
         }
     }
+
+    inner class Mensaje (@SerializedName("Mensaje") val mensaje : String)
+
 }
