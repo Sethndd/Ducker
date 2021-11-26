@@ -2,8 +2,8 @@ const path = require('path');
 
 const dbConnection = require(path.join(__dirname, 'dbConnection.js'))
 
-function crear(quack, callback){
-    dbConnection.query('call crearQuack(?, ?, ?, ?)', [quack.idUsuario, quack.texto, quack.quackPadre, quack.idAdjunto], (err, rows, fields) =>{
+function crear(idUsuario, quack, callback){
+    dbConnection.query('call crearQuack(?, ?, ?, ?)', [idUsuario, quack.texto, quack.quackPadre, quack.idAdjunto], (err, rows, fields) =>{
         if(err){
             return callback(err)
         }
