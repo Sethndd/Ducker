@@ -16,6 +16,7 @@ app.use(require(path.join(rutas, 'login.js')))
 app.use(require(path.join(rutas, 'quack.js')))
 app.use(require(path.join(rutas, 'hashtag.js')))
 app.use(require(path.join(rutas, 'notificacion.js')))
+app.use(require(path.join(rutas, 'guardados.js')))
 
 
 //Starting app

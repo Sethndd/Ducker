@@ -28,7 +28,11 @@
             android:name=".NuevoQuack"
             android:exported="true" />
         <activity
-            android:name=".RegistroDeUsuario"></activity>
+            android:name=".RegistroDeUsuario"
+            android:exported="true"/>
+        <activity
+            android:name=".Buscador"
+            android:exported="true"/>
     </application>
 
 </manifest>

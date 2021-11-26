@@ -1,9 +1,13 @@
 package com.example.ducker
 
+import android.content.Intent
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.example.ducker.Recyclers.QuackAdapter
 import com.example.ducker.daos.QuackDAO
 import com.example.ducker.data.Quack
@@ -18,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         obtenerQuacks(this)
+
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
