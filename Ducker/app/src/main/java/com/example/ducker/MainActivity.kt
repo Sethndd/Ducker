@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         obtenerQuacks(this)
 //        publicarQuack()
+//        obtenerQuackPorId()
 
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
@@ -47,4 +48,11 @@ class MainActivity : AppCompatActivity() {
 //        }
 //    }
 
+//    fun obtenerQuackPorId(){
+//        val authKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJjb3JyZW8iOiJzZXRoMjYxMDk5QGdtYWlsLmNvbSIsIm5vbWJyZVByb3BpbyI6IlNldGggTm_DqSBEw61heiBEw61heiIsIm5vbWJyZVVzdWFyaW8iOiJTZXRoIiwidGlwbyI6ImFscGhhIn0sImlhdCI6MTYzNzc5NDYxN30.UWcP6tNnR8jbZhWPB3QWS_p-nRCzJfA5VfpuuDSmKd8"
+//        CoroutineScope(Dispatchers.IO).launch {
+//            val quack = QuackDAO.obtenerQuackPorId(authKey, 6)
+//            println(quack.texto)
+//        }
+//    }
 }

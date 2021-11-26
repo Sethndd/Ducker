@@ -41,6 +41,17 @@ class QuackDAO {
             }
             return respuesta
         }
-    }
 
+        suspend fun obtenerQuackPorId(authKey: String, idQuack : Int) : Quack {
+            lateinit var quack : Quack
+            try {
+                val call : Call<Quack> = quackAPI.obtenerQuackPorId(authKey, idQuack)
+                val quackRecibido = call.await()
+                quack = quackRecibido
+            } catch (exception : Exception) {
+                exception.printStackTrace()
+            }
+            return quack
+        }
+    }
 }
