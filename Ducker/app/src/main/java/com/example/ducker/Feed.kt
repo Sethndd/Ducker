@@ -1,8 +1,10 @@
 package com.example.ducker
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ducker.Recyclers.QuackAdapter
 import com.example.ducker.daos.QuackDAO
@@ -27,7 +29,7 @@ class Feed : AppCompatActivity() {
 //        obtenerQuackPorId()
 //        eliminarQuack()
 //        obtenerQuacksPorUsuario()
-
+        agregarListeners()
         obtenerQuacks(this)
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
@@ -39,6 +41,13 @@ class Feed : AppCompatActivity() {
             runOnUiThread{
                 recyclerView.adapter = QuackAdapter(listaQuacks, activity)
             }
+        }
+    }
+
+    fun agregarListeners() {
+        btnNuevoQuack.setOnClickListener {
+            val intent : Intent = Intent(this, NuevoQuack::class.java)
+            startActivity(intent.putExtra("authKey", authKey))
         }
     }
 

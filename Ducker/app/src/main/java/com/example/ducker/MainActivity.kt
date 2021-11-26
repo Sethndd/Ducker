@@ -27,4 +27,5 @@ class MainActivity : AppCompatActivity() {
         val bundle = intent.extras
         authKey = bundle?.getString("authKey").toString()
     }
+
 }
