@@ -17,12 +17,15 @@ class Login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        agregarListeners()
+    }
+
+    private fun agregarListeners() {
         btnIniciarSesion.setOnClickListener {
             val usuario = inputUsuario.text
             val contrasena = inputPassword.text
 
             val login = Login(usuario.toString(), contrasena.toString())
-
             val context: Context = this
 
             CoroutineScope(Dispatchers.IO).launch {

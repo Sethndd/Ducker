@@ -1,8 +1,11 @@
 package com.example.ducker.data
 
-data class Usuario (val idUsuario:Int,
-                    val correo:String,
-                    val password:String,
-                    val nombrePropio:String,
-                    val nombreUsuario:String,
-                    val fechaNacimiento:String)
+import com.google.gson.annotations.SerializedName
+import java.util.*
+
+data class Usuario (@SerializedName("id") val idUsuario:Int,
+                    @SerializedName("correo") val correo:String,
+                    @SerializedName("contrasena") val contrasena:String,
+                    @SerializedName("nombrePropio") val nombrePropio:String,
+                    @SerializedName("nombreUsuario") val nombreUsuario:String,
+                    @SerializedName("fechaNacimiento") val fechaNacimiento:String)
