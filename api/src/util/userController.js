@@ -1,40 +1,42 @@
 const bcrypt = require('bcrypt');
-dbConnection = require('./dbConnection.js')
+const path = require('path');
 
-function getUser(id){
-    return new Promise((resolve, reject) =>{
-        dbConnection.query('SELECT * FROM usuario WHERE id = ? AND estado = ?;', [id, 'activo'] , (err, rows, fields) =>{
-            if(err){
-                reject(err)
-            }
-            resolve(rows[0])
-        })
+const carpeta = path.resolve(__dirname, '..')
+const usuarioDAO = require(path.join(carpeta,  '/dataAccess', 'usuarioDAO.js'))
+
+function registrarUsuario(user, cb){
+    bcrypt.hash(user.contrasena, 10)
+    .then(hashedPass => usuarioDAO.agregar(user, hashedPass))
+    .then(respuesta => {
+        cb(null, respuesta)
+    })
+    .catch(err => {
+        console.log(err)
+        cb(err)
     })
 }
 
-function insertUser(user, hashedPass){
-    return new Promise((resolve, reject) =>{
-        dbConnection.query('INSERT INTO usuario(nombre, password, estado) VALUES(?, ?, ?);', 
-        [user.nombre, hashedPass, 'activo'] ,(err, rows, fields) =>{
-            if(err){
-                reject(err)
-            }
-            resolve(rows.insertId)
-        })
+function validarCredenciales(correo, contrasena, callback){
+    usuarioDAO.obtener(correo)
+    .then(respuesta => {
+        if(respuesta && respuesta.hasOwnProperty('contrasena')){
+            bcrypt.compare(contrasena, respuesta.contrasena, (err, res) =>{
+                if(res){
+                    callback(null, respuesta)
+                }
+                else{
+                    callback(null, null)
+                }
+            })
+        }
+        else{
+            callback(null, null)
+        }
+    })
+    .catch(err => {
+        console.log(err)
+        cb(err)
     })
 }
 
-function registerUser(user, cb){
-    bcrypt.hash(user.password, 10)
-    .then((hashedPass) => insertUser(user, hashedPass))
-    .then(cb)
-    .catch((err) => console.log(err))
-}
-
-function checkCredentials(id, password, done){
-    getUser(id)
-    .then((user) => bcrypt.compare(password, user.password, done))
-    .catch((err) => console.log(err))
-}
-
-module.exports =  {registerUser, getUser, checkCredentials}
+module.exports =  {registrarUsuario, validarCredenciales}
