@@ -8,7 +8,7 @@ class APIService {
     companion object{
         fun obtenerRetroFit(): Retrofit {
             return Retrofit.Builder()
-                .baseUrl("http://192.168.0.11:1806/")
+                .baseUrl("http://192.168.1.65:1806/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }
