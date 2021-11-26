@@ -1,10 +1,13 @@
 package com.example.ducker
 
+import android.content.Intent
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.example.ducker.Recyclers.QuackAdapter
 import com.example.ducker.API.APIService
 import com.example.ducker.data.Quack
@@ -21,6 +24,19 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         obtenerQuacks(this)
+
+        var abrirRegistrarQuack = findViewById<FloatingActionButton>(R.id.btnNuevoQuack)
+        var abrirBuscador = findViewById<ImageButton>(R.id.btnBuscador)
+
+        abrirRegistrarQuack.setOnClickListener {
+            val intent = Intent(this, NuevoQuack::class.java)
+            startActivity(intent)
+        }
+
+        abrirBuscador.setOnClickListener {
+            val intent = Intent(this, Buscador::class.java)
+            startActivity(intent)
+        }
     }
 
     fun obtenerRetroFit(): Retrofit{
