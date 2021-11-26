@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
         obtenerQuacks(this)
 //        publicarQuack()
 //        obtenerQuackPorId()
+//        eliminarQuack()
+//        obtenerQuacksPorUsuario()
 
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
@@ -53,6 +55,23 @@ class MainActivity : AppCompatActivity() {
 //        CoroutineScope(Dispatchers.IO).launch {
 //            val quack = QuackDAO.obtenerQuackPorId(authKey, 6)
 //            println(quack.texto)
+//        }
+//    }
+
+//    fun eliminarQuack(){
+//        val authKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJjb3JyZW8iOiJzZXRoMjYxMDk5QGdtYWlsLmNvbSIsIm5vbWJyZVByb3BpbyI6IlNldGggTm_DqSBEw61heiBEw61heiIsIm5vbWJyZVVzdWFyaW8iOiJTZXRoIiwidGlwbyI6ImFscGhhIn0sImlhdCI6MTYzNzc5NDYxN30.UWcP6tNnR8jbZhWPB3QWS_p-nRCzJfA5VfpuuDSmKd8"
+//        CoroutineScope(Dispatchers.IO).launch {
+//            println(QuackDAO.eliminarQuack(authKey, 7))
+//        }
+//    }
+
+//    fun obtenerQuacksPorUsuario(){
+//        val authKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJjb3JyZW8iOiJzZXRoMjYxMDk5QGdtYWlsLmNvbSIsIm5vbWJyZVByb3BpbyI6IlNldGggTm_DqSBEw61heiBEw61heiIsIm5vbWJyZVVzdWFyaW8iOiJTZXRoIiwidGlwbyI6ImFscGhhIn0sImlhdCI6MTYzNzc5NDYxN30.UWcP6tNnR8jbZhWPB3QWS_p-nRCzJfA5VfpuuDSmKd8"
+//        CoroutineScope(Dispatchers.IO).launch {
+//            val listaQuacks = QuackDAO.obtenerQuacksPorUsuario(authKey, 6)
+//            for (quack in listaQuacks) {
+//                println(quack.texto)
+//            }
 //        }
 //    }
 }

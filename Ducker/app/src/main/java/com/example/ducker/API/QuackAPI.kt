@@ -16,4 +16,10 @@ interface  QuackAPI {
 
     @GET("quacks/{id}")
     fun obtenerQuackPorId(@Header("auth") auth: String, @Path("id") id : Int) : Call<Quack>
+
+    @DELETE("quacks/{id}")
+    fun eliminarQuack(@Header("auth") auth: String, @Path("id") id: Int) : Call<ResponseBody>
+
+    @GET("quacks/usuario/{id}")
+    fun obtenerQuacksPorUsuario(@Header("auth") auth: String, @Path("id") id: Int) :Call<List<Quack>>
 }

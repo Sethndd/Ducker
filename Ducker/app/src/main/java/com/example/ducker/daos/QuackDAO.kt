@@ -17,25 +17,20 @@ class QuackDAO {
             var listaQuacks : List<Quack> = listOf()
             try {
                 val call : Call<List<Quack>> = quackAPI.obtenerQuacks(authKey)
-                val quacks : List<Quack>? = call.awaitResponse().body()
-                if(quacks != null){
-                    listaQuacks = quacks
-                }
+                val quacks : List<Quack> = call.await()
+                listaQuacks = quacks
             } catch (exception : Exception) {
                 exception.printStackTrace()
             }
             return listaQuacks
         }
 
-        suspend fun crearQuack(authKey: String, quack: Quack) : String {
-            var respuesta = ""
+        suspend fun crearQuack(authKey: String, quack: Quack) : Int {
+            var respuesta = 0
             try {
                 val call : Call<ResponseBody> = quackAPI.crearQuack(authKey, quack)
-                val responseBody : ResponseBody = call.await()
-                val response = responseBody.string()
-                val gson = Gson()
-                val mensaje = gson.fromJson<APIService.Mensaje>(response, APIService.Mensaje::class.java)
-                respuesta = mensaje.mensaje
+                val response = call.awaitResponse()
+                respuesta = response.code()
             } catch (exception : Exception){
                 exception.printStackTrace()
             }
@@ -52,6 +47,30 @@ class QuackDAO {
                 exception.printStackTrace()
             }
             return quack
+        }
+
+        suspend fun eliminarQuack(authKey: String, idQuack: Int) : Int {
+            var respuesta = 0
+            try {
+                val call : Call<ResponseBody> = quackAPI.eliminarQuack(authKey, idQuack)
+                val callResponse = call.awaitResponse()
+                respuesta = callResponse.code()
+            } catch (exception : Exception) {
+                exception.printStackTrace()
+            }
+            return respuesta
+        }
+
+        suspend fun obtenerQuacksPorUsuario(authKey: String, idUsuario: Int) : List<Quack> {
+            var listaQuacks : List<Quack> = listOf()
+            try {
+                val call : Call<List<Quack>> = quackAPI.obtenerQuacksPorUsuario(authKey, idUsuario)
+                val quacks = call.await()
+                listaQuacks = quacks
+            } catch (exception : Exception) {
+                exception.printStackTrace()
+            }
+            return listaQuacks
         }
     }
 }
