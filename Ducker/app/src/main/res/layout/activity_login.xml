@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3F3F3F"
+    tools:context=".Login">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="40dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/duckblue" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bienvenido a Ducker"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <EditText
+        android:id="@+id/inputUsuario"
+        android:layout_width="240dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="52dp"
+        android:backgroundTint="#FFFFFF"
+        android:ems="10"
+        android:hint="Usuario"
+        android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#A8A8A8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintStart_toEndOf="@+id/imageViewUsuario"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <ImageView
+        android:id="@+id/imageViewUsuario"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toStartOf="@+id/inputUsuario"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:srcCompat="@drawable/accountwhite" />
+
+    <ImageView
+        android:id="@+id/imageViewPassword"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="20dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toStartOf="@+id/inputPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewUsuario"
+        app:srcCompat="@drawable/passwordwhite" />
+
+    <EditText
+        android:id="@+id/inputPassword"
+        android:layout_width="240dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="52dp"
+        android:backgroundTint="#FFFFFF"
+        android:ems="10"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#A8A8A8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintStart_toEndOf="@+id/imageViewPassword"
+        app:layout_constraintTop_toBottomOf="@+id/inputUsuario" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Iniciar sesión"
+        android:textColor="#A8A8A8"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/btnIniciarSesion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#00C2ED"
+        android:text="Inciar sesión"
+        android:textColor="#FDFDFD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="¿No tienes una cuenta?"
+        android:textColor="#A8A8A8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnIniciarSesion" />
+
+    <Button
+        android:id="@+id/btnCrearCuenta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:backgroundTint="#00C2ED"
+        android:text="Crear cuenta"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
