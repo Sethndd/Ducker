@@ -22,17 +22,15 @@ router.route('/notificaciones')
             res.status(400).json({Mensaje : 'Faltan Datos'})
         }
     })
-
-router.route('/notificaciones/:idUsuario')
     .get(auth.comprobarToken, (req, res) => {
-        const idUsuario = req.params.idUsuario
+        const idUsuario = req.user.id
         notificacionDAO.obtenerPorUsuario(idUsuario, (err, respuesta) => {
             if (err) {
                 console.log(err)
                 res.status(400).json(err)
                 return
             }
-            res.status(201).json(respuesta)
+            res.status(201).json(idUsuario)
         })
     })
     
