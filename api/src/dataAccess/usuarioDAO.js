@@ -18,7 +18,7 @@ function agregar(user, hashedPass){
             if(err){
                 reject(err)
             }
-            resolve(rows[1][0])
+            resolve(rows)
         })
     })
 }
