@@ -39,6 +39,9 @@
         <activity
             android:name=".Buscador"
             android:exported="true" />
+        <activity
+            android:name=".PerfilUsuario"
+            android:exported="true" />
     </application>
 
 </manifest>
