@@ -8,14 +8,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ducker.R
 import com.example.ducker.data.Quack
 import kotlinx.android.synthetic.main.item_quack.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class QuackAdapter(val listaQuacks: List<Quack>, val activity: Activity): RecyclerView.Adapter<QuackAdapter.QuackHolder>(){
     class QuackHolder(val view: View):  RecyclerView.ViewHolder(view){
         fun render(quack: Quack, activity: Activity){
+            var simpleDateFormat = SimpleDateFormat("dd-MM-yyyy")
+            val fechaActual = simpleDateFormat.format(Date())
+            val fechaQuack = simpleDateFormat.format(quack.fechaHora)
+            if (fechaActual == fechaQuack) {
+                simpleDateFormat = SimpleDateFormat("HH:mm")
+            }
             view.nombrePropio.text = quack.nombrePropio
             view.nombreUsuario.text = quack.nombreUsuario
-            view.hora.text = quack.fechaHora
+            view.hora.text = simpleDateFormat.format(quack.fechaHora)
             view.texto.text = quack.texto
         }
     }

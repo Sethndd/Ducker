@@ -38,7 +38,12 @@ router.post('/register', (req, res) =>{
                 res.status(502).json(err)
             }
             else{
-                res.status(200).json(respuesta)
+                if(respuesta.Respuesta === 'Correo electrónico ya registrado'){
+                    res.status(400).json(respuesta)
+                }
+                else{
+                    res.status(200).json({Mensaje: 'Usuario registrado exitosamente'})
+                }
             }
         })
     }

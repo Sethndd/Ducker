@@ -9,7 +9,7 @@ router.route('/quacks')
     .post(auth.comprobarToken, (req, res) =>{
         const quack = req.body
         if(quackValido(quack)){
-            quackDAO.crear(quack, (err, respuesta) =>{
+            quackDAO.crear(req.user.id, quack, (err, respuesta) =>{
                 if(err){
                     console.log(err)
                     res.status(400).json(err)
@@ -69,8 +69,7 @@ router.route('/quacks/usuario/:id')
     })
 
 function quackValido(quack){
-    if(quack.hasOwnProperty('idUsuario')
-    && quack.hasOwnProperty('texto')
+    if(quack.hasOwnProperty('texto')
     && quack.hasOwnProperty('quackPadre')
     && quack.hasOwnProperty('idAdjunto')){
         return true
