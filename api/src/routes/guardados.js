@@ -36,7 +36,7 @@ router.route('/guardados')
         })
     })
 
-    router.route('/guardados/:id')
+router.route('/guardados/:id')
     .delete(auth.comprobarToken, (req, res) =>{ 
         guardadosDAO.eliminar([req.params.id], (err, rows, fields) =>{ 
             
