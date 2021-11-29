@@ -68,7 +68,7 @@
         android:backgroundTint="#FFFFFF"
         android:ems="10"
         android:hint="Correo electrónico"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         android:textColor="#FFFFFF"
         android:textColorHint="#A8A8A8"
         app:layout_constraintEnd_toEndOf="parent"
