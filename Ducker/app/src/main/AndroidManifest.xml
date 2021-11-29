@@ -13,6 +13,9 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ModificacionDeUsuario"
+            android:exported="true" />
+        <activity
             android:name=".Feed"
             android:exported="false" />
         <activity
