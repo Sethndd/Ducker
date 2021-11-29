@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3F3F3F"
+    tools:context=".PerfilUsuario">
+
+    <ImageView
+        android:id="@+id/btnPortada"
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <ImageView
+        android:id="@+id/btnFotoPerfil"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="62dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/user" />
+
+    <Button
+        android:id="@+id/btnEditarOSeguir"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="#00C2ED"
+        android:text="Editar o Seguir"
+        android:textColor="#FFFFFF"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPortada" />
+
+    <TextView
+        android:id="@+id/txtNombre"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:text="Nombre"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnFotoPerfil" />
+
+    <TextView
+        android:id="@+id/txtUsuario"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Usuario"
+        android:textColor="#A8A8A8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
+
+    <TextView
+        android:id="@+id/txtSeguidos"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:text="Seguidos"
+        android:textColor="#A8A8A8"
+        app:layout_constraintEnd_toStartOf="@+id/txtSeguidores"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtUsuario" />
+
+    <TextView
+        android:id="@+id/txtSeguidores"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Seguidores"
+        android:textColor="#A8A8A8"
+        app:layout_constraintStart_toEndOf="@+id/txtSeguidos"
+        app:layout_constraintTop_toBottomOf="@+id/txtUsuario" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="380dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSeguidores" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2E2E2E"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/btnMenuPrincipal"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/duckwhite" />
+
+        <ImageView
+            android:id="@+id/btnBuscador"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/search" />
+
+        <ImageView
+            android:id="@+id/btnNuevoQuack"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/plus" />
+
+        <ImageView
+            android:id="@+id/btnGuardados"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/savewhite" />
+
+        <ImageView
+            android:id="@+id/btnPerfil"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/accountwhite" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

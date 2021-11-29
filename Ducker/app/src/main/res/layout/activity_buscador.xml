@@ -7,28 +7,18 @@
     android:background="#3F3F3F"
     tools:context=".Buscador">
 
-    <ImageButton
-        android:id="@+id/btnMenu"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:backgroundTint="#3F3F3F"
-        android:scaleType="fitCenter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/duckwhite" />
-
     <TextView
         android:id="@+id/btnDescubrir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="55dp"
+        android:layout_marginStart="115dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="5dp"
         android:text="Descubrir"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/btnSiguiendo"
-        app:layout_constraintStart_toEndOf="@+id/btnMenu"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -41,22 +31,22 @@
         android:text="Siguiendo"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/btnBuscador"
+        app:layout_constraintEnd_toStartOf="@+id/btnConfiguracion"
         app:layout_constraintStart_toEndOf="@+id/btnDescubrir"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/btnBuscador"
+        android:id="@+id/btnConfiguracion"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:backgroundTint="#00FFFFFF"
-        android:tint="#FFFFFF"
+        android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_search" />
+        app:srcCompat="@drawable/ajustes" />
 
     <EditText
-        android:id="@+id/inputBuscar"
+        android:id="@+id/inputBuscador"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_marginStart="5dp"
@@ -74,16 +64,15 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="25dp"
         android:layout_marginEnd="5dp"
-        app:layout_constraintEnd_toStartOf="@+id/inputBuscar"
+        app:layout_constraintEnd_toStartOf="@+id/inputBuscador"
         app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnMenu"
-        app:srcCompat="@android:drawable/ic_menu_search" />
+        app:srcCompat="@drawable/search"
+        tools:layout_editor_absoluteY="85dp" />
 
     <TextView
         android:id="@+id/btnPersonas"
@@ -96,7 +85,7 @@
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toStartOf="@+id/btnDeportes"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputBuscar" />
+        app:layout_constraintTop_toBottomOf="@+id/inputBuscador" />
 
     <TextView
         android:id="@+id/btnDeportes"
@@ -110,7 +99,7 @@
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toStartOf="@+id/btnPeliculas"
         app:layout_constraintStart_toEndOf="@+id/btnPersonas"
-        app:layout_constraintTop_toBottomOf="@+id/inputBuscar" />
+        app:layout_constraintTop_toBottomOf="@+id/inputBuscador" />
 
     <TextView
         android:id="@+id/btnPeliculas"
@@ -124,7 +113,7 @@
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toStartOf="@+id/btnNoticias"
         app:layout_constraintStart_toEndOf="@+id/btnDeportes"
-        app:layout_constraintTop_toBottomOf="@+id/inputBuscar" />
+        app:layout_constraintTop_toBottomOf="@+id/inputBuscador" />
 
     <TextView
         android:id="@+id/btnNoticias"
@@ -137,13 +126,72 @@
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnPeliculas"
-        app:layout_constraintTop_toBottomOf="@+id/inputBuscar" />
+        app:layout_constraintTop_toBottomOf="@+id/inputBuscador" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="536dp"
+        android:layout_height="480dp"
+        android:layout_marginTop="26dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPeliculas" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2E2E2E"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/btnMenuPrincipal"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/duckwhite" />
+
+        <ImageView
+            android:id="@+id/btnBuscador"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/search" />
+
+        <ImageView
+            android:id="@+id/btnNuevoQuack"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/plus" />
+
+        <ImageView
+            android:id="@+id/btnGuardados"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/savewhite" />
+
+        <ImageView
+            android:id="@+id/btnPerfil"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/accountwhite" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
