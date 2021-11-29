@@ -20,6 +20,7 @@ app.use(require(path.join(rutas, 'guardados.js')))
 app.use(require(path.join(rutas, 'seguidos.js')))
 app.use(require(path.join(rutas, 'likes.js')))
 app.use(require(path.join(rutas, 'perfil.js')))
+app.use(require(path.join(rutas, 'usuarios.js')))
 
 //Starting app
 app.listen(app.get('port'), () => {
