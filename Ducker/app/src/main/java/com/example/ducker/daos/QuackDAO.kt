@@ -14,7 +14,7 @@ class QuackDAO {
         private val quackAPI = retrofit.create(QuackAPI::class.java)
 
         suspend fun obtenerQuacks(authKey : String): List<Quack> {
-            lateinit var listaQuacks : List<Quack>
+            var listaQuacks : List<Quack> = listOf()
             try {
                 val call : Call<List<Quack>> = quackAPI.obtenerQuacks(authKey)
                 val quacks : List<Quack> = call.await()
