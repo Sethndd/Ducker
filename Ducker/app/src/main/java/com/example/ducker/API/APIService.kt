@@ -1,5 +1,6 @@
 package com.example.ducker.API
 
+import com.example.ducker.util.Rutas
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import com.google.gson.annotations.SerializedName
@@ -8,7 +9,8 @@ class APIService {
     companion object{
         fun obtenerRetroFit(): Retrofit {
             return Retrofit.Builder()
-                .baseUrl("http://192.168.0.6:1806/")
+                .baseUrl(Rutas.APIDUCKER)
+//                .baseUrl("http://ducker.reww4n.xyz/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }

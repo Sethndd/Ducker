@@ -17,7 +17,7 @@ function registrarUsuario(user, cb){
 }
 
 function validarCredenciales(correo, contrasena, callback){
-    usuarioDAO.obtener(correo)
+    usuarioDAO.obtenerContrasena(correo)
     .then(respuesta => {
         if(respuesta && respuesta.hasOwnProperty('contrasena')){
             bcrypt.compare(contrasena, respuesta.contrasena, (err, res) =>{
