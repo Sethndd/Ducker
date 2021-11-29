@@ -9,10 +9,10 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface AuthenticationAPI {
-    @POST("login")
+    @POST("/login/")
     fun iniciarSesion(@Body login: Login): Call<Token>
 
-    @POST("register")
+    @POST("/register/")
     fun registrarse(@Body usuario: Usuario): Call<APIService.Mensaje>
 
 }

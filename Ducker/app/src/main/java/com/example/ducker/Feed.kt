@@ -39,7 +39,7 @@ class Feed : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             listaQuacks = QuackDAO.obtenerQuacks(authKey)
             runOnUiThread{
-                recyclerView.adapter = QuackAdapter(listaQuacks, activity)
+                recyclerView.adapter = QuackAdapter(listaQuacks, authKey, activity)
             }
         }
     }

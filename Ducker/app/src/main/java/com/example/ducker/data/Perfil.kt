@@ -1,5 +1,7 @@
 package com.example.ducker.data
 
-data class Perfil (val idUsuario:Int,
-                   val imagenRuta:String,
-                   val bannerRuta:String)
+import com.google.gson.annotations.SerializedName
+
+data class Perfil (@SerializedName("idUsuario") val idUsuario:Int,
+                   @SerializedName("imgRuta") val imagenRuta:String,
+                   @SerializedName("bannerRuta")  val bannerRuta:String)
