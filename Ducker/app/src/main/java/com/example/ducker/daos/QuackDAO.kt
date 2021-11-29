@@ -14,7 +14,7 @@ class QuackDAO {
         private val quackAPI = retrofit.create(QuackAPI::class.java)
 
         suspend fun obtenerQuacks(authKey : String): List<Quack> {
-            var listaQuacks : List<Quack> = listOf()
+            lateinit var listaQuacks : List<Quack>
             try {
                 val call : Call<List<Quack>> = quackAPI.obtenerQuacks(authKey)
                 val quacks : List<Quack> = call.await()
@@ -62,7 +62,7 @@ class QuackDAO {
         }
 
         suspend fun obtenerQuacksPorUsuario(authKey: String, idUsuario: Int) : List<Quack> {
-            var listaQuacks : List<Quack> = listOf()
+            lateinit var listaQuacks : List<Quack>
             try {
                 val call : Call<List<Quack>> = quackAPI.obtenerQuacksPorUsuario(authKey, idUsuario)
                 val quacks = call.await()

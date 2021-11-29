@@ -1,4 +1,6 @@
 package com.example.ducker.data
 
-data class Seguido (val idSeguidor:Int,
-                    val idSeguido:Int)
+import com.google.gson.annotations.SerializedName
+
+data class Seguido (@SerializedName("idSeguidor") val idSeguidor:Int,
+                    @SerializedName("idSeguido") val idSeguido:Int)

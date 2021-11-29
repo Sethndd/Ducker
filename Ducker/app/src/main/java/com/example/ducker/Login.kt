@@ -37,6 +37,7 @@ class Login : AppCompatActivity() {
                     else{
                         val intent = Intent(context, Feed::class.java)
                         startActivity(intent.putExtra("authKey", authKey))
+                        finish()
                     }
                 }
             }
@@ -45,6 +46,7 @@ class Login : AppCompatActivity() {
         btnCrearCuenta.setOnClickListener {
             val intent = Intent(this, RegistroDeUsuario::class.java)
             startActivity(intent)
+            finish()
         }
     }
 }
