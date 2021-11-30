@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ducker.PerfilUsuario
 import com.example.ducker.QuackDetalles
 import com.example.ducker.daos.PerfilDAO
+import com.example.ducker.daos.QuackDAO
 import com.example.ducker.data.Quack
 import com.example.ducker.util.CyrclePicasso
 import com.example.ducker.util.Rutas
@@ -35,12 +36,15 @@ class QuackHolder(val view: View):  RecyclerView.ViewHolder(view){
             simpleDateFormat.timeZone = TimeZone.getTimeZone("America/Mexico_City")
         }
 
+        view.txtEtiqueta.visibility = View.GONE
+        view.txtUsuarioPadre.visibility = View.GONE
+
         view.nombrePropio.text = quack.nombrePropio
         view.nombreUsuario.text = "@".plus(quack.nombreUsuario)
         view.hora.text = simpleDateFormat.format(quack.fechaHora)
         view.texto.text = quack.texto
 
-        cargarFotoPerfil(quack.idUsuario, view.fotoPerfil)
+        cargarDatos(quack, view.fotoPerfil)
 
         agregarListeners(view.context, quack)
     }
@@ -66,10 +70,22 @@ class QuackHolder(val view: View):  RecyclerView.ViewHolder(view){
         context.startActivity(intent)
     }
 
-    private fun cargarFotoPerfil(idUsuario: Int, imagen: ImageView){
+        private fun cargarDatos(quack: Quack, imagen: ImageView){
         CoroutineScope(Dispatchers.IO).launch {
-            val perfil = PerfilDAO.obtener(authKey, idUsuario)
+            val perfil = PerfilDAO.obtener(authKey, quack.idUsuario)
+            var padre: Quack? = null
+
+            if(quack.quackPadre > 0){
+                padre = QuackDAO.obtenerQuackPorId(authKey, quack.quackPadre)
+            }
+
             CoroutineScope(Dispatchers.Main).launch{
+                if(quack.quackPadre > 0){
+                    view.txtEtiqueta.visibility = View.VISIBLE
+                    view.txtUsuarioPadre.visibility = View.VISIBLE
+                    view.txtUsuarioPadre.text = "@".plus(padre?.nombreUsuario)
+                }
+
                 Picasso.get()
                     .load(Rutas.IMAGENES.plus(perfil.imagenRuta))
                     .transform(CyrclePicasso())
