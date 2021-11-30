@@ -2,6 +2,7 @@ package com.example.ducker
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ducker.Recyclers.QuackAdapter
 import com.example.ducker.daos.PerfilDAO

@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ducker.Recyclers.QuackAdapter
 import com.example.ducker.daos.QuackDAO
@@ -29,17 +28,20 @@ class Feed : AppCompatActivity() {
 //        obtenerQuackPorId()
 //        eliminarQuack()
 //        obtenerQuacksPorUsuario()
+
         agregarListeners()
-        obtenerQuacks(this)
+        obtenerQuacks()
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
-    fun obtenerQuacks(context: Context){
+    fun obtenerQuacks(){
         val activity = this
         CoroutineScope(Dispatchers.IO).launch {
             listaQuacks = QuackDAO.obtenerQuacks(authKey)
             runOnUiThread{
-                recyclerView.adapter = QuackAdapter(listaQuacks, authKey, activity)
+                val adapter = QuackAdapter(listaQuacks, authKey, activity)
+                recyclerView.adapter = adapter
+                adapter.notifyItemInserted(listaQuacks.size)
             }
         }
     }
@@ -48,6 +50,7 @@ class Feed : AppCompatActivity() {
         btnNuevoQuack.setOnClickListener {
             val intent : Intent = Intent(this, NuevoQuack::class.java)
             startActivity(intent.putExtra("authKey", authKey))
+            finish()
         }
     }
 
