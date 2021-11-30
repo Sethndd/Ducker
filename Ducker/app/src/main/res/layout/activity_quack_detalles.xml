@@ -21,17 +21,36 @@
                 android:id="@+id/rvPadres"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
                 android:nestedScrollingEnabled="false" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/fotoPerfil"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:background="#00FFFFFF"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/user" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
@@ -39,62 +58,44 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
+                        <TextView
+                            android:id="@+id/nombrePropio"
+                            android:layout_width="230dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:text="Nombre"
+                            android:textColor="#FFFFFF" />
+
+                        <TextView
+                            android:id="@+id/hora"
+                            android:layout_width="80dp"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:gravity="center|end"
+                            android:text="Hora"
+                            android:textColor="#A8A8A8"
+                            android:textSize="10sp" />
 
-                            <ImageView
-                                android:id="@+id/fotoPerfil"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:layout_weight="1"
-                                android:background="#00FFFFFF"
-                                android:scaleType="fitCenter"
-                                app:srcCompat="@drawable/user" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="wrap_content"
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/nombreUsuario"
+                            android:layout_width="230dp"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:text="Usuario"
+                            android:textColor="#A8A8A8" />
 
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:id="@+id/nombrePropio"
-                                    android:layout_width="230dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginRight="5dp"
-                                    android:text="Nombre"
-                                    android:textColor="#FFFFFF" />
-
-                                <TextView
-                                    android:id="@+id/hora"
-                                    android:layout_width="80dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:text="Hora"
-                                    android:textColor="#A8A8A8" />
-
-                            </LinearLayout>
-
-                            <TextView
-                                android:id="@+id/nombreUsuario"
-                                android:layout_width="230dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="10dp"
-                                android:layout_weight="1"
-                                android:text="Usuario"
-                                android:textColor="#A8A8A8" />
-                        </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
@@ -102,8 +103,6 @@
                         android:layout_height="match_parent"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -111,54 +110,86 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Quack"
-                            android:textColor="#FFFFFF"
-                            android:textSize="22sp" />
+                            android:textColor="#FFFFFF" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="230dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_gravity="center_horizontal">
+                        android:orientation="horizontal">
 
                         <ImageView
                             android:id="@+id/btnLike"
-                            android:layout_width="5dp"
+                            android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:layout_marginRight="15dp"
+                            android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:backgroundTint="#00FFFFFF"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/happinessblack" />
 
+                        <TextView
+                            android:id="@+id/txtContadorLikes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="100k"
+                            android:textColor="#FFFFFF"
+                            android:textSize="10sp" />
+
                         <ImageView
                             android:id="@+id/btnComentario"
-                            android:layout_width="5dp"
+                            android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:layout_marginRight="15dp"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:backgroundTint="#00FFFFFF"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/comment" />
 
+                        <TextView
+                            android:id="@+id/txtContadorComentarios"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="25dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="100k"
+                            android:textColor="#FFFFFF"
+                            android:textSize="10sp" />
+
                         <ImageView
                             android:id="@+id/btnCompartir"
-                            android:layout_width="5dp"
+                            android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:layout_marginEnd="15dp"
+                            android:layout_marginEnd="5dp"
                             android:layout_weight="1"
                             android:backgroundTint="#00FFFFFF"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/share" />
 
+                        <TextView
+                            android:id="@+id/txtContadorCompartidos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="100k"
+                            android:textColor="#FFFFFF"
+                            android:textSize="10sp" />
+
                         <ImageView
                             android:id="@+id/btnGuardar"
-                            android:layout_width="5dp"
+                            android:layout_width="20dp"
                             android:layout_height="20dp"
+                            android:layout_marginLeft="25dp"
                             android:layout_weight="1"
                             android:backgroundTint="#00FFFFFF"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/savewhite" />
+
                     </LinearLayout>
 
                 </LinearLayout>
@@ -168,6 +199,7 @@
                 android:id="@+id/rvHijos"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
                 android:nestedScrollingEnabled="false">
 
             </androidx.recyclerview.widget.RecyclerView>

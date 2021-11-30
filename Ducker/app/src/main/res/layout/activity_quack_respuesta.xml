@@ -61,10 +61,12 @@
                 <TextView
                     android:id="@+id/hora"
                     android:layout_width="80dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="center|end"
                     android:text="Hora"
-                    android:textColor="#A8A8A8" />
+                    android:textColor="#A8A8A8"
+                    android:textSize="10sp" />
 
             </LinearLayout>
 
@@ -128,9 +130,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-        app:layout_constraintVertical_bias="0.502" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnInsertarMultimedia"
