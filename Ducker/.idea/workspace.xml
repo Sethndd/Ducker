@@ -13,11 +13,14 @@
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/API/QuackAPI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/API/QuackAPI.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/Feed.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/Feed.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/NuevoQuack.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/NuevoQuack.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/PerfilUsuario.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/PerfilUsuario.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/Recyclers/QuackAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/Recyclers/QuackAdapter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/daos/QuackDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/daos/QuackDAO.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_feed.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_feed.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_nuevo_quack.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_nuevo_quack.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_perfil_usuario.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_perfil_usuario.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +41,8 @@
         <option value="Kotlin Data Class" />
         <option value="Kotlin Object" />
         <option value="Kotlin Interface" />
-        <option value="Kotlin Class" />
         <option value="layoutResourceFile" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -80,6 +83,9 @@
       <recent name="com.example.ducker.views" />
     </key>
     <key name="android.template.-368685148">
+      <recent name="com.example.ducker" />
+    </key>
+    <key name="android.template.-1420312139">
       <recent name="com.example.ducker" />
     </key>
   </component>

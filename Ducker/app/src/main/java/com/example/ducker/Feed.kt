@@ -30,16 +30,18 @@ class Feed : AppCompatActivity() {
 //        obtenerQuacksPorUsuario()
 
         agregarListeners()
-        obtenerQuacks(this)
+        obtenerQuacks()
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
-    fun obtenerQuacks(context: Context){
+    fun obtenerQuacks(){
         val activity = this
         CoroutineScope(Dispatchers.IO).launch {
             listaQuacks = QuackDAO.obtenerQuacks(authKey)
             runOnUiThread{
-                recyclerView.adapter = QuackAdapter(listaQuacks, authKey, activity)
+                val adapter = QuackAdapter(listaQuacks, authKey, activity)
+                recyclerView.adapter = adapter
+                adapter.notifyItemInserted(listaQuacks.size)
             }
         }
     }
