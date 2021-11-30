@@ -17,7 +17,7 @@ class QuackDAO {
             var listaQuacks : List<Quack> = listOf()
             try {
                 val call : Call<List<Quack>> = quackAPI.obtenerQuacks(authKey)
-                val quacks : List<Quack> = call.await()
+                val quacks = call.await()
                 listaQuacks = quacks
             } catch (exception : Exception) {
                 exception.printStackTrace()
@@ -62,10 +62,34 @@ class QuackDAO {
         }
 
         suspend fun obtenerQuacksPorUsuario(authKey: String, idUsuario: Int) : List<Quack> {
-            lateinit var listaQuacks : List<Quack>
+            var listaQuacks : List<Quack> = listOf()
             try {
                 val call : Call<List<Quack>> = quackAPI.obtenerQuacksPorUsuario(authKey, idUsuario)
                 val quacks = call.await()
+                listaQuacks = quacks
+            } catch (exception : Exception) {
+                exception.printStackTrace()
+            }
+            return listaQuacks
+        }
+
+        suspend fun obtenerPadres(authKey : String, idQuack: Int): List<Quack> {
+            var listaQuacks : List<Quack> = listOf()
+            try {
+                val call : Call<List<Quack>> = quackAPI.obtenerPadres(authKey, idQuack)
+                val quacks : List<Quack> = call.await()
+                listaQuacks = quacks
+            } catch (exception : Exception) {
+                exception.printStackTrace()
+            }
+            return listaQuacks
+        }
+
+        suspend fun obtenerHijos(authKey : String, idQuack: Int): List<Quack> {
+            var listaQuacks : List<Quack> = listOf()
+            try {
+                val call : Call<List<Quack>> = quackAPI.obtenerHijos(authKey, idQuack)
+                val quacks : List<Quack> = call.await()
                 listaQuacks = quacks
             } catch (exception : Exception) {
                 exception.printStackTrace()

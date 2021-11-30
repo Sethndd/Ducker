@@ -3,10 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Documentos/GitHub/Ducker/Ducker/app/src/main/res/layout/activity_buscador.xml" value="0.36666666666666664" />
         <entry key="..\:/Documentos/GitHub/Ducker/Ducker/app/src/main/res/layout/activity_feed.xml" value="0.3532608695652174" />
+        <entry key="..\:/Documentos/GitHub/Ducker/Ducker/app/src/main/res/layout/activity_mensaje.xml" value="0.36666666666666664" />
+        <entry key="..\:/Documentos/GitHub/Ducker/Ducker/app/src/main/res/layout/activity_modificacion_de_usuario.xml" value="0.23385416666666667" />
+        <entry key="..\:/Documentos/GitHub/Ducker/Ducker/app/src/main/res/layout/activity_nuevo_quack.xml" value="0.36666666666666664" />
         <entry key="..\:/Documentos/GitHub/Ducker/Ducker/app/src/main/res/layout/activity_perfil_usuario.xml" value="0.36666666666666664" />
+        <entry key="..\:/Documentos/GitHub/Ducker/Ducker/app/src/main/res/layout/activity_quack_detalles.xml" value="0.36666666666666664" />
+        <entry key="..\:/Documentos/GitHub/Ducker/Ducker/app/src/main/res/layout/activity_registro_de_usuario.xml" value="0.23385416666666667" />
         <entry key="..\:/Documentos/GitHub/Ducker/Ducker/app/src/main/res/layout/item_perfil.xml" value="0.36666666666666664" />
         <entry key="..\:/Documentos/GitHub/Ducker/Ducker/app/src/main/res/layout/item_quack.xml" value="0.3555253623188406" />
+        <entry key="..\:/Documentos/GitHub/Ducker/Ducker/app/src/main/res/layout/modal_nuevo_quack.xml" value="0.36666666666666664" />
         <entry key="..\:/Documentos/GitHub/Rettiwt/Ducker/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Documentos/GitHub/Rettiwt/Ducker/app/src/main/res/layout/item_quack.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/dagam/Desktop/Ducker/app/src/main/res/layout/activity_main.xml" value="0.25" />
