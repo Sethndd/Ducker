@@ -36,9 +36,6 @@ class QuackHolder(val view: View):  RecyclerView.ViewHolder(view){
             simpleDateFormat.timeZone = TimeZone.getTimeZone("America/Mexico_City")
         }
 
-        view.txtEtiqueta.visibility = View.GONE
-        view.txtUsuarioPadre.visibility = View.GONE
-
         view.nombrePropio.text = quack.nombrePropio
         view.nombreUsuario.text = "@".plus(quack.nombreUsuario)
         view.hora.text = simpleDateFormat.format(quack.fechaHora)
