@@ -62,7 +62,7 @@ class QuackDAO {
         }
 
         suspend fun obtenerQuacksPorUsuario(authKey: String, idUsuario: Int) : List<Quack> {
-            lateinit var listaQuacks : List<Quack>
+            var listaQuacks : List<Quack> = listOf()
             try {
                 val call : Call<List<Quack>> = quackAPI.obtenerQuacksPorUsuario(authKey, idUsuario)
                 val quacks = call.await()
