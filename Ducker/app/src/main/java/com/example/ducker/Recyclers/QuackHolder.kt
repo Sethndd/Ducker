@@ -41,7 +41,7 @@ class QuackHolder(val view: View):  RecyclerView.ViewHolder(view){
         view.hora.text = simpleDateFormat.format(quack.fechaHora)
         view.texto.text = quack.texto
 
-        cargarDatos(quack, view.fotoPerfil)
+        cargarDatos(quack)
 
         agregarListeners(view.context, quack)
     }
@@ -51,6 +51,7 @@ class QuackHolder(val view: View):  RecyclerView.ViewHolder(view){
         view.nombrePropio.setOnClickListener { abrirPerfil(context, quack.idUsuario) }
         view.nombreUsuario.setOnClickListener { abrirPerfil(context, quack.idUsuario) }
         view.setOnClickListener { abrirQuack(context, quack.id) }
+
     }
 
     private fun abrirPerfil(context: Context, idUsuario: Int){
@@ -67,7 +68,7 @@ class QuackHolder(val view: View):  RecyclerView.ViewHolder(view){
         context.startActivity(intent)
     }
 
-        private fun cargarDatos(quack: Quack, imagen: ImageView){
+        private fun cargarDatos(quack: Quack){
         CoroutineScope(Dispatchers.IO).launch {
             val perfil = PerfilDAO.obtener(authKey, quack.idUsuario)
             var padre: Quack? = null
