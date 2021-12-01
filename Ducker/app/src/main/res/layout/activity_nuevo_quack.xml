@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#161B22"
+    android:background="@color/dark_app"
     tools:context=".NuevoQuack">
 
     <ImageView
         android:id="@+id/btnCerrar"
         android:layout_width="10dp"
         android:layout_height="10dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/close" />
@@ -22,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="550dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="130dp"
         android:backgroundTint="#00FFFFFF"
