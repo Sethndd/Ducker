@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3F3F3F"
+    android:background="#161B22"
     tools:context=".MainActivity">
 
 
@@ -59,7 +59,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#2E2E2E"
+        android:background="#0F1319"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +72,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/duckwhite" />
+            app:srcCompat="@drawable/home" />
 
         <ImageView
             android:id="@+id/btnBuscador"
@@ -99,7 +99,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/savewhite" />
+            app:srcCompat="@drawable/saved" />
 
         <ImageView
             android:id="@+id/btnPerfil"
@@ -108,7 +108,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/accountwhite" />
+            app:srcCompat="@drawable/perfil" />
 
     </LinearLayout>
 
