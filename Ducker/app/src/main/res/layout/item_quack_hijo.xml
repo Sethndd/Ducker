@@ -8,13 +8,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp"
+        android:layout_height="110dp"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="29.2dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -28,7 +28,7 @@
                 android:id="@+id/view4"
                 android:layout_width="15dp"
                 android:layout_height="1dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="20dp"
                 android:background="#FFFFFF" />
         </LinearLayout>
 
@@ -51,7 +51,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="300dp"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
@@ -66,11 +66,12 @@
 
                 <TextView
                     android:id="@+id/nombrePropio"
-                    android:layout_width="230dp"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
                     android:text="Nombre"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/hora"
@@ -80,7 +81,7 @@
                     android:gravity="center|end"
                     android:text="Hora"
                     android:textColor="#A8A8A8"
-                    android:textSize="10sp" />
+                    android:textSize="8sp" />
 
             </LinearLayout>
 
@@ -91,12 +92,13 @@
 
                 <TextView
                     android:id="@+id/nombreUsuario"
-                    android:layout_width="230dp"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:text="Usuario"
-                    android:textColor="#A8A8A8" />
+                    android:textColor="#A8A8A8"
+                    android:textSize="10sp" />
 
             </LinearLayout>
 
@@ -112,7 +114,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Quack"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:textSize="10sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -138,7 +141,7 @@
                     android:gravity="center"
                     android:text="100k"
                     android:textColor="#FFFFFF"
-                    android:textSize="10sp" />
+                    android:textSize="8sp" />
 
                 <ImageView
                     android:id="@+id/btnComentario"
@@ -160,7 +163,7 @@
                     android:gravity="center"
                     android:text="100k"
                     android:textColor="#FFFFFF"
-                    android:textSize="10sp" />
+                    android:textSize="8sp" />
 
                 <ImageView
                     android:id="@+id/btnCompartir"
@@ -180,7 +183,7 @@
                     android:gravity="center"
                     android:text="100k"
                     android:textColor="#FFFFFF"
-                    android:textSize="10sp" />
+                    android:textSize="8sp" />
 
                 <ImageView
                     android:id="@+id/btnGuardar"
