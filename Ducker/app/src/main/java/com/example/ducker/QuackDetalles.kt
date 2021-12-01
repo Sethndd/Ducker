@@ -8,12 +8,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ducker.Recyclers.QuackAdapter
 import com.example.ducker.Recyclers.QuackHijoAdapter
 import com.example.ducker.Recyclers.QuackPadreAdapter
+import com.example.ducker.daos.LikesDAO
 import com.example.ducker.daos.PerfilDAO
 import com.example.ducker.daos.QuackDAO
+import com.example.ducker.data.Like
 import com.example.ducker.util.CyrclePicasso
 import com.example.ducker.util.Rutas
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_quack_detalles.*
+import kotlinx.android.synthetic.main.item_quack.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -48,6 +51,8 @@ class QuackDetalles : AppCompatActivity() {
             val perfil = PerfilDAO.obtener(authKey, quack.idUsuario)
             val padres = QuackDAO.obtenerPadres(authKey, quack.id)
             val hijos = QuackDAO.obtenerHijos(authKey, quack.id)
+            val likes = LikesDAO.obtenerCantidadLikesQuack(authKey, quack.id)
+            val quackLikeado = LikesDAO.comprobarLike(authKey, quack.id)
 
             idUsuario = quack.idUsuario
 
@@ -57,10 +62,17 @@ class QuackDetalles : AppCompatActivity() {
                     simpleDateFormat = SimpleDateFormat("HH:mm")
                 }
 
+                if (quackLikeado) {
+                    btnLike.setImageResource(R.drawable.like)
+                } else {
+                    btnLike.setImageResource(R.drawable.no_like)
+                }
+
                 nombrePropio.text = quack.nombrePropio
                 nombreUsuario.text = "@".plus(quack.nombreUsuario)
                 hora.text = simpleDateFormat.format(quack.fechaHora)
                 texto.text = quack.texto
+                txtContadorLikes.text = likes.toString()
 
                 rvPadres.adapter = QuackPadreAdapter(padres, authKey, activity)
                 rvHijos.adapter = QuackHijoAdapter(hijos, authKey, activity)
@@ -78,8 +90,16 @@ class QuackDetalles : AppCompatActivity() {
         nombrePropio.setOnClickListener { abrirPerfil(this) }
         nombreUsuario.setOnClickListener { abrirPerfil(this) }
 
+        btnLike.setOnClickListener { crearLike() }
         btnComentario.setOnClickListener { abrirResponderQuack(this) }
         txtContadorComentarios.setOnClickListener { abrirResponderQuack(this) }
+    }
+
+    private fun crearLike(){
+        CoroutineScope(Dispatchers.IO).launch {
+            LikesDAO.crearLikes(authKey, Like(0, id, 0))
+        }
+        cargarDatos(id)
     }
 
     private fun abrirPerfil(context: Context){

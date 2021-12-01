@@ -3,13 +3,17 @@ package com.example.ducker.Recyclers
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ducker.PerfilUsuario
 import com.example.ducker.QuackDetalles
 import com.example.ducker.QuackRespuesta
+import com.example.ducker.R
+import com.example.ducker.daos.LikesDAO
 import com.example.ducker.daos.PerfilDAO
 import com.example.ducker.daos.QuackDAO
+import com.example.ducker.data.Like
 import com.example.ducker.data.Quack
 import com.example.ducker.util.CyrclePicasso
 import com.example.ducker.util.Rutas
@@ -24,6 +28,7 @@ import java.util.*
 open class QuackHolder(open val view: View):  RecyclerView.ViewHolder(view){
     protected var authKey = ""
     protected lateinit var quack: Quack
+    protected var liked : Boolean = false
 
     open fun render(quack: Quack, auth: String, activity: Activity){
         this.authKey = auth
@@ -52,10 +57,18 @@ open class QuackHolder(open val view: View):  RecyclerView.ViewHolder(view){
         view.nombrePropio.setOnClickListener { abrirPerfil() }
         view.nombreUsuario.setOnClickListener { abrirPerfil() }
 
+        view.btnLike.setOnClickListener { crearLike() }
         view.btnComentario.setOnClickListener { abrirResponderQuack() }
         view.txtContadorComentarios.setOnClickListener { abrirResponderQuack() }
 
         view.setOnClickListener { abrirQuack() }
+    }
+
+    protected fun crearLike(){
+        CoroutineScope(Dispatchers.IO).launch {
+            val result = LikesDAO.crearLikes(authKey, Like(0, quack.id, 0))
+            cargarDatos()
+        }
     }
 
     protected open fun abrirPerfil(){
@@ -82,17 +95,26 @@ open class QuackHolder(open val view: View):  RecyclerView.ViewHolder(view){
     protected open fun cargarDatos(){
         CoroutineScope(Dispatchers.IO).launch {
             val perfil = PerfilDAO.obtener(authKey, quack.idUsuario)
-            var padre: Quack? = null
+            val likes = LikesDAO.obtenerCantidadLikesQuack(authKey, quack.id)
+            val quackLikeado = LikesDAO.comprobarLike(authKey, quack.id)
+            lateinit var padre: Quack
 
             if(quack.quackPadre > 0){
                 padre = QuackDAO.obtenerQuackPorId(authKey, quack.quackPadre)
             }
 
             CoroutineScope(Dispatchers.Main).launch{
-                if(quack.quackPadre > 0){
+                view.txtContadorLikes.text = likes.toString()
+                if(quack.quackPadre > 0 && padre.estado == "activo"){
                     view.txtEtiqueta.visibility = View.VISIBLE
                     view.txtUsuarioPadre.visibility = View.VISIBLE
-                    view.txtUsuarioPadre.text = "@".plus(padre?.nombreUsuario)
+                    view.txtUsuarioPadre.text = "@".plus(padre.nombreUsuario)
+                }
+
+                if (quackLikeado) {
+                    view.btnLike.setImageResource(R.drawable.like)
+                } else {
+                    view.btnLike.setImageResource(R.drawable.no_like)
                 }
 
                 Picasso.get()
