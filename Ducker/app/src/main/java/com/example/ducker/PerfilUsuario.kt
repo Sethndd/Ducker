@@ -22,25 +22,26 @@ import kotlinx.coroutines.launch
 class PerfilUsuario : AppCompatActivity() {
     private var authKey = ""
     private var listaQuacks = listOf<Quack>()
+    private var idUsuario: Int = 0
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+        override fun onCreate(savedInstanceState: Bundle?) {
         val bundle = intent.extras
         authKey = bundle?.getString("authKey").toString()
-        val idUsuario: Int = bundle?.getString("id").toString().toInt()
+        idUsuario = bundle?.getString("id").toString().toInt()
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_perfil_usuario)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        cargarPerfil(idUsuario)
-        cargarQuacks(idUsuario)
+        cargarPerfil()
+        cargarQuacks()
 //        aregarListeners()
 
-        println(idUsuario)
+        println()
     }
 
-    private fun cargarPerfil(idUsuario: Int) {
+    private fun cargarPerfil() {
         CoroutineScope(Dispatchers.IO).launch{
             val usuario = UsuarioDAO.obtener(authKey, idUsuario)
             val perfil = PerfilDAO.obtener(authKey, idUsuario)
@@ -63,7 +64,7 @@ class PerfilUsuario : AppCompatActivity() {
         }
     }
 
-    private fun cargarQuacks(idUsuario: Int) {
+    private fun cargarQuacks() {
         val activity = this
         CoroutineScope(Dispatchers.IO).launch {
             listaQuacks = QuackDAO.obtenerQuacksPorUsuario(authKey, idUsuario)

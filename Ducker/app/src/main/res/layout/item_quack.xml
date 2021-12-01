@@ -85,23 +85,24 @@
 
                     <TextView
                         android:id="@+id/txtEtiqueta"
-                        android:layout_width="80dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:layout_weight="1"
-                        android:text="En respuesta a:"
+                        android:text="En respuesta a "
                         android:textColor="#00C2ED"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:visibility="gone"/>
 
                     <TextView
                         android:id="@+id/txtUsuarioPadre"
-                        android:layout_width="220dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
                         android:text="Usuario padre"
                         android:textColor="#00C2ED"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:visibility="gone"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -130,7 +131,6 @@
                     android:id="@+id/btnLike"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:backgroundTint="#00FFFFFF"
                     android:scaleType="fitCenter"
@@ -141,6 +141,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:paddingHorizontal="5dp"
                     android:gravity="center"
                     android:text="100k"
                     android:textColor="#FFFFFF"
@@ -151,7 +152,6 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginLeft="25dp"
-                    android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:backgroundTint="#00FFFFFF"
                     android:scaleType="fitCenter"
@@ -163,6 +163,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginRight="25dp"
                     android:layout_weight="1"
+                    android:paddingHorizontal ="5dp"
                     android:gravity="center"
                     android:text="100k"
                     android:textColor="#FFFFFF"
@@ -172,7 +173,6 @@
                     android:id="@+id/btnCompartir"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginEnd="5dp"
                     android:layout_weight="1"
                     android:backgroundTint="#00FFFFFF"
                     android:scaleType="fitCenter"
@@ -184,6 +184,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:paddingHorizontal="5dp"
                     android:text="100k"
                     android:textColor="#FFFFFF"
                     android:textSize="10sp" />
