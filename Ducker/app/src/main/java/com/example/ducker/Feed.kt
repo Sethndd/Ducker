@@ -29,9 +29,9 @@ class Feed : AppCompatActivity() {
 //        eliminarQuack()
 //        obtenerQuacksPorUsuario()
 
+        recyclerView.layoutManager = LinearLayoutManager(this)
         agregarListeners()
         obtenerQuacks()
-        recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
     fun obtenerQuacks(){
@@ -39,6 +39,7 @@ class Feed : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             listaQuacks = QuackDAO.obtenerQuacks(authKey)
             runOnUiThread{
+                println(authKey)
                 val adapter = QuackAdapter(listaQuacks, authKey, activity)
                 recyclerView.adapter = adapter
                 adapter.notifyItemInserted(listaQuacks.size)
@@ -50,6 +51,21 @@ class Feed : AppCompatActivity() {
         btnNuevoQuack.setOnClickListener {
             val intent : Intent = Intent(this, NuevoQuack::class.java)
             startActivity(intent.putExtra("authKey", authKey))
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            finish()
+        }
+
+        btnDescubrir.setOnClickListener{
+            val intent : Intent = Intent(this, FeedDescubrir::class.java)
+            startActivity(intent.putExtra("authKey", authKey))
+            overridePendingTransition(R.anim.right_in, R.anim.right_out)
+            finish()
+        }
+
+        btnBuscador.setOnClickListener{
+            val intent = Intent(this, Buscador::class.java)
+            startActivity(intent.putExtra("authKey", authKey))
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
             finish()
         }
     }
