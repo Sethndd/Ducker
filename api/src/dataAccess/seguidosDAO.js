@@ -2,12 +2,12 @@ const path = require('path');
 const dbConnection = require(path.join(__dirname, 'dbConnection.js'))
 
 function crearSeguidos(idUsuarioSeguidor, idUsuarioSeguido, callback){
-    dbConnection.query('call crearSeguidos(?, ?)', [idUsuarioSeguidor, idUsuarioSeguido], (err, rows, fields) =>{
+    dbConnection.query('call crearSeguidos(?, ?, @Mensaje); Select @Mensaje as Mensaje', [idUsuarioSeguidor, idUsuarioSeguido], (err, rows, fields) =>{
         if(err){
             return callback(err)
         }
         else{
-            callback(null, rows)
+            callback(null, rows[1][0])
         }
     })
 }
@@ -29,17 +29,6 @@ function obtenerSeguidos(idUsuarioSeguidor, callback){
             return callback(err)
         }
         else {
-            callback(null, rows[0])
-        }
-    })
-}
-
-function eliminarSeguidos(idUsuarioSeguidor, idUsuarioSeguido, callback){
-    dbConnection.query('call eliminarSeguidos(?,?)', [idUsuarioSeguidor, idUsuarioSeguido] , (err, rows, fields) =>{
-        if(err){
-            return callback(err)
-        }
-        else{
             callback(null, rows[0])
         }
     })
@@ -67,4 +56,15 @@ function obtenerNumeroSeguidores(idUsuario, callback){
     })
 }
 
-module.exports = {crearSeguidos, obtenerSeguidores, obtenerSeguidos, eliminarSeguidos, obtenerNumeroSeguidos, obtenerNumeroSeguidores}
+function comprobarSeguido(idUsuarioSeguidor, idUsuarioSeguido, callback){
+    dbConnection.query('call comprobarSeguido(?, ?, @Mensaje); Select @Mensaje as Mensaje', [idUsuarioSeguidor, idUsuarioSeguido], (err, rows, fields) =>{
+        if(err){
+            return callback(err)
+        }
+        else{
+            callback(null, rows[1][0])
+        }
+    })
+}
+
+module.exports = {crearSeguidos, obtenerSeguidores, obtenerSeguidos, obtenerNumeroSeguidos, obtenerNumeroSeguidores, comprobarSeguido}
