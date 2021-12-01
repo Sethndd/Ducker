@@ -12,8 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-
-
+        <activity
+            android:name=".FeedDescubrir"
+            android:exported="true" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"
@@ -24,7 +25,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".QuackRespuesta"
             android:exported="true" />
@@ -39,7 +39,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".Login"
             android:exported="true" />

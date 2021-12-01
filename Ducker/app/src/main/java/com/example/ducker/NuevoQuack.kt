@@ -51,6 +51,7 @@ class NuevoQuack : AppCompatActivity() {
     override fun onBackPressed() {
         val intent = Intent(this, Feed::class.java)
         startActivity(intent.putExtra("authKey", authKey))
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         finish()
     }
 }
