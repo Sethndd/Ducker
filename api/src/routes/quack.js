@@ -58,7 +58,7 @@ router.route('/quacks/:id')
 
 router.route('/quacks/usuario/:id')
     .get(auth.comprobarToken, (req, res) => {
-        quackDAO.obtenerPorID(req.params.id, (err, respuesta) =>{
+        quackDAO.obtenerPorUsuario(req.params.id, (err, respuesta) =>{
             if(err){
                 console.log(err)
                 res.status(400).json(err)

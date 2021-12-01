@@ -18,7 +18,7 @@ function obtenerCantidadLikesQuack(idQuack, callback){
             return callback(err)
         }
         else {
-            callback(null, rows)
+            callback(null, rows[0])
         }
     })
 }

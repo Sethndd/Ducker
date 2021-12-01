@@ -45,4 +45,26 @@ function eliminarSeguidos(idUsuarioSeguidor, idUsuarioSeguido, callback){
     })
 }
 
-module.exports = {crearSeguidos, obtenerSeguidores, obtenerSeguidos, eliminarSeguidos}
+function obtenerNumeroSeguidos(idUsuario, callback){
+    dbConnection.query('call obtenerNumeroSeguidos(?)', [idUsuario], (err, rows, fields)=>{
+        if (err){
+            return callback(err)
+        }
+        else {
+            callback(null, rows[0][0])
+        }
+    })
+}
+
+function obtenerNumeroSeguidores(idUsuario, callback){
+    dbConnection.query('call obtenerNumeroSeguidores(?)', [idUsuario], (err, rows, fields)=>{
+        if (err){
+            return callback(err)
+        }
+        else {
+            callback(null, rows[0][0])
+        }
+    })
+}
+
+module.exports = {crearSeguidos, obtenerSeguidores, obtenerSeguidos, eliminarSeguidos, obtenerNumeroSeguidos, obtenerNumeroSeguidores}
