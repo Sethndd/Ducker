@@ -36,7 +36,7 @@ router.route('/seguidos')
         })
     })
 
-    router.route('/seguidores')
+router.route('/seguidores')
     .get(auth.comprobarToken, (req, res) =>{
         var idUsuarioSeguido = req.user.id
         seguidosDAO.obtenerSeguidores(idUsuarioSeguido, (err, respuesta) =>{
@@ -49,7 +49,7 @@ router.route('/seguidos')
         })
     })
 
-    router.route('/seguidos/:id')
+router.route('/seguidos/:id')
     .delete(auth.comprobarToken, (req, res) =>{ 
         seguidosDAO.eliminarSeguidos(req.user.id, req.params.id, (err, rows, fields) =>{ 
             if(err){
@@ -72,7 +72,7 @@ router.route('/seguidos')
         })
     })
 
-    router.route('/seguidores/:id')
+router.route('/seguidores/:id')
     .get(auth.comprobarToken, (req, res) =>{
         var idUsuarioSeguido = req.params.id
         seguidosDAO.obtenerSeguidores(idUsuarioSeguido, (err, respuesta) =>{
@@ -84,6 +84,31 @@ router.route('/seguidos')
             res.status(201).json(respuesta)
         })
     })
+
+router.route('/seguidores/cantidad/:id')
+    .get(auth.comprobarToken, (req, res) =>{
+        seguidosDAO.obtenerNumeroSeguidores(req.params.id, (err, respuesta) =>{
+            if (err){
+                console.log(err)
+                res.status(400).json(err)
+                return
+            }
+            res.status(201).json(respuesta)
+        })
+    })
+
+router.route('/seguidos/cantidad/:id')
+    .get(auth.comprobarToken, (req, res) =>{
+        seguidosDAO.obtenerNumeroSeguidos(req.params.id, (err, respuesta) =>{
+            if (err){
+                console.log(err)
+                res.status(400).json(err)
+                return
+            }
+            res.status(201).json(respuesta)
+        })
+    })
+
 
 function seguidosValido(seguidos){
     var result = false
