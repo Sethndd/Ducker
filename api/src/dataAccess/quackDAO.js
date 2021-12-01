@@ -57,4 +57,37 @@ function eliminar(id, callback){
     })
 }
 
-module.exports = {crear, obtenerTodos, obtenerPorID, obtenerPorUsuario, eliminar}
+function obtenerPadre(id, callback){
+    dbConnection.query('call obtenerQuackPadre(?);', [id], (err, rows, fields) =>{
+        if(err){
+            return callback(err)
+        }
+        else{
+            callback(null, rows[0][0])
+        }
+    })
+}
+
+function obtenerPadres(id, callback){
+    dbConnection.query('call obtenerQuacksPadres(?);', [id], (err, rows, fields) =>{
+        if(err){
+            return callback(err)
+        }
+        else{
+            callback(null, rows[0])
+        }
+    })
+}
+
+function obtenerHijos(id, callback){
+    dbConnection.query('call obtenerQuacksHijos(?);', [id], (err, rows, fields) =>{
+        if(err){
+            return callback(err)
+        }
+        else{
+            callback(null, rows[0])
+        }
+    })
+}
+
+module.exports = {crear, obtenerTodos, obtenerPorID, obtenerPorUsuario, eliminar, obtenerPadre, obtenerPadres, obtenerHijos}

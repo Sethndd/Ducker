@@ -58,7 +58,43 @@ router.route('/quacks/:id')
 
 router.route('/quacks/usuario/:id')
     .get(auth.comprobarToken, (req, res) => {
-        quackDAO.obtenerPorUsuario(req.params.id, (err, respuesta) =>{
+        quackDAO.obtenerPorID(req.params.id, (err, respuesta) =>{
+            if(err){
+                console.log(err)
+                res.status(400).json(err)
+                return
+            }
+            res.status(201).json(respuesta)
+        })
+    })
+
+router.route('/quacks/padre/:id')
+    .get(auth.comprobarToken, (req, res) => {
+        quackDAO.obtenerPadre(req.params.id, (err, respuesta) =>{
+            if(err){
+                console.log(err)
+                res.status(400).json(err)
+                return
+            }
+            res.status(201).json(respuesta)
+        })
+    })
+
+router.route('/quacks/padres/:id')
+    .get(auth.comprobarToken, (req, res) => {
+        quackDAO.obtenerPadres(req.params.id, (err, respuesta) =>{
+            if(err){
+                console.log(err)
+                res.status(400).json(err)
+                return
+            }
+            res.status(201).json(respuesta)
+        })
+    })
+
+router.route('/quacks/hijos/:id')
+    .get(auth.comprobarToken, (req, res) => {
+        quackDAO.obtenerHijos(req.params.id, (err, respuesta) =>{
             if(err){
                 console.log(err)
                 res.status(400).json(err)
