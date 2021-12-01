@@ -14,12 +14,14 @@ class LikesDAO {
         private val retrofit : Retrofit = APIService.obtenerRetroFit()
         private val likesAPI = retrofit.create(LikesAPI::class.java)
 
-        suspend fun crearLikes(authKey : String, like : Like) :Int {
-            var respuesta = 0
+        suspend fun crearLikes(authKey : String, like : Like) :Boolean {
+            var respuesta = false
             try {
                 val call : Call<APIService.Mensaje> = likesAPI.crearLikes(authKey, like)
-                val response = call.awaitResponse()
-                respuesta = response.code()
+                val response = call.await()
+                if (response.mensaje.toInt() == 1){
+                    respuesta = true
+                }
             } catch (exception : Exception) {
                 exception.printStackTrace()
             }
@@ -41,9 +43,23 @@ class LikesDAO {
         suspend fun eliminarLikes(authKey: String, idLike : Int) : Int {
             var respuesta = 0
             try {
-                var call : Call<APIService.Mensaje> = likesAPI.eliminarLikes(authKey, idLike)
+                val call : Call<APIService.Mensaje> = likesAPI.eliminarLikes(authKey, idLike)
                 val response = call.awaitResponse()
                 respuesta = response.code()
+            } catch (exception : Exception) {
+                exception.printStackTrace()
+            }
+            return respuesta
+        }
+
+        suspend fun comprobarLike(authKey: String, id: Int) : Boolean {
+            var respuesta = false
+            try {
+                val call : Call<APIService.Mensaje> = likesAPI.comprobarLike(authKey, id)
+                val response = call.await()
+                if (response.mensaje.toInt() == 1){
+                    respuesta = true
+                }
             } catch (exception : Exception) {
                 exception.printStackTrace()
             }

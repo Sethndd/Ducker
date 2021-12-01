@@ -20,7 +20,6 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/Recyclers/QuackHolder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/Recyclers/QuackHolder.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/Recyclers/QuackPadreHolder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/Recyclers/QuackPadreHolder.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/daos/LikesDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/daos/LikesDAO.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_quack_detalles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_quack_detalles.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

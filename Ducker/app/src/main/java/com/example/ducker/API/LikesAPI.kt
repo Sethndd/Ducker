@@ -13,4 +13,7 @@ interface LikesAPI {
 
     @DELETE("likes/{id}")
     fun eliminarLikes(@Header("auth") auth: String, @Path("id") id : Int) : Call<APIService.Mensaje>
+
+    @GET("likescomprobar/{id}")
+    fun comprobarLike(@Header("auth") auth: String, @Path("id") id : Int) :Call<APIService.Mensaje>
 }
