@@ -19,8 +19,10 @@ import kotlinx.android.synthetic.main.item_quack.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.SimpleTimeZone.UTC_TIME
 
 class QuackHolder(val view: View):  RecyclerView.ViewHolder(view){
     private var authKey = ""
