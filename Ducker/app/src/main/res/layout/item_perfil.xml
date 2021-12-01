@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#3F3F3F"
+        android:background="#161B22"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#00C2ED"
+                android:backgroundTint="#8957E5"
                 android:text="Seguir"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
