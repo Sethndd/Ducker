@@ -8,6 +8,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ducker.PerfilUsuario
 import com.example.ducker.QuackDetalles
+import com.example.ducker.QuackRespuesta
 import com.example.ducker.daos.PerfilDAO
 import com.example.ducker.daos.QuackDAO
 import com.example.ducker.data.Quack
@@ -26,7 +27,6 @@ class QuackHolder(val view: View):  RecyclerView.ViewHolder(view){
 
     fun render(quack: Quack, auth: String, activity: Activity){
         authKey = auth
-
 
         var simpleDateFormat = SimpleDateFormat("dd/MM/yyyy")
         val fechaActual = simpleDateFormat.format(Date())
@@ -50,8 +50,11 @@ class QuackHolder(val view: View):  RecyclerView.ViewHolder(view){
         view.fotoPerfil.setOnClickListener { abrirPerfil(context, quack.idUsuario) }
         view.nombrePropio.setOnClickListener { abrirPerfil(context, quack.idUsuario) }
         view.nombreUsuario.setOnClickListener { abrirPerfil(context, quack.idUsuario) }
-        view.setOnClickListener { abrirQuack(context, quack.id) }
 
+        view.btnComentario.setOnClickListener { abrirResponderQuack(context, quack.id) }
+        view.txtContadorComentarios.setOnClickListener { abrirResponderQuack(context, quack.id) }
+
+        view.setOnClickListener { abrirQuack(context, quack.id) }
     }
 
     private fun abrirPerfil(context: Context, idUsuario: Int){
@@ -61,14 +64,21 @@ class QuackHolder(val view: View):  RecyclerView.ViewHolder(view){
         context.startActivity(intent)
     }
 
-    private fun abrirQuack(context: Context, idUsuario: Int){
+    private fun abrirQuack(context: Context, idQuack: Int){
         val intent = Intent(context.applicationContext, QuackDetalles::class.java)
         intent.putExtra("authKey", authKey)
-        intent.putExtra("id", idUsuario.toString())
+        intent.putExtra("id", idQuack.toString())
         context.startActivity(intent)
     }
 
-        private fun cargarDatos(quack: Quack){
+    private fun abrirResponderQuack(context: Context, idQuack: Int) {
+        val intent = Intent(context.applicationContext, QuackRespuesta::class.java)
+        intent.putExtra("authKey", authKey)
+        intent.putExtra("id", idQuack.toString())
+        context.startActivity(intent)
+    }
+
+    private fun cargarDatos(quack: Quack){
         CoroutineScope(Dispatchers.IO).launch {
             val perfil = PerfilDAO.obtener(authKey, quack.idUsuario)
             var padre: Quack? = null
