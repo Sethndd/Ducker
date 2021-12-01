@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ducker.Recyclers.QuackAdapter
+import com.example.ducker.Recyclers.QuackHijoAdapter
+import com.example.ducker.Recyclers.QuackPadreAdapter
 import com.example.ducker.daos.PerfilDAO
 import com.example.ducker.daos.QuackDAO
 import com.example.ducker.util.CyrclePicasso
@@ -60,8 +62,8 @@ class QuackDetalles : AppCompatActivity() {
                 hora.text = simpleDateFormat.format(quack.fechaHora)
                 texto.text = quack.texto
 
-                rvPadres.adapter = QuackAdapter(padres, authKey, activity)
-                rvHijos.adapter = QuackAdapter(hijos, authKey, activity)
+                rvPadres.adapter = QuackPadreAdapter(padres, authKey, activity)
+                rvHijos.adapter = QuackHijoAdapter(hijos, authKey, activity)
 
                 Picasso.get()
                     .load(Rutas.IMAGENES.plus(perfil.imagenRuta))
