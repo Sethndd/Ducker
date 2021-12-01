@@ -17,7 +17,7 @@ router.route('/seguidos')
                     res.status(400).json(err)
                     return
                 }
-                res.status(201).json({Mensaje : 'Seguidos guardado!'})
+                res.status(201).json(respuesta)
             })
         }
         else {
@@ -36,7 +36,7 @@ router.route('/seguidos')
         })
     })
 
-    router.route('/seguidores')
+router.route('/seguidores')
     .get(auth.comprobarToken, (req, res) =>{
         var idUsuarioSeguido = req.user.id
         seguidosDAO.obtenerSeguidores(idUsuarioSeguido, (err, respuesta) =>{
@@ -49,17 +49,7 @@ router.route('/seguidos')
         })
     })
 
-    router.route('/seguidos/:id')
-    .delete(auth.comprobarToken, (req, res) =>{ 
-        seguidosDAO.eliminarSeguidos(req.user.id, req.params.id, (err, rows, fields) =>{ 
-            if(err){
-                console.log(err)
-                res.status(400).json(err)
-                return
-            }
-            res.status(200).json({Mensaje: 'Eliminado'})
-        })
-    })
+router.route('/seguidos/:id')
     .get(auth.comprobarToken, (req, res) =>{
         var idUsuarioSeguidor = req.params.id
         seguidosDAO.obtenerSeguidos(idUsuarioSeguidor, (err, respuesta) =>{
@@ -72,7 +62,7 @@ router.route('/seguidos')
         })
     })
 
-    router.route('/seguidores/:id')
+router.route('/seguidores/:id')
     .get(auth.comprobarToken, (req, res) =>{
         var idUsuarioSeguido = req.params.id
         seguidosDAO.obtenerSeguidores(idUsuarioSeguido, (err, respuesta) =>{
@@ -84,6 +74,49 @@ router.route('/seguidos')
             res.status(201).json(respuesta)
         })
     })
+
+router.route('/seguidores/cantidad/:id')
+    .get(auth.comprobarToken, (req, res) =>{
+        seguidosDAO.obtenerNumeroSeguidores(req.params.id, (err, respuesta) =>{
+            if (err){
+                console.log(err)
+                res.status(400).json(err)
+                return
+            }
+            res.status(201).json(respuesta)
+        })
+    })
+
+router.route('/seguidos/cantidad/:id')
+    .get(auth.comprobarToken, (req, res) =>{
+        seguidosDAO.obtenerNumeroSeguidos(req.params.id, (err, respuesta) =>{
+            if (err){
+                console.log(err)
+                res.status(400).json(err)
+                return
+            }
+            res.status(201).json(respuesta)
+        })
+    })
+
+router.route('/seguidoscomprobar')
+    .get(auth.comprobarToken, (req, res) =>{
+        const seguidos = req.body
+        if(seguidosValido(seguidos)){
+            seguidosDAO.comprobarSeguido(seguidos.idSeguidor, seguidos.idSeguido, (err, respuesta)=>{
+                if (err){
+                    console.log(err)
+                    res.status(400).json(err)
+                    return
+                }
+                res.status(201).json(respuesta)
+            })
+        }
+        else {
+            res.status(400).json({Mensaje : 'Faltan datos'})
+        }
+    })
+
 
 function seguidosValido(seguidos){
     var result = false
