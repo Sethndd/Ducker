@@ -17,7 +17,7 @@ router.route('/likes')
                     res.status(400).json(err)
                     return
                 }
-                res.status(201).json({Mensaje : 'Like guardado!'})
+                res.status(201).json(respuesta)
             })
         }
         else {
@@ -25,7 +25,7 @@ router.route('/likes')
         }
     })
 
-    router.route('/likes/:id')
+router.route('/likes/:id')
     .get(auth.comprobarToken, (req, res) =>{ 
         likesDAO.obtenerCantidadLikesQuack(req.params.id, (err, rows, fields) =>{ 
             if(err){
@@ -36,21 +36,22 @@ router.route('/likes')
             res.status(200).json(rows[0])
         })
     })
-    .delete(auth.comprobarToken, (req, res) =>{ 
-        likesDAO.eliminarLikes([req.params.id], (err, rows, fields) =>{ 
-            if(err){
+
+router.route('/likescomprobar/:id')
+    .get(auth.comprobarToken, (req, res) =>{ 
+        likesDAO.comprobarLike(req.params.id, req.user.id, (err, respuesta)=>{
+            if (err){
                 console.log(err)
                 res.status(400).json(err)
                 return
             }
-            res.status(200).json({Mensaje: 'Eliminado'})
+            res.status(201).json(respuesta)
         })
-    });
+    })
 
 function likeValido(like){
     var result = false
-    if(like.hasOwnProperty('idQuack')
-    && like.hasOwnProperty('idUsuario')){
+    if(like.hasOwnProperty('idQuack')){
         result = true
     } 
     return result

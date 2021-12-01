@@ -2,12 +2,12 @@ const path = require('path');
 const dbConnection = require(path.join(__dirname, 'dbConnection.js'))
 
 function crearLikes(idQuack, idUsuario, callback){
-    dbConnection.query('call crearLike(?, ?)', [idQuack, idUsuario], (err, rows, fields) =>{
+    dbConnection.query('call crearLike(?, ?, @mensaje); Select @mensaje as Mensaje', [idQuack, idUsuario], (err, rows, fields) =>{
         if(err){
             return callback(err)
         }
         else{
-            callback(null, rows)
+            callback(null, rows[1][0])
         }
     })
 }
@@ -23,15 +23,16 @@ function obtenerCantidadLikesQuack(idQuack, callback){
     })
 }
 
-function eliminarLikes(id, callback){
-    dbConnection.query('call eliminarLike(?)', [id] , (err, rows, fields) =>{
+
+function comprobarLike(idQuack, idUsuario, callback){
+    dbConnection.query('call comprobarLike(?, ?, @mensaje); Select @mensaje as Mensaje', [idQuack, idUsuario], (err, rows, fields) =>{
         if(err){
             return callback(err)
         }
         else{
-            callback(null, rows[0])
+            callback(null, rows[1][0])
         }
     })
 }
 
-module.exports = {crearLikes, obtenerCantidadLikesQuack, eliminarLikes}
+module.exports = {crearLikes, obtenerCantidadLikesQuack, comprobarLike}

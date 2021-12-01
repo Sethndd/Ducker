@@ -104,6 +104,18 @@ router.route('/quacks/hijos/:id')
         })
     })
 
+router.route('/quacksseguidos')
+    .get(auth.comprobarToken, (req, res) => {
+        quackDAO.obtenerSeguidos(req.user.id, (err, respuesta) =>{
+            if(err){
+                console.log(err)
+                res.status(400).json(err)
+                return
+            }
+            res.status(201).json(respuesta)
+        })
+    })
+
 function quackValido(quack){
     if(quack.hasOwnProperty('texto')
     && quack.hasOwnProperty('quackPadre')
