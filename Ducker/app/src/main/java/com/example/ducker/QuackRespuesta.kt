@@ -21,20 +21,21 @@ import java.util.*
 
 class QuackRespuesta : AppCompatActivity() {
     private var authKey = ""
+    private var idQuackPadre: Int = 0
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+        override fun onCreate(savedInstanceState: Bundle?) {
         val bundle = intent.extras
-        val idQuackPadre: Int = bundle?.getString("id").toString().toInt()
+        idQuackPadre= bundle?.getString("id").toString().toInt()
         authKey = bundle?.getString("authKey").toString()
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quack_respuesta)
 
-        cargarQuackPadre(idQuackPadre)
-        agregarListeners(idQuackPadre)
+        cargarQuackPadre()
+        agregarListeners()
     }
 
-    private fun agregarListeners(idQuackPadre: Int) {
+    private fun agregarListeners() {
         btnPublicar.setOnClickListener {
             val textoQuack = txtQuack.text.toString()
             val quack = Quack(0, 0, textoQuack, idQuackPadre, Date(), "activo", 0, "", "")
@@ -57,7 +58,7 @@ class QuackRespuesta : AppCompatActivity() {
         }
     }
 
-    private fun cargarQuackPadre(idQuackPadre: Int) {
+    private fun cargarQuackPadre() {
         CoroutineScope(Dispatchers.IO).launch{
             val quack: Quack = QuackDAO.obtenerQuackPorId(authKey, idQuackPadre)
             val perfil = PerfilDAO.obtener(authKey, quack.idUsuario)
@@ -68,7 +69,6 @@ class QuackRespuesta : AppCompatActivity() {
                 if (simpleDateFormat.format(Date()) == simpleDateFormat.format(quack.fechaHora)) {
                     simpleDateFormat = SimpleDateFormat("HH:mm")
                 }
-
 
                 nombrePropio.text = quack.nombrePropio
                 nombreUsuario.text = "@".plus(quack.nombreUsuario)
@@ -82,7 +82,6 @@ class QuackRespuesta : AppCompatActivity() {
             }
         }
     }
-
 
     override fun onBackPressed() {
         val intent = Intent(this, Feed::class.java)

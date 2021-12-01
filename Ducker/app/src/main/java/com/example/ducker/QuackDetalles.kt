@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ducker.Recyclers.QuackAdapter
 import com.example.ducker.daos.PerfilDAO
 import com.example.ducker.daos.QuackDAO
-import com.example.ducker.data.Quack
 import com.example.ducker.util.CyrclePicasso
 import com.example.ducker.util.Rutas
 import com.squareup.picasso.Picasso
@@ -17,6 +16,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
+import java.util.*
 
 class QuackDetalles : AppCompatActivity() {
     private var authKey = ""
@@ -50,12 +50,10 @@ class QuackDetalles : AppCompatActivity() {
             idUsuario = quack.idUsuario
 
             runOnUiThread {
-//                var simpleDateFormat = SimpleDateFormat("dd/MM/yyyy")
-                var simpleDateFormat = SimpleDateFormat("HH:mm")
-
-//                if (simpleDateFormat.format(Date()) == simpleDateFormat.format(quack.fechaHora)) {
-//                    simpleDateFormat = SimpleDateFormat("HH:mm")
-//                }
+                var simpleDateFormat = SimpleDateFormat("dd/MM/yyyy")
+                if (simpleDateFormat.format(Date()) == simpleDateFormat.format(quack.fechaHora)) {
+                    simpleDateFormat = SimpleDateFormat("HH:mm")
+                }
 
                 nombrePropio.text = quack.nombrePropio
                 nombreUsuario.text = "@".plus(quack.nombreUsuario)
