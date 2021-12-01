@@ -23,9 +23,10 @@ import java.util.*
 
 class QuackHolder(val view: View):  RecyclerView.ViewHolder(view){
     private var authKey = ""
-
+    private var quack: Quack? = null
     fun render(quack: Quack, auth: String, activity: Activity){
-        authKey = auth
+        this.authKey = auth
+        this.quack = quack
 
         var simpleDateFormat = SimpleDateFormat("dd/MM/yyyy")
         val fechaActual = simpleDateFormat.format(Date())
@@ -42,38 +43,38 @@ class QuackHolder(val view: View):  RecyclerView.ViewHolder(view){
 
         cargarDatos(quack)
 
-        agregarListeners(view.context, quack)
+        agregarListeners(view.context)
     }
 
-    private fun agregarListeners(context: Context, quack: Quack) {
-        view.fotoPerfil.setOnClickListener { abrirPerfil(context, quack.idUsuario) }
-        view.nombrePropio.setOnClickListener { abrirPerfil(context, quack.idUsuario) }
-        view.nombreUsuario.setOnClickListener { abrirPerfil(context, quack.idUsuario) }
+    private fun agregarListeners(context: Context) {
+        view.fotoPerfil.setOnClickListener { abrirPerfil(context) }
+        view.nombrePropio.setOnClickListener { abrirPerfil(context) }
+        view.nombreUsuario.setOnClickListener { abrirPerfil(context) }
 
-        view.btnComentario.setOnClickListener { abrirResponderQuack(context, quack.id) }
-        view.txtContadorComentarios.setOnClickListener { abrirResponderQuack(context, quack.id) }
+        view.btnComentario.setOnClickListener { abrirResponderQuack(context) }
+        view.txtContadorComentarios.setOnClickListener { abrirResponderQuack(context) }
 
-        view.setOnClickListener { abrirQuack(context, quack.id) }
+        view.setOnClickListener { abrirQuack(context) }
     }
 
-    private fun abrirPerfil(context: Context, idUsuario: Int){
+    private fun abrirPerfil(context: Context){
         val intent = Intent(context.applicationContext, PerfilUsuario::class.java)
         intent.putExtra("authKey", authKey)
-        intent.putExtra("id", idUsuario.toString())
+        intent.putExtra("id", quack?.idUsuario.toString())
         context.startActivity(intent)
     }
 
-    private fun abrirQuack(context: Context, idQuack: Int){
+    private fun abrirQuack(context: Context){
         val intent = Intent(context.applicationContext, QuackDetalles::class.java)
         intent.putExtra("authKey", authKey)
-        intent.putExtra("id", idQuack.toString())
+        intent.putExtra("id", quack?.id.toString())
         context.startActivity(intent)
     }
 
-    private fun abrirResponderQuack(context: Context, idQuack: Int) {
+    private fun abrirResponderQuack(context: Context) {
         val intent = Intent(context.applicationContext, QuackRespuesta::class.java)
         intent.putExtra("authKey", authKey)
-        intent.putExtra("id", idQuack.toString())
+        intent.putExtra("id", quack?.id.toString())
         context.startActivity(intent)
     }
 

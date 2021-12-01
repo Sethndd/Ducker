@@ -75,12 +75,22 @@ class QuackDetalles : AppCompatActivity() {
         fotoPerfil.setOnClickListener { abrirPerfil(this) }
         nombrePropio.setOnClickListener { abrirPerfil(this) }
         nombreUsuario.setOnClickListener { abrirPerfil(this) }
+
+        btnComentario.setOnClickListener { abrirResponderQuack(this) }
+        txtContadorComentarios.setOnClickListener { abrirResponderQuack(this) }
     }
 
     private fun abrirPerfil(context: Context){
         val intent = Intent(context.applicationContext, PerfilUsuario::class.java)
         intent.putExtra("authKey", authKey)
         intent.putExtra("id", idUsuario.toString())
+        context.startActivity(intent)
+    }
+
+    private fun abrirResponderQuack(context: Context) {
+        val intent = Intent(context.applicationContext, QuackRespuesta::class.java)
+        intent.putExtra("authKey", authKey)
+        intent.putExtra("id", id.toString())
         context.startActivity(intent)
     }
 }

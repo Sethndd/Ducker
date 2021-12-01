@@ -52,8 +52,10 @@ class QuackRespuesta : AppCompatActivity() {
                 }
             }
 
-            val intent = Intent(this, Feed::class.java)
-            startActivity(intent.putExtra("authKey", authKey))
+            val intent = Intent(this, QuackDetalles::class.java)
+            intent.putExtra("authKey", authKey)
+            intent.putExtra("id", idQuackPadre.toString())
+            startActivity(intent)
             finish()
         }
     }
@@ -82,10 +84,10 @@ class QuackRespuesta : AppCompatActivity() {
             }
         }
     }
-
-    override fun onBackPressed() {
-        val intent = Intent(this, Feed::class.java)
-        startActivity(intent.putExtra("authKey", authKey))
-        finish()
-    }
+//
+//    override fun onBackPressed() {
+//        val intent = Intent(this, Feed::class.java)
+//        startActivity(intent.putExtra("authKey", authKey))
+//        finish()
+//    }
 }
