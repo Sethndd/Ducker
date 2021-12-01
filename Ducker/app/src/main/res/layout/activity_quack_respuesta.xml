@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3F3F3F"
+    android:background="#161B22"
     tools:context=".QuackRespuesta">
 
     <LinearLayout
@@ -140,7 +140,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="15dp"
         android:clickable="true"
-        app:backgroundTint="#3F3F3F"
+        app:backgroundTint="#161B22"
         app:layout_constraintBottom_toTopOf="@+id/btnPublicar"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/add_photo" />
@@ -152,7 +152,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="15dp"
         android:clickable="true"
-        app:backgroundTint="#3F3F3F"
+        app:backgroundTint="#161B22"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/send_quack" />

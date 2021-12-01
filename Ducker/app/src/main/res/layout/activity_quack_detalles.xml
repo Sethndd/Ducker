@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3F3F3F"
+    android:background="#161B22"
     tools:context=".QuackDetalles">
 
     <ScrollView
@@ -14,7 +14,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
 
             <androidx.recyclerview.widget.RecyclerView
@@ -189,7 +189,7 @@
                             android:layout_weight="1"
                             android:backgroundTint="#00FFFFFF"
                             android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/savewhite" />
+                            app:srcCompat="@drawable/not_saved" />
 
                     </LinearLayout>
 

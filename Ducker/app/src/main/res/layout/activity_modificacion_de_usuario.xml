@@ -4,36 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3F3F3F"
+    android:background="#161B22"
     tools:context=".ModificacionDeUsuario">
 
     <ImageView
-        android:id="@+id/imagenModificarCuenta"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="40dp"
-        android:scaleType="fitCenter"
+        android:id="@+id/btnPortada"
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/duckblue" />
+        app:srcCompat="@drawable/ic_launcher_background" />
 
-    <TextView
-        android:id="@+id/textoModificarCuenta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Modificar cuenta"
-        android:textColor="#FFFFFF"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ImageView
+        android:id="@+id/btnFotoPerfil"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="62dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imagenModificarCuenta" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/user" />
 
     <EditText
-        android:id="@+id/inputNombreModificar"
+        android:id="@+id/inputNombre"
         android:layout_width="240dp"
         android:layout_height="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="52dp"
         android:backgroundTint="#FFFFFF"
         android:ems="10"
@@ -42,10 +39,10 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#A8A8A8"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textoModificarCuenta" />
+        app:layout_constraintTop_toBottomOf="@+id/btnFotoPerfil" />
 
     <EditText
-        android:id="@+id/inputUsuarioModificar"
+        android:id="@+id/inputUsuario"
         android:layout_width="240dp"
         android:layout_height="40dp"
         android:layout_marginTop="25dp"
@@ -57,25 +54,25 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#A8A8A8"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputNombreModificar" />
+        app:layout_constraintTop_toBottomOf="@+id/inputNombre" />
 
     <EditText
-        android:id="@+id/inputCorreoModificar"
+        android:id="@+id/inputCorreo"
         android:layout_width="240dp"
         android:layout_height="40dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="52dp"
         android:backgroundTint="#FFFFFF"
         android:ems="10"
-        android:hint="Correo electrÃ³nico"
-        android:inputType="textPersonName"
+        android:hint="Correo electrónico"
+        android:inputType="textEmailAddress"
         android:textColor="#FFFFFF"
         android:textColorHint="#A8A8A8"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputUsuarioModificar" />
+        app:layout_constraintTop_toBottomOf="@+id/inputUsuario" />
 
     <EditText
-        android:id="@+id/inputFechaNacimientoModificar"
+        android:id="@+id/inputFechaNacimiento"
         android:layout_width="240dp"
         android:layout_height="40dp"
         android:layout_marginTop="25dp"
@@ -87,52 +84,100 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#A8A8A8"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputCorreoModificar" />
-
-    <EditText
-        android:id="@+id/inputPasswordModificar"
-        android:layout_width="240dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="52dp"
-        android:backgroundTint="#FFFFFF"
-        android:ems="10"
-        android:hint="ContraseÃ±a"
-        android:inputType="textPassword"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#A8A8A8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputFechaNacimientoModificar" />
-
-    <EditText
-        android:id="@+id/inputConfirmarPassword"
-        android:layout_width="240dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="52dp"
-        android:backgroundTint="#FFFFFF"
-        android:ems="10"
-        android:hint="Confirmar contraseÃ±a"
-        android:inputType="textPassword"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#A8A8A8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputPasswordModificar" />
+        app:layout_constraintTop_toBottomOf="@+id/inputCorreo" />
 
     <Button
-        android:id="@+id/btnModificarCuenta"
+        android:id="@+id/btnCambiarPassword"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="52dp"
+        android:backgroundTint="#8957E5"
+        android:text="Cambiar contraseña"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputFechaNacimiento" />
+
+    <Button
+        android:id="@+id/btnEliminarCuenta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#00C2ED"
-        android:gravity="center"
-        android:text="Guardar"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="68dp"
+        android:backgroundTint="#FD5757"
+        android:text="Eliminar cuenta"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputConfirmarPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/btnCambiarPassword" />
+
+    <Button
+        android:id="@+id/btnGuardarCambios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="68dp"
+        android:backgroundTint="#8957E5"
+        android:text="Guardar cambios"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCambiarPassword" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2E2E2E"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/btnMenuPrincipal"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/home" />
+
+        <ImageView
+            android:id="@+id/btnBuscador"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/search" />
+
+        <ImageView
+            android:id="@+id/btnNuevoQuack"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/plus" />
+
+        <ImageView
+            android:id="@+id/btnGuardados"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/saved" />
+
+        <ImageView
+            android:id="@+id/btnPerfil"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/perfil" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

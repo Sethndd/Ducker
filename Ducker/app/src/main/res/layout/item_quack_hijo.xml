@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#3F3F3F">
+    android:background="#161B22">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -128,7 +128,7 @@
                     android:layout_weight="1"
                     android:backgroundTint="#00FFFFFF"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/happinessblack" />
+                    app:srcCompat="@drawable/no_like" />
 
                 <TextView
                     android:id="@+id/txtContadorLikes"
@@ -190,7 +190,7 @@
                     android:layout_weight="1"
                     android:backgroundTint="#00FFFFFF"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/savewhite" />
+                    app:srcCompat="@drawable/not_saved" />
 
             </LinearLayout>
 

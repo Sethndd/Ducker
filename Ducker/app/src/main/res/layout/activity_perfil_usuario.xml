@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3F3F3F"
+    android:background="#161B22"
     tools:context=".PerfilUsuario">
 
     <ImageView
@@ -32,7 +32,7 @@
         android:layout_height="35dp"
         android:layout_marginTop="22dp"
         android:layout_marginEnd="20dp"
-        android:backgroundTint="#00C2ED"
+        android:backgroundTint="#8957E5"
         android:text="Editar o Seguir"
         android:textColor="#FFFFFF"
         android:textSize="10sp"
@@ -88,17 +88,17 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintVertical_weight="1"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtSeguidores" />
+        app:layout_constraintTop_toBottomOf="@+id/txtSeguidores"
+        app:layout_constraintVertical_weight="1" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#2E2E2E"
+        android:background="#0F1319"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -111,7 +111,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/duckwhite" />
+            app:srcCompat="@drawable/home" />
 
         <ImageView
             android:id="@+id/btnBuscador"
@@ -138,7 +138,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/savewhite" />
+            app:srcCompat="@drawable/saved" />
 
         <ImageView
             android:id="@+id/btnPerfil"
@@ -147,6 +147,6 @@
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/accountwhite" />
+            app:srcCompat="@drawable/perfil" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
