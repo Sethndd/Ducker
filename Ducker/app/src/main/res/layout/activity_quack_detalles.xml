@@ -128,7 +128,7 @@
                             android:layout_weight="1"
                             android:backgroundTint="#00FFFFFF"
                             android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/happinessblack" />
+                            app:srcCompat="@drawable/no_like" />
 
                         <TextView
                             android:id="@+id/txtContadorLikes"

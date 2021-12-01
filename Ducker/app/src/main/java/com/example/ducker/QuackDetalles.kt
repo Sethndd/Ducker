@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ducker.Recyclers.QuackAdapter
 import com.example.ducker.Recyclers.QuackHijoAdapter
 import com.example.ducker.Recyclers.QuackPadreAdapter
+import com.example.ducker.daos.LikesDAO
 import com.example.ducker.daos.PerfilDAO
 import com.example.ducker.daos.QuackDAO
 import com.example.ducker.util.CyrclePicasso
@@ -48,6 +49,8 @@ class QuackDetalles : AppCompatActivity() {
             val perfil = PerfilDAO.obtener(authKey, quack.idUsuario)
             val padres = QuackDAO.obtenerPadres(authKey, quack.id)
             val hijos = QuackDAO.obtenerHijos(authKey, quack.id)
+            val likes = LikesDAO.obtenerCantidadLikesQuack(authKey, quack.id)
+            println(likes)
 
             idUsuario = quack.idUsuario
 
@@ -61,6 +64,7 @@ class QuackDetalles : AppCompatActivity() {
                 nombreUsuario.text = "@".plus(quack.nombreUsuario)
                 hora.text = simpleDateFormat.format(quack.fechaHora)
                 texto.text = quack.texto
+                txtContadorLikes.text = likes.toString()
 
                 rvPadres.adapter = QuackPadreAdapter(padres, authKey, activity)
                 rvHijos.adapter = QuackHijoAdapter(hijos, authKey, activity)

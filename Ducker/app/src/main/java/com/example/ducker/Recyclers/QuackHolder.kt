@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ducker.PerfilUsuario
 import com.example.ducker.QuackDetalles
 import com.example.ducker.QuackRespuesta
+import com.example.ducker.daos.LikesDAO
 import com.example.ducker.daos.PerfilDAO
 import com.example.ducker.daos.QuackDAO
 import com.example.ducker.data.Quack
@@ -82,6 +83,7 @@ open class QuackHolder(open val view: View):  RecyclerView.ViewHolder(view){
     protected open fun cargarDatos(){
         CoroutineScope(Dispatchers.IO).launch {
             val perfil = PerfilDAO.obtener(authKey, quack.idUsuario)
+            val likes = LikesDAO.obtenerCantidadLikesQuack(authKey, quack.id)
             var padre: Quack? = null
 
             if(quack.quackPadre > 0){
@@ -89,6 +91,7 @@ open class QuackHolder(open val view: View):  RecyclerView.ViewHolder(view){
             }
 
             CoroutineScope(Dispatchers.Main).launch{
+                view.txtContadorLikes.text = likes.toString()
                 if(quack.quackPadre > 0){
                     view.txtEtiqueta.visibility = View.VISIBLE
                     view.txtUsuarioPadre.visibility = View.VISIBLE

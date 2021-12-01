@@ -2,12 +2,18 @@ package com.example.ducker.Recyclers
 
 import android.app.Activity
 import android.view.View
+import com.example.ducker.daos.LikesDAO
 import com.example.ducker.daos.PerfilDAO
 import com.example.ducker.data.Quack
 import com.example.ducker.util.CyrclePicasso
 import com.example.ducker.util.Rutas
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.item_quack_hijo.view.*
+import kotlinx.android.synthetic.main.item_quack_hijo.view.fotoPerfil
+import kotlinx.android.synthetic.main.item_quack_hijo.view.hora
+import kotlinx.android.synthetic.main.item_quack_hijo.view.nombrePropio
+import kotlinx.android.synthetic.main.item_quack_hijo.view.nombreUsuario
+import kotlinx.android.synthetic.main.item_quack_hijo.view.texto
+import kotlinx.android.synthetic.main.item_quack_hijo.view.txtContadorLikes
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -39,8 +45,10 @@ class QuackHijoHolder(override val view: View): QuackHolder(view) {
     override fun cargarDatos(){
         CoroutineScope(Dispatchers.IO).launch {
             val perfil = PerfilDAO.obtener(authKey, quack.idUsuario)
+            val likes = LikesDAO.obtenerCantidadLikesQuack(authKey, quack.id)
 
             CoroutineScope(Dispatchers.Main).launch{
+                view.txtContadorLikes.text = likes.toString()
                 Picasso.get()
                     .load(Rutas.IMAGENES.plus(perfil.imagenRuta))
                     .transform(CyrclePicasso())

@@ -26,15 +26,16 @@ class LikesDAO {
             return respuesta
         }
 
-        suspend fun obtenerCantidadLikesQuack(authKey: String, id : Int) : List<Like>{
-            var listaLikes : List<Like> = listOf()
+        suspend fun obtenerCantidadLikesQuack(authKey: String, id : Int) : Int{
+            var likes = 0
             try {
-                val call : Call<List<Like>> = likesAPI.obtenerCantidadLikesQuack(authKey, id)
-                listaLikes = call.await()
+                val call : Call<APIService.Mensaje> = likesAPI.obtenerCantidadLikesQuack(authKey, id)
+                val response : APIService.Mensaje = call.await()
+                likes = response.mensaje.toInt()
             } catch (exception : Exception) {
                 exception.printStackTrace()
             }
-            return listaLikes
+            return likes
         }
 
         suspend fun eliminarLikes(authKey: String, idLike : Int) : Int {

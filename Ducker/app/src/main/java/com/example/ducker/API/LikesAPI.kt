@@ -9,7 +9,7 @@ interface LikesAPI {
     fun crearLikes(@Header("auth") auth : String, @Body like : Like) : Call<APIService.Mensaje>
 
     @GET("likes/{id}")
-    fun obtenerCantidadLikesQuack(@Header("auth") auth: String, @Path("id") id : Int) : Call<List<Like>>
+    fun obtenerCantidadLikesQuack(@Header("auth") auth: String, @Path("id") id : Int) : Call<APIService.Mensaje>
 
     @DELETE("likes/{id}")
     fun eliminarLikes(@Header("auth") auth: String, @Path("id") id : Int) : Call<APIService.Mensaje>

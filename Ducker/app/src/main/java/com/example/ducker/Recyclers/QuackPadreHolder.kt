@@ -2,6 +2,7 @@ package com.example.ducker.Recyclers
 
 import android.app.Activity
 import android.view.View
+import com.example.ducker.daos.LikesDAO
 import com.example.ducker.daos.PerfilDAO
 import com.example.ducker.data.Quack
 import com.example.ducker.util.CyrclePicasso
@@ -39,8 +40,10 @@ class QuackPadreHolder(override val view: View): QuackHolder(view){
     override fun cargarDatos(){
         CoroutineScope(Dispatchers.IO).launch {
             val perfil = PerfilDAO.obtener(authKey, quack.idUsuario)
+            val likes = LikesDAO.obtenerCantidadLikesQuack(authKey, quack.id)
 
             CoroutineScope(Dispatchers.Main).launch{
+                view.txtContadorLikes.text = likes.toString()
                 Picasso.get()
                     .load(Rutas.IMAGENES.plus(perfil.imagenRuta))
                     .transform(CyrclePicasso())
