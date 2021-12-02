@@ -34,10 +34,8 @@ class FeedDescubrir : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             listaQuacks = QuackDAO.obtenerQuacks(authKey)
             runOnUiThread{
-                println(authKey)
                 val adapter = QuackAdapter(listaQuacks, authKey, activity)
                 recyclerView.adapter = adapter
-                adapter.notifyItemInserted(listaQuacks.size)
             }
         }
     }

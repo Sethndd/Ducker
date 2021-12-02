@@ -74,21 +74,21 @@ open class QuackHolder(open val view: View):  RecyclerView.ViewHolder(view){
     protected open fun abrirPerfil(){
         val intent = Intent(view.context.applicationContext, PerfilUsuario::class.java)
         intent.putExtra("authKey", authKey)
-        intent.putExtra("id", quack?.idUsuario.toString())
+        intent.putExtra("id", quack.idUsuario.toString())
         view.context.startActivity(intent)
     }
 
     protected open fun abrirQuack(){
         val intent = Intent(view.context.applicationContext, QuackDetalles::class.java)
         intent.putExtra("authKey", authKey)
-        intent.putExtra("id", quack?.id.toString())
+        intent.putExtra("id", quack.id.toString())
         view.context.startActivity(intent)
     }
 
     protected open fun abrirResponderQuack() {
         val intent = Intent(view.context.applicationContext, QuackRespuesta::class.java)
         intent.putExtra("authKey", authKey)
-        intent.putExtra("id", quack?.id.toString())
+        intent.putExtra("id", quack.id.toString())
         view.context.startActivity(intent)
     }
 

@@ -33,7 +33,7 @@
         android:layout_marginTop="22dp"
         android:layout_marginEnd="20dp"
         android:backgroundTint="#8957E5"
-        android:text="Editar o Seguir"
+        android:text="Seguir"
         android:textColor="#FFFFFF"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +41,7 @@
 
     <TextView
         android:id="@+id/txtNombre"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
@@ -52,7 +52,7 @@
 
     <TextView
         android:id="@+id/txtUsuario"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
@@ -61,37 +61,74 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
 
-    <TextView
-        android:id="@+id/txtSeguidos"
-        android:layout_width="100dp"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:text="Seguidos"
-        android:textColor="#A8A8A8"
-        app:layout_constraintEnd_toStartOf="@+id/txtSeguidores"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtUsuario" />
+        app:layout_constraintTop_toBottomOf="@+id/txtUsuario">
 
-    <TextView
-        android:id="@+id/txtSeguidores"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Seguidores"
-        android:textColor="#A8A8A8"
-        app:layout_constraintStart_toEndOf="@+id/txtSeguidos"
-        app:layout_constraintTop_toBottomOf="@+id/txtUsuario" />
+        <LinearLayout
+            android:id="@+id/linearLayoutSeguidos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/txtSeguidos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Seguidos "
+                android:textColor="#A8A8A8" />
+
+            <TextView
+                android:id="@+id/txtNumeroSeguidos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="100"
+                android:textColor="#58A6FF" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutSeguidores"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/txtSeguidores"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Seguidores "
+                android:textColor="#A8A8A8" />
+
+            <TextView
+                android:id="@+id/txtNumeroSeguidores"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="100"
+                android:textColor="#58A6FF" />
+
+        </LinearLayout>
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtSeguidores"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_weight="1" />
 
     <LinearLayout

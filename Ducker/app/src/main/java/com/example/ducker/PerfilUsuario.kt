@@ -2,7 +2,6 @@ package com.example.ducker
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ducker.Recyclers.QuackAdapter
 import com.example.ducker.daos.PerfilDAO
@@ -12,9 +11,7 @@ import com.example.ducker.data.Quack
 import com.example.ducker.util.CyrclePicasso
 import com.example.ducker.util.Rutas
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_feed.*
 import kotlinx.android.synthetic.main.activity_perfil_usuario.*
-import kotlinx.android.synthetic.main.activity_perfil_usuario.recyclerView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,7 +21,7 @@ class PerfilUsuario : AppCompatActivity() {
     private var listaQuacks = listOf<Quack>()
     private var idUsuario: Int = 0
 
-        override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         val bundle = intent.extras
         authKey = bundle?.getString("authKey").toString()
         idUsuario = bundle?.getString("id").toString().toInt()
@@ -49,6 +46,10 @@ class PerfilUsuario : AppCompatActivity() {
             runOnUiThread {
                 txtNombre.text = usuario.nombrePropio
                 txtUsuario.text = "@".plus(usuario.nombreUsuario)
+
+                if (usuario.idUsuario == 0){
+                    btnEditarOSeguir.text = "Editar"
+                }
 
                 Picasso.get()
                     .load(Rutas.IMAGENES.plus(perfil.imagenRuta))
