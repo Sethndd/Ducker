@@ -50,18 +50,6 @@ class SeguidosDAO {
             return listaSeguidores
         }
 
-        suspend fun eliminarSeguidos(authKey: String, idSeguidos : Int) : Int {
-            var respuesta = 0
-            try {
-                var call : Call<APIService.Mensaje> = seguidosAPI.eliminarSeguidos(authKey, idSeguidos)
-                val response = call.awaitResponse()
-                respuesta = response.code()
-            } catch (exception : Exception) {
-                exception.printStackTrace()
-            }
-            return respuesta
-        }
-
         suspend fun obtenerSeguidosUsuario(authKey: String, id : Int) : List<Seguido>{
             var listaSeguidosUsuario : List<Seguido> = listOf()
             try {
@@ -82,6 +70,44 @@ class SeguidosDAO {
                 exception.printStackTrace()
             }
             return listaSeguidoresUsuario
+        }
+
+        suspend fun obtenerCantidadSeguidores(authKey: String, idSeguidos : Int) : Int {
+            var respuesta = 0
+            try {
+                val call : Call<APIService.Mensaje> = seguidosAPI.obtenerCantidadSeguidores(authKey, idSeguidos)
+                val response : APIService.Mensaje = call.await()
+                respuesta = response.mensaje.toInt()
+            } catch (exception : Exception) {
+                exception.printStackTrace()
+            }
+            return respuesta
+        }
+
+        suspend fun obtenerCantidadSeguidos(authKey: String, idSeguidos : Int) : Int {
+            var respuesta = 0
+            try {
+                val call : Call<APIService.Mensaje> = seguidosAPI.obtenerCantidadSeguidos(authKey, idSeguidos)
+                val response : APIService.Mensaje = call.await()
+                respuesta = response.mensaje.toInt()
+            } catch (exception : Exception) {
+                exception.printStackTrace()
+            }
+            return respuesta
+        }
+
+        suspend fun seguidosComprobar(authKey: String, idSeguidos : Int) : Boolean {
+            var respuesta = false
+            try {
+                val call : Call<APIService.Mensaje> = seguidosAPI.seguidosComprobar(authKey)
+                val response = call.await()
+                if (response.mensaje.toInt() == 1){
+                    respuesta = true
+                }
+            } catch (exception : Exception) {
+                exception.printStackTrace()
+            }
+            return respuesta
         }
     }
 }

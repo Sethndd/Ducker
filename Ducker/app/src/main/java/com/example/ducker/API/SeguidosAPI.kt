@@ -14,12 +14,18 @@ interface SeguidosAPI {
     @GET("seguidores")
     fun obtenerSeguidores(@Header("auth") auth: String) : Call<List<Seguido>>
 
-    @DELETE("seguidos/{id}")
-    fun eliminarSeguidos(@Header("auth") auth: String, @Path("id") id : Int) : Call<APIService.Mensaje>
-
     @GET("seguidos/{id}")
     fun obtenerSeguidosUsuario(@Header("auth") auth: String, @Path("id") id : Int) : Call<List<Seguido>>
 
     @GET("seguidores/{id}")
     fun obtenerSeguidoresUsuario(@Header("auth") auth: String, @Path("id") id : Int) : Call<List<Seguido>>
+
+    @GET("seguidores/cantidad/{id}")
+    fun obtenerCantidadSeguidores(@Header("auth") auth: String, @Path("id") id : Int) : Call<APIService.Mensaje>
+
+    @GET("seguidos/cantidad/{id}")
+    fun obtenerCantidadSeguidos(@Header("auth") auth: String, @Path("id") id : Int) : Call<APIService.Mensaje>
+
+    @GET("seguidoscomprobar")
+    fun seguidosComprobar(@Header("auth") auth: String) : Call<APIService.Mensaje>
 }

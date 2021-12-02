@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ducker.recyclers.QuackAdapter
 import com.example.ducker.daos.PerfilDAO
 import com.example.ducker.daos.QuackDAO
+import com.example.ducker.daos.SeguidosDAO
 import com.example.ducker.daos.UsuarioDAO
 import com.example.ducker.data.Quack
 import com.example.ducker.util.CyrclePicasso
@@ -17,6 +18,7 @@ import kotlinx.coroutines.launch
 
 class PerfilUsuario : Botonera() {
     private var idUsuario: Int = 0
+    private var idUsuarioPerfil: Int = 0
     private var listaQuacks = listOf<Quack>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,12 +32,14 @@ class PerfilUsuario : Botonera() {
         aregarListeners()
         cargarPerfil()
         cargarQuacks()
+        cargarSeguidores()
     }
 
     private fun cargarPerfil() {
         CoroutineScope(Dispatchers.IO).launch{
             val usuario = UsuarioDAO.obtener(authKey, idUsuario)
             val perfil = PerfilDAO.obtener(authKey, idUsuario)
+            idUsuarioPerfil = perfil.idUsuario
 
             runOnUiThread {
                 txtNombre.text = usuario.nombrePropio
@@ -59,10 +63,26 @@ class PerfilUsuario : Botonera() {
         }
     }
 
+
+    private fun cargarSeguidores() {
+        CoroutineScope(Dispatchers.IO).launch{
+            val seguidores = SeguidosDAO.obtenerCantidadSeguidores(authKey, idUsuario)
+            val seguidos = SeguidosDAO.obtenerCantidadSeguidos(authKey, idUsuario)
+
+//            println(idUsuarioPerfil)
+            runOnUiThread {
+//                println(seguidores)
+//                println(seguidos)
+                txtNumeroSeguidos.text = seguidos.toString()
+                txtNumeroSeguidores.text = seguidores.toString()
+            }
+        }
+    }
+
     private fun cargarQuacks() {
         val activity = this
         CoroutineScope(Dispatchers.IO).launch {
-            listaQuacks = QuackDAO.obtenerQuacksPorUsuario(authKey, idUsuario)
+            listaQuacks = QuackDAO.obtenerQuacksPorUsuario(authKey, 1)
             runOnUiThread{
                 recyclerView.adapter = QuackAdapter(listaQuacks, authKey, activity, R.layout.item_quack)
             }
