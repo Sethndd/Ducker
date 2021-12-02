@@ -8,50 +8,64 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="29.2dp"
-            android:gravity="center"
+            android:layout_marginStart="10dp"
             android:orientation="horizontal">
 
-            <View
-                android:id="@+id/view3"
-                android:layout_width="1dp"
-                android:layout_height="wrap_content"
-                android:background="#FFFFFF" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:layout_marginStart="24dp"
+                android:orientation="vertical">
 
-            <View
-                android:id="@+id/view4"
-                android:layout_width="15dp"
-                android:layout_height="1dp"
-                android:layout_marginBottom="20dp"
-                android:background="#FFFFFF" />
+                <View
+                    android:id="@+id/viewArriba"
+                    android:layout_width="2dp"
+                    android:layout_height="37dp"
+                    android:layout_gravity="start"
+                    android:background="#FFFFFF"
+                    android:foreground="#FFFFFF" />
+
+                <View
+                    android:id="@+id/viewFoto"
+                    android:layout_width="25dp"
+                    android:layout_height="2dp"
+                    android:layout_gravity="top"
+
+                    android:background="#FFFFFF"
+                    android:foreground="#FFFFFF" />
+
+                <View
+                    android:id="@+id/viewAbajo"
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:background="#FFFFFF"
+                    android:foreground="#FFFFFF" />
+
+
+            </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/fotoPerfil"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/fotoPerfil"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:background="#00FFFFFF"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/user" />
-        </LinearLayout>
+            android:background="#00FFFFFF"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/user" />
 
         <LinearLayout
-            android:layout_width="280dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
@@ -66,12 +80,11 @@
 
                 <TextView
                     android:id="@+id/nombrePropio"
-                    android:layout_width="200dp"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
                     android:text="Nombre"
-                    android:textColor="#FFFFFF"
-                    android:textSize="10sp" />
+                    android:textColor="#FFFFFF"/>
 
                 <TextView
                     android:id="@+id/hora"
@@ -81,7 +94,7 @@
                     android:gravity="center|end"
                     android:text="Hora"
                     android:textColor="#A8A8A8"
-                    android:textSize="8sp" />
+                    android:textSize="10sp"/>
 
             </LinearLayout>
 
@@ -92,13 +105,12 @@
 
                 <TextView
                     android:id="@+id/nombreUsuario"
-                    android:layout_width="200dp"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:text="Usuario"
-                    android:textColor="#A8A8A8"
-                    android:textSize="10sp" />
+                    android:textColor="#A8A8A8" />
 
             </LinearLayout>
 
@@ -114,8 +126,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Quack"
-                    android:textColor="#FFFFFF"
-                    android:textSize="10sp" />
+                    android:textColor="#FFFFFF"/>
             </LinearLayout>
 
             <LinearLayout
@@ -141,7 +152,7 @@
                     android:gravity="center"
                     android:text="100k"
                     android:textColor="#FFFFFF"
-                    android:textSize="8sp" />
+                    android:textSize="10sp" />
 
                 <ImageView
                     android:id="@+id/btnComentario"
@@ -163,33 +174,22 @@
                     android:gravity="center"
                     android:text="100k"
                     android:textColor="#FFFFFF"
-                    android:textSize="8sp" />
+                    android:textSize="10sp" />
 
-                <ImageView
-                    android:id="@+id/btnCompartir"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#00FFFFFF"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/share" />
-
-                <TextView
-                    android:id="@+id/txtContadorCompartidos"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="100k"
-                    android:textColor="#FFFFFF"
-                    android:textSize="8sp" />
+                <!--                <ImageView-->
+                <!--                    android:id="@+id/btnCompartir"-->
+                <!--                    android:layout_width="20dp"-->
+                <!--                    android:layout_height="20dp"-->
+                <!--                    android:layout_marginEnd="5dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:backgroundTint="#00FFFFFF"-->
+                <!--                    android:scaleType="fitCenter"-->
+                <!--                    app:srcCompat="@drawable/share" />-->
 
                 <ImageView
                     android:id="@+id/btnGuardar"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginLeft="25dp"
                     android:layout_weight="1"
                     android:backgroundTint="#00FFFFFF"
                     android:scaleType="fitCenter"

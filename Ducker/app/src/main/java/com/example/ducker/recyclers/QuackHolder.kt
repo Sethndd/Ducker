@@ -27,7 +27,7 @@ open class QuackHolder(open val view: View):  RecyclerView.ViewHolder(view){
     protected var authKey = ""
     protected lateinit var quack: Quack
 
-    open fun render(quack: Quack, auth: String, activity: Activity){
+    open fun render(quack: Quack, auth: String, activity: Activity, vistaHilos: String){
         this.authKey = auth
         this.quack = quack
 
