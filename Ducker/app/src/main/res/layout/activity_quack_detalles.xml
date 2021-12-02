@@ -37,15 +37,15 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
-                    android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">
 
                     <View
                         android:id="@+id/view5"
-                        android:layout_width="1dp"
+                        android:layout_width="2dp"
                         android:layout_height="10dp"
-                        android:background="#FFFFFF" />
+                        android:background="#FFFFFF"
+                        android:foreground="#FFFFFF" />
 
                     <ImageView
                         android:id="@+id/fotoPerfil"
@@ -58,11 +58,12 @@
 
                     <View
                         android:id="@+id/view"
-                        android:layout_width="1dp"
+                        android:layout_width="2dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:background="#FFFFFF" />
+                        android:background="#FFFFFF"
+                        android:foreground="#FFFFFF" />
 
                 </LinearLayout>
 
@@ -128,7 +129,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Quack"
-                            android:textColor="#FFFFFF" />
+                            android:textColor="#FFFFFF"
+                            android:textSize="20dp" />
                     </LinearLayout>
 
                     <LinearLayout
