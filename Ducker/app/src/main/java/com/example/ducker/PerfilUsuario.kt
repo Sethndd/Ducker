@@ -2,7 +2,7 @@ package com.example.ducker
 
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.ducker.Recyclers.QuackAdapter
+import com.example.ducker.recyclers.QuackAdapter
 import com.example.ducker.daos.PerfilDAO
 import com.example.ducker.daos.QuackDAO
 import com.example.ducker.daos.UsuarioDAO

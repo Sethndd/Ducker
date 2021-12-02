@@ -1,4 +1,4 @@
-package com.example.ducker.Recyclers
+package com.example.ducker.recyclers
 
 import android.app.Activity
 import android.view.View
@@ -9,8 +9,6 @@ import com.example.ducker.data.Quack
 import com.example.ducker.util.CyrclePicasso
 import com.example.ducker.util.Rutas
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.item_quack.view.*
-import kotlinx.android.synthetic.main.item_quack_padre.view.*
 import kotlinx.android.synthetic.main.item_quack_padre.view.btnLike
 import kotlinx.android.synthetic.main.item_quack_padre.view.fotoPerfil
 import kotlinx.android.synthetic.main.item_quack_padre.view.hora

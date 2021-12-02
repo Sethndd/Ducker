@@ -3,7 +3,7 @@ package com.example.ducker
 import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.ducker.Recyclers.QuackAdapter
+import com.example.ducker.recyclers.QuackAdapter
 import com.example.ducker.daos.QuackDAO
 import com.example.ducker.data.Quack
 import kotlinx.android.synthetic.main.activity_feed.*

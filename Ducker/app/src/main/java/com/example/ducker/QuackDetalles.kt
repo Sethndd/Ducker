@@ -5,8 +5,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.ducker.Recyclers.QuackHijoAdapter
-import com.example.ducker.Recyclers.QuackPadreAdapter
+import com.example.ducker.recyclers.QuackHijoAdapter
+import com.example.ducker.recyclers.QuackPadreAdapter
 import com.example.ducker.daos.LikesDAO
 import com.example.ducker.daos.PerfilDAO
 import com.example.ducker.daos.QuackDAO

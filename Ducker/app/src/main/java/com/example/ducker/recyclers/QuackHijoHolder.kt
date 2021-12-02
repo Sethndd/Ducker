@@ -1,4 +1,4 @@
-package com.example.ducker.Recyclers
+package com.example.ducker.recyclers
 
 import android.app.Activity
 import android.view.View

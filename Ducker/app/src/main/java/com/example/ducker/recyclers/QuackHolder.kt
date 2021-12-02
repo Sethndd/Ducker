@@ -1,11 +1,8 @@
-package com.example.ducker.Recyclers
+package com.example.ducker.recyclers
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
-import android.graphics.drawable.Drawable
 import android.view.View
-import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ducker.PerfilUsuario
 import com.example.ducker.QuackDetalles
