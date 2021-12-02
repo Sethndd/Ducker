@@ -77,7 +77,12 @@ router.route('/seguidores/:id')
 
 router.route('/seguidores/cantidad/:id')
     .get(auth.comprobarToken, (req, res) =>{
-        seguidosDAO.obtenerNumeroSeguidores(req.params.id, (err, respuesta) =>{
+        var id = req.params.id
+        if (id == 0){
+            id = req.user.id
+        }
+
+        seguidosDAO.obtenerNumeroSeguidores(id, (err, respuesta) =>{
             if (err){
                 console.log(err)
                 res.status(400).json(err)
@@ -89,7 +94,12 @@ router.route('/seguidores/cantidad/:id')
 
 router.route('/seguidos/cantidad/:id')
     .get(auth.comprobarToken, (req, res) =>{
-        seguidosDAO.obtenerNumeroSeguidos(req.params.id, (err, respuesta) =>{
+        var id = req.params.id
+        if (id == 0){
+            id = req.user.id
+        }
+
+        seguidosDAO.obtenerNumeroSeguidos(id, (err, respuesta) =>{
             if (err){
                 console.log(err)
                 res.status(400).json(err)

@@ -60,7 +60,7 @@ router.route('/quacks/usuario/:id')
     .get(auth.comprobarToken, (req, res) => {
         id = req.params.id
 
-        if(id = 0){
+        if(id == 0){
             id = req.user.id
         }
 
