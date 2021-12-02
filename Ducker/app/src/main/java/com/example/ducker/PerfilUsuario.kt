@@ -1,6 +1,5 @@
 package com.example.ducker
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ducker.Recyclers.QuackAdapter
@@ -16,26 +15,21 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class PerfilUsuario : AppCompatActivity() {
-    private var authKey = ""
-    private var listaQuacks = listOf<Quack>()
+class PerfilUsuario : Botonera() {
     private var idUsuario: Int = 0
+    private var listaQuacks = listOf<Quack>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val bundle = intent.extras
-        authKey = bundle?.getString("authKey").toString()
         idUsuario = bundle?.getString("id").toString().toInt()
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_perfil_usuario)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
-
+        aregarListeners()
         cargarPerfil()
         cargarQuacks()
-//        aregarListeners()
-
-        println()
     }
 
     private fun cargarPerfil() {
@@ -75,6 +69,10 @@ class PerfilUsuario : AppCompatActivity() {
         }
     }
     private fun aregarListeners() {
-        TODO("Not yet implemented")
+        listenerBtnHome(btnMenuPrincipal)
+        listenerBtnBuscar(btnBuscador)
+        listenerBtnQuack(btnNuevoQuack)
+        listenerGuardado(btnGuardados)
+        listenerBtnPerfil(btnPerfil)
     }
 }

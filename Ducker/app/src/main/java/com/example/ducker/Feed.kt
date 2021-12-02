@@ -1,8 +1,6 @@
 package com.example.ducker
 
-import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ducker.Recyclers.QuackAdapter
@@ -13,14 +11,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class Feed : AppCompatActivity() {
-    private var authKey = ""
+class Feed : Botonera() {
     private var listaQuacks = listOf<Quack>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val bundle = intent.extras
-        authKey = bundle?.getString("authKey").toString()
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feed)
 
@@ -29,26 +23,12 @@ class Feed : AppCompatActivity() {
         obtenerQuacks()
     }
 
-    fun obtenerQuacks(){
-        val activity = this
-        CoroutineScope(Dispatchers.IO).launch {
-            listaQuacks = QuackDAO.obtenerQuacksSeguidos(authKey)
-            runOnUiThread{
-                println(authKey)
-                val adapter = QuackAdapter(listaQuacks, authKey, activity)
-                recyclerView.adapter = adapter
-                adapter.notifyItemInserted(listaQuacks.size)
-            }
-        }
-    }
-
     fun agregarListeners() {
-        btnNuevoQuack.setOnClickListener {
-            val intent : Intent = Intent(this, NuevoQuack::class.java)
-            startActivity(intent.putExtra("authKey", authKey))
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-            finish()
-        }
+        listenerBtnHome(btnMenuPrincipal)
+        listenerBtnBuscar(btnBuscador)
+        listenerBtnQuack(btnNuevoQuack)
+        listenerGuardado(btnGuardados)
+        listenerBtnPerfil(btnPerfil)
 
         btnDescubrir.setOnClickListener{
             val intent : Intent = Intent(this, FeedDescubrir::class.java)
@@ -56,13 +36,23 @@ class Feed : AppCompatActivity() {
             overridePendingTransition(R.anim.right_in, R.anim.right_out)
             finish()
         }
+    }
 
-        btnBuscador.setOnClickListener{
-            val intent = Intent(this, Buscador::class.java)
-            startActivity(intent.putExtra("authKey", authKey))
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-            finish()
+    fun obtenerQuacks(){
+        val activity = this
+        CoroutineScope(Dispatchers.IO).launch {
+            listaQuacks = QuackDAO.obtenerQuacksSeguidos(authKey)
+            runOnUiThread{
+                val adapter = QuackAdapter(listaQuacks, authKey, activity)
+                recyclerView.adapter = adapter
+            }
         }
     }
 
+    override fun onBackPressed() {
+//        val intent = Intent(this, Feed::class.java)
+//        startActivity(intent.putExtra("authKey", authKey))
+//        overridePendingTransition(R.anim.left_out, R.anim.left_in)
+        finish()
+    }
 }
