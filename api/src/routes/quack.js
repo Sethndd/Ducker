@@ -98,6 +98,18 @@ router.route('/quacks/padres/:id')
         })
     })
 
+router.route('/quacks/hijos/cantidad/:id')
+    .get(auth.comprobarToken, (req, res) => {
+        quackDAO.obtenerCantidadHijos(req.params.id, (err, respuesta) =>{
+            if(err){
+                console.log(err)
+                res.status(400).json(err)
+                return
+            }
+            res.status(201).json(respuesta)
+        })
+    })
+
 router.route('/quacks/hijos/:id')
     .get(auth.comprobarToken, (req, res) => {
         quackDAO.obtenerHijos(req.params.id, (err, respuesta) =>{

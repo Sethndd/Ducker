@@ -90,6 +90,17 @@ function obtenerHijos(id, callback){
     })
 }
 
+function obtenerCantidadHijos(id, callback){
+    dbConnection.query('call obtenerCantidadHijosQuack(?);', [id], (err, rows, fields) =>{
+        if(err){
+            return callback(err)
+        }
+        else{
+            callback(null, rows[0][0])
+        }
+    })
+}
+
 function obtenerSeguidos(id, callback){
     dbConnection.query('call obtenerQuacksSeguidos(?);', [id], (err, rows, fields) =>{
         if(err){
@@ -101,4 +112,4 @@ function obtenerSeguidos(id, callback){
     })
 }
 
-module.exports = {crear, obtenerTodos, obtenerPorID, obtenerPorUsuario, eliminar, obtenerPadre, obtenerPadres, obtenerHijos, obtenerSeguidos}
+module.exports = {crear, obtenerTodos, obtenerPorID, obtenerPorUsuario, eliminar, obtenerPadre, obtenerPadres, obtenerHijos, obtenerSeguidos, obtenerCantidadHijos}
