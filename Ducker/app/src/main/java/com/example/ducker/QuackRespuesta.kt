@@ -56,6 +56,7 @@ class QuackRespuesta : AppCompatActivity() {
             intent.putExtra("authKey", authKey)
             intent.putExtra("id", idQuackPadre.toString())
             startActivity(intent)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
             finish()
         }
     }
@@ -84,10 +85,9 @@ class QuackRespuesta : AppCompatActivity() {
             }
         }
     }
-//
-//    override fun onBackPressed() {
-//        val intent = Intent(this, Feed::class.java)
-//        startActivity(intent.putExtra("authKey", authKey))
-//        finish()
-//    }
+
+    override fun onBackPressed() {
+        finish()
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+    }
 }

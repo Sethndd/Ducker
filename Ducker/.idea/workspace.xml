@@ -13,9 +13,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8a867fe-8522-48b4-954f-15f3f0f91cbd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/Buscador.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/Buscador.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/Feed.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/Feed.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/Botonera.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/Botonera.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/PerfilUsuario.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/PerfilUsuario.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/QuackDetalles.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/QuackDetalles.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/QuackRespuesta.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/QuackRespuesta.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/Recyclers/QuackHolder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/Recyclers/QuackHolder.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +97,7 @@
     <property name="ResourceManagerPrefKey.ResourceType" value="LAYOUT" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android-custom-viewC:/Users/SNDD_/AppData/Local/Android/Sdk/sources/android-31/android/view/View.java_SELECTED" value="View" />
     <property name="android-custom-viewC:/Users/SNDD_/AppData/Local/Android/Sdk/sources/android-31/android/widget/Button.java_SELECTED" value="Button" />
     <property name="android-custom-viewC:/Users/SNDD_/AppData/Local/Android/Sdk/sources/android-31/android/widget/ImageView.java_SELECTED" value="ImageView" />
     <property name="android-custom-viewC:/Users/SNDD_/AppData/Local/Android/Sdk/sources/android-31/android/widget/TextView.java_SELECTED" value="TextView" />

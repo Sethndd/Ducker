@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.view.View
+import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ducker.PerfilUsuario
 import com.example.ducker.QuackDetalles
@@ -75,21 +76,27 @@ open class QuackHolder(open val view: View):  RecyclerView.ViewHolder(view){
         val intent = Intent(view.context.applicationContext, PerfilUsuario::class.java)
         intent.putExtra("authKey", authKey)
         intent.putExtra("id", quack.idUsuario.toString())
+
         view.context.startActivity(intent)
+        (view.context as Activity).overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
     }
 
     protected open fun abrirQuack(){
         val intent = Intent(view.context.applicationContext, QuackDetalles::class.java)
         intent.putExtra("authKey", authKey)
         intent.putExtra("id", quack.id.toString())
+
         view.context.startActivity(intent)
+        (view.context as Activity).overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
     }
 
     protected open fun abrirResponderQuack() {
         val intent = Intent(view.context.applicationContext, QuackRespuesta::class.java)
         intent.putExtra("authKey", authKey)
         intent.putExtra("id", quack.id.toString())
+
         view.context.startActivity(intent)
+        (view.context as Activity).overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
     }
 
     protected open fun cargarDatos(){
