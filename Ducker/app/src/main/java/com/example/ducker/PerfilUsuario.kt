@@ -41,7 +41,7 @@ class PerfilUsuario : Botonera() {
         listenerBtnBuscar(btnBuscador)
         listenerBtnQuack(btnNuevoQuack)
         listenerGuardado(btnGuardados)
-//        listenerBtnPerfil(btnPerfil)
+        listenerBtnPerfil(btnPerfil)
     }
 
     private fun cargarPerfil() {
@@ -80,10 +80,7 @@ class PerfilUsuario : Botonera() {
             val seguidores = SeguidosDAO.obtenerCantidadSeguidores(authKey, idUsuario)
             val seguidos = SeguidosDAO.obtenerCantidadSeguidos(authKey, idUsuario)
 
-//            println(idUsuarioPerfil)
             runOnUiThread {
-//                println(seguidores)
-//                println(seguidos)
                 txtNumeroSeguidos.text = seguidos.toString()
                 txtNumeroSeguidores.text = seguidores.toString()
             }
@@ -138,7 +135,12 @@ class PerfilUsuario : Botonera() {
     }
 
     override fun onBackPressed() {
-        finish()
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        if(idUsuario == 0){
+            super.onBackPressed()
+        }
+        else{
+            finish()
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        }
     }
 }
