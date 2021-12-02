@@ -19,14 +19,27 @@ router.route('/usuarios')
 
 router.route('/usuarios/:id')
     .get(auth.comprobarToken, (req, res) =>{
-        usuarioDAO.obtener(req.params.id)
-        .then(usuario =>{
-            res.status(200).json(usuario)
-        })
-        .catch(err => {
-            console.log(err)
-            res.status(400).json(err)
-        })
+        if(req.params.id == 0 || req.params.id == req.user.id){
+            usuarioDAO.obtener(req.user.id)
+            .then(usuario =>{
+                usuario.id = 0
+                res.status(200).json(usuario)
+            })
+            .catch(err => {
+                console.log(err)
+                res.status(400).json(err)
+            })
+        }
+        else{
+            usuarioDAO.obtener(req.params.id)
+            .then(usuario =>{
+                res.status(200).json(usuario)
+            })
+            .catch(err => {
+                console.log(err)
+                res.status(400).json(err)
+            })
+        }
     })
     .patch(auth.comprobarToken, (req, res) =>{
         const usuario = req.body
