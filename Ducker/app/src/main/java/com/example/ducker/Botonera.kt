@@ -23,10 +23,10 @@ open class Botonera: AppCompatActivity() {
 
     protected fun listenerBtnHome(imageView: ImageView){
         imageView.setOnClickListener {
-//            val intent : Intent = Intent(this, NuevoQuack::class.java)
-//            startActivity(intent.putExtra("authKey", authKey))
-//            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-//            finish()
+            val intent : Intent = Intent(this, Feed::class.java)
+            startActivity(intent.putExtra("authKey", authKey))
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            finish()
         }
     }
 

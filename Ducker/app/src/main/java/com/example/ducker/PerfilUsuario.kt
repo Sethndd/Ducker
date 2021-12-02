@@ -68,11 +68,12 @@ class PerfilUsuario : Botonera() {
             }
         }
     }
+
     private fun aregarListeners() {
         listenerBtnHome(btnMenuPrincipal)
         listenerBtnBuscar(btnBuscador)
         listenerBtnQuack(btnNuevoQuack)
         listenerGuardado(btnGuardados)
-        listenerBtnPerfil(btnPerfil)
+//        listenerBtnPerfil(btnPerfil)
     }
 }

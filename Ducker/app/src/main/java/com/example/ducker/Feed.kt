@@ -24,7 +24,7 @@ class Feed : Botonera() {
     }
 
     fun agregarListeners() {
-        listenerBtnHome(btnMenuPrincipal)
+//        listenerBtnHome(btnMenuPrincipal)
         listenerBtnBuscar(btnBuscador)
         listenerBtnQuack(btnNuevoQuack)
         listenerGuardado(btnGuardados)
