@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ducker.daos.LikesDAO
 import com.example.ducker.daos.PerfilDAO
@@ -79,8 +80,14 @@ class QuackDetalles : AppCompatActivity() {
                 hora.text = simpleDateFormat.format(quack.fechaHora)
                 texto.text = quack.texto
 
-                rvPadres.adapter = QuackAdapter(padres, authKey, activity, R.layout.item_quack_padre)
-                rvHijos.adapter = QuackAdapter(hijos, authKey, activity, R.layout.item_quack_hijo)
+                if(padres.isNotEmpty()) {
+                    viewArriba.visibility = View.VISIBLE
+                    rvPadres.adapter = QuackAdapter(padres, authKey, activity, R.layout.item_quack_padre)
+                }
+                if(hijos.isNotEmpty()) {
+                    viewAbajo.visibility = View.VISIBLE
+                    rvHijos.adapter = QuackAdapter(hijos, authKey, activity, R.layout.item_quack_hijo)
+                }
 
                 Picasso.get()
                     .load(Rutas.IMAGENES.plus(perfil.imagenRuta))

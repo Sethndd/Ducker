@@ -41,11 +41,12 @@
                     android:orientation="vertical">
 
                     <View
-                        android:id="@+id/view5"
+                        android:id="@+id/viewArriba"
                         android:layout_width="2dp"
                         android:layout_height="10dp"
                         android:background="#FFFFFF"
-                        android:foreground="#FFFFFF" />
+                        android:foreground="#FFFFFF"
+                        android:visibility="invisible"/>
 
                     <ImageView
                         android:id="@+id/fotoPerfil"
@@ -57,13 +58,14 @@
                         app:srcCompat="@drawable/user" />
 
                     <View
-                        android:id="@+id/view"
+                        android:id="@+id/viewAbajo"
                         android:layout_width="2dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
                         android:background="#FFFFFF"
-                        android:foreground="#FFFFFF" />
+                        android:foreground="#FFFFFF"
+                        android:visibility="invisible"/>
 
                 </LinearLayout>
 

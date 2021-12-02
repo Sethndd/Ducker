@@ -23,21 +23,30 @@
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal"
                 android:layout_marginStart="24dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <View
-                    android:id="@+id/view"
+                    android:id="@+id/viewArriba"
                     android:layout_width="2dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="37dp"
+                    android:layout_gravity="start"
                     android:background="#FFFFFF"
                     android:foreground="#FFFFFF" />
 
                 <View
-                    android:id="@+id/view5"
+                    android:id="@+id/viewFoto"
                     android:layout_width="25dp"
                     android:layout_height="2dp"
                     android:layout_gravity="top"
-                    android:layout_marginTop="35dp"
+
+                    android:background="#FFFFFF"
+                    android:foreground="#FFFFFF" />
+
+                <View
+                    android:id="@+id/viewAbajo"
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
                     android:background="#FFFFFF"
                     android:foreground="#FFFFFF" />
 
