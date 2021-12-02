@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ducker.recyclers.QuackAdapter
 import com.example.ducker.daos.PerfilDAO
 import com.example.ducker.daos.QuackDAO
+import com.example.ducker.daos.SeguidosDAO
 import com.example.ducker.daos.UsuarioDAO
 import com.example.ducker.data.Quack
 import com.example.ducker.util.CyrclePicasso
@@ -27,9 +28,20 @@ class PerfilUsuario : Botonera() {
         setContentView(R.layout.activity_perfil_usuario)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
+
         aregarListeners()
         cargarPerfil()
         cargarQuacks()
+        cargarSeguidores()
+        cargarBtnPerfil()
+    }
+
+    private fun aregarListeners() {
+        listenerBtnHome(btnMenuPrincipal)
+        listenerBtnBuscar(btnBuscador)
+        listenerBtnQuack(btnNuevoQuack)
+        listenerGuardado(btnGuardados)
+        listenerBtnPerfil(btnPerfil)
     }
 
     private fun cargarPerfil() {
@@ -43,6 +55,10 @@ class PerfilUsuario : Botonera() {
 
                 if (usuario.idUsuario == 0){
                     btnEditarOSeguir.text = "Editar"
+                    agregarListenerEditar()
+                }
+                else{
+                    agregarListenerSeguir()
                 }
 
                 Picasso.get()
@@ -59,6 +75,18 @@ class PerfilUsuario : Botonera() {
         }
     }
 
+    private fun cargarSeguidores() {
+        CoroutineScope(Dispatchers.IO).launch{
+            val seguidores = SeguidosDAO.obtenerCantidadSeguidores(authKey, idUsuario)
+            val seguidos = SeguidosDAO.obtenerCantidadSeguidos(authKey, idUsuario)
+
+            runOnUiThread {
+                txtNumeroSeguidos.text = seguidos.toString()
+                txtNumeroSeguidores.text = seguidores.toString()
+            }
+        }
+    }
+
     private fun cargarQuacks() {
         val activity = this
         CoroutineScope(Dispatchers.IO).launch {
@@ -69,16 +97,50 @@ class PerfilUsuario : Botonera() {
         }
     }
 
-    private fun aregarListeners() {
-        listenerBtnHome(btnMenuPrincipal)
-        listenerBtnBuscar(btnBuscador)
-        listenerBtnQuack(btnNuevoQuack)
-        listenerGuardado(btnGuardados)
-//        listenerBtnPerfil(btnPerfil)
+    private fun cargarBtnPerfil() {
+        if(idUsuario > 0){
+            CoroutineScope(Dispatchers.IO).launch {
+                val esSeguidor = SeguidosDAO.seguidosComprobar(authKey, idUsuario)
+                runOnUiThread{
+                    if(esSeguidor){
+                        btnEditarOSeguir.text = "Dejar de seguir"
+                    }
+                }
+            }
+        }
+    }
+
+    private fun agregarListenerSeguir() {
+        btnEditarOSeguir.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch{
+                val esSeguidor = SeguidosDAO.crearSeguidos(authKey, idUsuario)
+
+                runOnUiThread{
+                    if(esSeguidor){
+                        btnEditarOSeguir.text = "Dejar de seguir"
+                    }
+                    else{
+                        btnEditarOSeguir.text = "Seguir"
+                    }
+                }
+            }
+        }
+    }
+
+    private fun agregarListenerEditar(){
+        btnEditarOSeguir.setOnClickListener {
+            println("Voy a editar")
+            //ToDo: abrir ventana de editar perfil
+        }
     }
 
     override fun onBackPressed() {
-        finish()
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        if(idUsuario == 0){
+            super.onBackPressed()
+        }
+        else{
+            finish()
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        }
     }
 }

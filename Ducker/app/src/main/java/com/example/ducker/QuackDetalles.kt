@@ -36,11 +36,28 @@ class QuackDetalles : AppCompatActivity() {
         rvPadres.layoutManager = LinearLayoutManager(this)
         rvHijos.layoutManager = LinearLayoutManager(this)
 
-        cargarDatos(id)
+        cargarDatos()
         agregarListeners()
     }
 
-    fun cargarDatos(id: Int){
+    private fun cargarDatos(){
+        cargarQuacks()
+        cargarLikes()
+        cargarNumeroComentarios()
+    }
+
+    private fun agregarListeners() {
+        fotoPerfil.setOnClickListener { abrirPerfil(this) }
+        nombrePropio.setOnClickListener { abrirPerfil(this) }
+        nombreUsuario.setOnClickListener { abrirPerfil(this) }
+
+        btnLike.setOnClickListener { crearLike() }
+        txtContadorLikes.setOnClickListener { crearLike() }
+        btnComentario.setOnClickListener { abrirResponderQuack(this) }
+        txtContadorComentarios.setOnClickListener { abrirResponderQuack(this) }
+    }
+
+    fun cargarQuacks(){
         val activity = this
 
         CoroutineScope(Dispatchers.IO).launch{
@@ -48,8 +65,6 @@ class QuackDetalles : AppCompatActivity() {
             val perfil = PerfilDAO.obtener(authKey, quack.idUsuario)
             val padres = QuackDAO.obtenerPadres(authKey, quack.id)
             val hijos = QuackDAO.obtenerHijos(authKey, quack.id)
-            val likes = LikesDAO.obtenerCantidadLikesQuack(authKey, quack.id)
-            val quackLikeado = LikesDAO.comprobarLike(authKey, quack.id)
 
             idUsuario = quack.idUsuario
 
@@ -59,17 +74,10 @@ class QuackDetalles : AppCompatActivity() {
                     simpleDateFormat = SimpleDateFormat("HH:mm")
                 }
 
-                if (quackLikeado) {
-                    btnLike.setImageResource(R.drawable.like)
-                } else {
-                    btnLike.setImageResource(R.drawable.no_like)
-                }
-
                 nombrePropio.text = quack.nombrePropio
                 nombreUsuario.text = "@".plus(quack.nombreUsuario)
                 hora.text = simpleDateFormat.format(quack.fechaHora)
                 texto.text = quack.texto
-                txtContadorLikes.text = likes.toString()
 
                 rvPadres.adapter = QuackAdapter(padres, authKey, activity, R.layout.item_quack_padre)
                 rvHijos.adapter = QuackAdapter(hijos, authKey, activity, R.layout.item_quack_hijo)
@@ -82,21 +90,38 @@ class QuackDetalles : AppCompatActivity() {
         }
     }
 
-    private fun agregarListeners() {
-        fotoPerfil.setOnClickListener { abrirPerfil(this) }
-        nombrePropio.setOnClickListener { abrirPerfil(this) }
-        nombreUsuario.setOnClickListener { abrirPerfil(this) }
+    private fun cargarLikes(){
+        CoroutineScope(Dispatchers.IO).launch {
+            val likes = LikesDAO.obtenerCantidadLikesQuack(authKey, id)
+            val quackLikeado = LikesDAO.comprobarLike(authKey, id)
 
-        btnLike.setOnClickListener { crearLike() }
-        btnComentario.setOnClickListener { abrirResponderQuack(this) }
-        txtContadorComentarios.setOnClickListener { abrirResponderQuack(this) }
+            CoroutineScope(Dispatchers.Main).launch {
+                txtContadorLikes.text = likes.toString()
+
+                if (quackLikeado) {
+                    btnLike.setImageResource(R.drawable.like)
+                } else {
+                    btnLike.setImageResource(R.drawable.no_like)
+                }
+            }
+        }
+    }
+
+    private fun cargarNumeroComentarios() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val comentarios = QuackDAO.obtenerCantidadHijos(authKey, id)
+
+            CoroutineScope(Dispatchers.Main).launch {
+                txtContadorComentarios.text = comentarios.toString()
+            }
+        }
     }
 
     private fun crearLike(){
         CoroutineScope(Dispatchers.IO).launch {
             LikesDAO.crearLikes(authKey, Like(0, id, 0))
+            cargarLikes()
         }
-        cargarDatos(id)
     }
 
     private fun abrirPerfil(context: Context){

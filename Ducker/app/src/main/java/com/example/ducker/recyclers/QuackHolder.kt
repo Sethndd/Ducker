@@ -50,6 +50,7 @@ open class QuackHolder(open val view: View):  RecyclerView.ViewHolder(view){
 
     protected open fun cargarDatos(){
         cargarLikes()
+        cargarNumeroComentarios()
         cargarFotoPerfil()
         cargarQuackConPadre()
     }
@@ -60,25 +61,36 @@ open class QuackHolder(open val view: View):  RecyclerView.ViewHolder(view){
         view.nombreUsuario.setOnClickListener { abrirPerfil() }
 
         view.btnLike.setOnClickListener { crearLike() }
+        view.txtContadorLikes.setOnClickListener { crearLike() }
         view.btnComentario.setOnClickListener { abrirResponderQuack() }
         view.txtContadorComentarios.setOnClickListener { abrirResponderQuack() }
 
         view.setOnClickListener { abrirQuack() }
     }
 
-    private fun cargarQuackConPadre(){
+    protected fun cargarLikes(){
         CoroutineScope(Dispatchers.IO).launch {
-            lateinit var padre: Quack
-            if(quack.quackPadre > 0){
-                padre = QuackDAO.obtenerQuackPorId(authKey, quack.quackPadre)
-            }
+            val likes = LikesDAO.obtenerCantidadLikesQuack(authKey, quack.id)
+            val quackLikeado = LikesDAO.comprobarLike(authKey, quack.id)
 
-            CoroutineScope(Dispatchers.Main).launch{
-                if(quack.quackPadre > 0 && padre.estado == "activo"){
-                    view.txtEtiqueta.visibility = View.VISIBLE
-                    view.txtUsuarioPadre.visibility = View.VISIBLE
-                    view.txtUsuarioPadre.text = "@".plus(padre.nombreUsuario)
+            CoroutineScope(Dispatchers.Main).launch {
+                view.txtContadorLikes.text = likes.toString()
+
+                if (quackLikeado) {
+                    view.btnLike.setImageResource(R.drawable.like)
+                } else {
+                    view.btnLike.setImageResource(R.drawable.no_like)
                 }
+            }
+        }
+    }
+
+    protected fun cargarNumeroComentarios() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val comentarios = QuackDAO.obtenerCantidadHijos(authKey, quack.id)
+
+            CoroutineScope(Dispatchers.Main).launch {
+                view.txtContadorComentarios.text = comentarios.toString()
             }
         }
     }
@@ -95,18 +107,18 @@ open class QuackHolder(open val view: View):  RecyclerView.ViewHolder(view){
         }
     }
 
-    protected fun cargarLikes(){
+    private fun cargarQuackConPadre(){
         CoroutineScope(Dispatchers.IO).launch {
-            val likes = LikesDAO.obtenerCantidadLikesQuack(authKey, quack.id)
-            val quackLikeado = LikesDAO.comprobarLike(authKey, quack.id)
+            lateinit var padre: Quack
+            if(quack.quackPadre > 0){
+                padre = QuackDAO.obtenerQuackPorId(authKey, quack.quackPadre)
+            }
 
-            CoroutineScope(Dispatchers.Main).launch {
-                view.txtContadorLikes.text = likes.toString()
-
-                if (quackLikeado) {
-                    view.btnLike.setImageResource(R.drawable.like)
-                } else {
-                    view.btnLike.setImageResource(R.drawable.no_like)
+            CoroutineScope(Dispatchers.Main).launch{
+                if(quack.quackPadre > 0 && padre.estado == "activo"){
+                    view.txtEtiqueta.visibility = View.VISIBLE
+                    view.txtUsuarioPadre.visibility = View.VISIBLE
+                    view.txtUsuarioPadre.text = "@".plus(padre.nombreUsuario)
                 }
             }
         }
