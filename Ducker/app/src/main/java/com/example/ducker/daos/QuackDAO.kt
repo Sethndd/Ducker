@@ -3,7 +3,6 @@ package com.example.ducker.daos
 import com.example.ducker.API.APIService
 import com.example.ducker.API.QuackAPI
 import com.example.ducker.data.Quack
-import com.google.gson.Gson
 import okhttp3.ResponseBody
 import retrofit2.*
 import java.lang.Exception
@@ -95,6 +94,18 @@ class QuackDAO {
                 exception.printStackTrace()
             }
             return listaQuacks
+        }
+
+        suspend fun obtenerCantidadHijos(authKey: String, id : Int) : Int{
+            var hijos = 0
+            try {
+                val call : Call<APIService.Mensaje> = Companion.quackAPI.obtenerCantidadHijos(authKey, id)
+                val response : APIService.Mensaje = call.await()
+                hijos = response.mensaje.toInt()
+            } catch (exception : Exception) {
+                exception.printStackTrace()
+            }
+            return hijos
         }
 
         suspend fun obtenerQuacksSeguidos(authKey : String): List<Quack> {

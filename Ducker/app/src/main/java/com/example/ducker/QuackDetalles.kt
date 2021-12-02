@@ -37,6 +37,7 @@ class QuackDetalles : AppCompatActivity() {
         rvHijos.layoutManager = LinearLayoutManager(this)
 
         cargarDatos(id)
+        cargarNumeroComentarios()
         agregarListeners()
     }
 
@@ -88,6 +89,7 @@ class QuackDetalles : AppCompatActivity() {
         nombreUsuario.setOnClickListener { abrirPerfil(this) }
 
         btnLike.setOnClickListener { crearLike() }
+        txtContadorLikes.setOnClickListener { crearLike() }
         btnComentario.setOnClickListener { abrirResponderQuack(this) }
         txtContadorComentarios.setOnClickListener { abrirResponderQuack(this) }
     }
@@ -97,6 +99,16 @@ class QuackDetalles : AppCompatActivity() {
             LikesDAO.crearLikes(authKey, Like(0, id, 0))
         }
         cargarDatos(id)
+    }
+
+    protected fun cargarNumeroComentarios() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val comentarios = QuackDAO.obtenerCantidadHijos(authKey, id)
+
+            CoroutineScope(Dispatchers.Main).launch {
+                txtContadorComentarios.text = comentarios.toString()
+            }
+        }
     }
 
     private fun abrirPerfil(context: Context){
