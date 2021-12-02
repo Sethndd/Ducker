@@ -14,46 +14,24 @@ class SeguidosDAO {
         private val retrofit : Retrofit = APIService.obtenerRetroFit()
         private val seguidosAPI = retrofit.create(SeguidosAPI::class.java)
 
-        suspend fun crearSeguidos(authKey : String, seguido : Seguido) :Int {
-            var respuesta = 0
+        suspend fun crearSeguidos(authKey : String, id: Int) :Boolean {
+            var respuesta = false
             try {
-                val call : Call<APIService.Mensaje> = seguidosAPI.crearSeguidos(authKey, seguido)
-                val response = call.awaitResponse()
-                respuesta = response.code()
+                val call : Call<APIService.Mensaje> = seguidosAPI.crearSeguidos(authKey, id)
+                val response = call.await()
+                if (response.mensaje.toInt() == 1){
+                    respuesta = true
+                }
             } catch (exception : Exception) {
                 exception.printStackTrace()
             }
             return respuesta
         }
 
-        suspend fun obtenerSeguidos(authKey: String) : List<Seguido>{
-            var listaSeguidos : List<Seguido> = listOf()
-            try {
-                val call : Call<List<Seguido>> = SeguidosDAO.seguidosAPI.obtenerSeguidos(authKey)
-                val seguidos : List<Seguido> = call.await()
-                listaSeguidos = seguidos
-            } catch (exception : Exception) {
-                exception.printStackTrace()
-            }
-            return listaSeguidos
-        }
-
-        suspend fun obtenerSeguidores(authKey: String) : List<Seguido>{
-            var listaSeguidores : List<Seguido> = listOf()
-            try {
-                val call : Call<List<Seguido>> = SeguidosDAO.seguidosAPI.obtenerSeguidores(authKey)
-                val seguidores : List<Seguido> = call.await()
-                listaSeguidores = seguidores
-            } catch (exception : Exception) {
-                exception.printStackTrace()
-            }
-            return listaSeguidores
-        }
-
         suspend fun obtenerSeguidosUsuario(authKey: String, id : Int) : List<Seguido>{
             var listaSeguidosUsuario : List<Seguido> = listOf()
             try {
-                val call : Call<List<Seguido>> = seguidosAPI.obtenerSeguidosUsuario(authKey, id)
+                val call : Call<List<Seguido>> = seguidosAPI.obtenerSeguidos(authKey, id)
                 listaSeguidosUsuario = call.await()
             } catch (exception : Exception) {
                 exception.printStackTrace()
@@ -64,7 +42,7 @@ class SeguidosDAO {
         suspend fun obtenerSeguidoresUsuario(authKey: String, id : Int) : List<Seguido>{
             var listaSeguidoresUsuario : List<Seguido> = listOf()
             try {
-                val call : Call<List<Seguido>> = seguidosAPI.obtenerSeguidoresUsuario(authKey, id)
+                val call : Call<List<Seguido>> = seguidosAPI.obtenerSeguidores(authKey, id)
                 listaSeguidoresUsuario = call.await()
             } catch (exception : Exception) {
                 exception.printStackTrace()
@@ -96,10 +74,10 @@ class SeguidosDAO {
             return respuesta
         }
 
-        suspend fun seguidosComprobar(authKey: String, idSeguidos : Int) : Boolean {
+        suspend fun seguidosComprobar(authKey: String, id: Int) : Boolean {
             var respuesta = false
             try {
-                val call : Call<APIService.Mensaje> = seguidosAPI.seguidosComprobar(authKey)
+                val call : Call<APIService.Mensaje> = seguidosAPI.seguidosComprobar(authKey, id)
                 val response = call.await()
                 if (response.mensaje.toInt() == 1){
                     respuesta = true
