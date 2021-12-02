@@ -109,22 +109,16 @@ router.route('/seguidos/cantidad/:id')
         })
     })
 
-router.route('/seguidoscomprobar')
+router.route('/seguidoscomprobar/:id')
     .get(auth.comprobarToken, (req, res) =>{
-        const seguidos = req.body
-        if(seguidosValido(seguidos)){
-            seguidosDAO.comprobarSeguido(seguidos.idSeguidor, seguidos.idSeguido, (err, respuesta)=>{
-                if (err){
-                    console.log(err)
-                    res.status(400).json(err)
-                    return
-                }
-                res.status(201).json(respuesta)
-            })
-        }
-        else {
-            res.status(400).json({Mensaje : 'Faltan datos'})
-        }
+        seguidosDAO.comprobarSeguido(req.user.id, req.params.id, (err, respuesta)=>{
+            if (err){
+                console.log(err)
+                res.status(400).json(err)
+                return
+            }
+            res.status(201).json(respuesta)
+        })
     })
 
 
