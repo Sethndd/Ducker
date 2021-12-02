@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -171,20 +171,19 @@
                     android:textColor="#FFFFFF"
                     android:textSize="10sp" />
 
-                <ImageView
-                    android:id="@+id/btnCompartir"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#00FFFFFF"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/share" />
+<!--                <ImageView-->
+<!--                    android:id="@+id/btnCompartir"-->
+<!--                    android:layout_width="20dp"-->
+<!--                    android:layout_height="20dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:backgroundTint="#00FFFFFF"-->
+<!--                    android:scaleType="fitCenter"-->
+<!--                    app:srcCompat="@drawable/share" />-->
 
                 <ImageView
                     android:id="@+id/btnGuardar"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginLeft="25dp"
                     android:layout_weight="1"
                     android:backgroundTint="#00FFFFFF"
                     android:scaleType="fitCenter"
