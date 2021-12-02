@@ -60,7 +60,7 @@ router.route('/quacks/usuario/:id')
     .get(auth.comprobarToken, (req, res) => {
         id = req.params.id
 
-        if(id = 0){
+        if(id == 0){
             id = req.user.id
         }
 
@@ -89,6 +89,18 @@ router.route('/quacks/padre/:id')
 router.route('/quacks/padres/:id')
     .get(auth.comprobarToken, (req, res) => {
         quackDAO.obtenerPadres(req.params.id, (err, respuesta) =>{
+            if(err){
+                console.log(err)
+                res.status(400).json(err)
+                return
+            }
+            res.status(201).json(respuesta)
+        })
+    })
+
+router.route('/quacks/hijos/cantidad/:id')
+    .get(auth.comprobarToken, (req, res) => {
+        quackDAO.obtenerCantidadHijos(req.params.id, (err, respuesta) =>{
             if(err){
                 console.log(err)
                 res.status(400).json(err)
