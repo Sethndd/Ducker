@@ -38,6 +38,11 @@ router.route('/perfil')
 router.route('/perfil/:id')
     .get(auth.comprobarToken, (req, res) =>{
         var idUsuario = req.params.id
+
+        if(idUsuario == 0){
+            idUsuario = req.user.id
+        }
+
         perfilDAO.obtenerPerfil(idUsuario, (err, respuesta) =>{
             if (err){
                 console.log(err)
