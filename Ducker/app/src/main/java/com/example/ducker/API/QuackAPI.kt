@@ -28,4 +28,7 @@ interface  QuackAPI {
 
     @GET("quacks/hijos/{id}")
     fun obtenerHijos(@Header("auth") auth: String, @Path("id") id : Int): Call<List<Quack>>
+
+    @GET("quacksseguidos")
+    fun obtenerQuacksSeguidos(@Header("auth") auth: String): Call<List<Quack>>
 }

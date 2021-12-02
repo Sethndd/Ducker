@@ -96,5 +96,17 @@ class QuackDAO {
             }
             return listaQuacks
         }
+
+        suspend fun obtenerQuacksSeguidos(authKey : String): List<Quack> {
+            var listaQuacks : List<Quack> = listOf()
+            try {
+                val call : Call<List<Quack>> = quackAPI.obtenerQuacksSeguidos(authKey)
+                val quacks = call.await()
+                listaQuacks = quacks
+            } catch (exception : Exception) {
+                exception.printStackTrace()
+            }
+            return listaQuacks
+        }
     }
 }

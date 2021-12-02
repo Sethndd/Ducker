@@ -5,18 +5,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.ducker.Recyclers.QuackAdapter
-import com.example.ducker.Recyclers.QuackHijoAdapter
-import com.example.ducker.Recyclers.QuackPadreAdapter
 import com.example.ducker.daos.LikesDAO
 import com.example.ducker.daos.PerfilDAO
 import com.example.ducker.daos.QuackDAO
 import com.example.ducker.data.Like
+import com.example.ducker.recyclers.QuackAdapter
 import com.example.ducker.util.CyrclePicasso
 import com.example.ducker.util.Rutas
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_quack_detalles.*
-import kotlinx.android.synthetic.main.item_quack.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -74,8 +71,8 @@ class QuackDetalles : AppCompatActivity() {
                 texto.text = quack.texto
                 txtContadorLikes.text = likes.toString()
 
-                rvPadres.adapter = QuackPadreAdapter(padres, authKey, activity)
-                rvHijos.adapter = QuackHijoAdapter(hijos, authKey, activity)
+                rvPadres.adapter = QuackAdapter(padres, authKey, activity, R.layout.item_quack_padre)
+                rvHijos.adapter = QuackAdapter(hijos, authKey, activity, R.layout.item_quack_hijo)
 
                 Picasso.get()
                     .load(Rutas.IMAGENES.plus(perfil.imagenRuta))
@@ -106,13 +103,22 @@ class QuackDetalles : AppCompatActivity() {
         val intent = Intent(context.applicationContext, PerfilUsuario::class.java)
         intent.putExtra("authKey", authKey)
         intent.putExtra("id", idUsuario.toString())
+
         context.startActivity(intent)
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
     }
 
     private fun abrirResponderQuack(context: Context) {
         val intent = Intent(context.applicationContext, QuackRespuesta::class.java)
         intent.putExtra("authKey", authKey)
         intent.putExtra("id", id.toString())
+
         context.startActivity(intent)
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+    }
+
+    override fun onBackPressed() {
+        finish()
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
     }
 }

@@ -1,10 +1,8 @@
 package com.example.ducker
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.ducker.Recyclers.QuackAdapter
+import com.example.ducker.recyclers.QuackAdapter
 import com.example.ducker.daos.PerfilDAO
 import com.example.ducker.daos.QuackDAO
 import com.example.ducker.daos.UsuarioDAO
@@ -12,33 +10,26 @@ import com.example.ducker.data.Quack
 import com.example.ducker.util.CyrclePicasso
 import com.example.ducker.util.Rutas
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_feed.*
 import kotlinx.android.synthetic.main.activity_perfil_usuario.*
-import kotlinx.android.synthetic.main.activity_perfil_usuario.recyclerView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class PerfilUsuario : AppCompatActivity() {
-    private var authKey = ""
-    private var listaQuacks = listOf<Quack>()
+class PerfilUsuario : Botonera() {
     private var idUsuario: Int = 0
+    private var listaQuacks = listOf<Quack>()
 
-        override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         val bundle = intent.extras
-        authKey = bundle?.getString("authKey").toString()
         idUsuario = bundle?.getString("id").toString().toInt()
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_perfil_usuario)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
-
+        aregarListeners()
         cargarPerfil()
         cargarQuacks()
-//        aregarListeners()
-
-        println()
     }
 
     private fun cargarPerfil() {
@@ -49,6 +40,10 @@ class PerfilUsuario : AppCompatActivity() {
             runOnUiThread {
                 txtNombre.text = usuario.nombrePropio
                 txtUsuario.text = "@".plus(usuario.nombreUsuario)
+
+                if (usuario.idUsuario == 0){
+                    btnEditarOSeguir.text = "Editar"
+                }
 
                 Picasso.get()
                     .load(Rutas.IMAGENES.plus(perfil.imagenRuta))
@@ -69,11 +64,21 @@ class PerfilUsuario : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             listaQuacks = QuackDAO.obtenerQuacksPorUsuario(authKey, idUsuario)
             runOnUiThread{
-                recyclerView.adapter = QuackAdapter(listaQuacks, authKey, activity)
+                recyclerView.adapter = QuackAdapter(listaQuacks, authKey, activity, R.layout.item_quack)
             }
         }
     }
+
     private fun aregarListeners() {
-        TODO("Not yet implemented")
+        listenerBtnHome(btnMenuPrincipal)
+        listenerBtnBuscar(btnBuscador)
+        listenerBtnQuack(btnNuevoQuack)
+        listenerGuardado(btnGuardados)
+//        listenerBtnPerfil(btnPerfil)
+    }
+
+    override fun onBackPressed() {
+        finish()
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
     }
 }
