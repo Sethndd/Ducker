@@ -29,7 +29,7 @@ class FeedDescubrir : Botonera() {
         CoroutineScope(Dispatchers.IO).launch {
             listaQuacks = QuackDAO.obtenerQuacks(authKey)
             runOnUiThread{
-                val adapter = QuackAdapter(listaQuacks, authKey, activity)
+                val adapter = QuackAdapter(listaQuacks, authKey, activity, R.layout.item_quack)
                 recyclerView.adapter = adapter
             }
         }

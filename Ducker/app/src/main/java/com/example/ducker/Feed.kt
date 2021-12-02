@@ -43,7 +43,7 @@ class Feed : Botonera() {
         CoroutineScope(Dispatchers.IO).launch {
             listaQuacks = QuackDAO.obtenerQuacksSeguidos(authKey)
             runOnUiThread{
-                val adapter = QuackAdapter(listaQuacks, authKey, activity)
+                val adapter = QuackAdapter(listaQuacks, authKey, activity, R.layout.item_quack)
                 recyclerView.adapter = adapter
             }
         }

@@ -64,7 +64,7 @@ class PerfilUsuario : Botonera() {
         CoroutineScope(Dispatchers.IO).launch {
             listaQuacks = QuackDAO.obtenerQuacksPorUsuario(authKey, idUsuario)
             runOnUiThread{
-                recyclerView.adapter = QuackAdapter(listaQuacks, authKey, activity)
+                recyclerView.adapter = QuackAdapter(listaQuacks, authKey, activity, R.layout.item_quack)
             }
         }
     }

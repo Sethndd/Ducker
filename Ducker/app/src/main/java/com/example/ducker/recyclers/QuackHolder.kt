@@ -26,7 +26,6 @@ import java.util.*
 open class QuackHolder(open val view: View):  RecyclerView.ViewHolder(view){
     protected var authKey = ""
     protected lateinit var quack: Quack
-    protected var liked : Boolean = false
 
     open fun render(quack: Quack, auth: String, activity: Activity){
         this.authKey = auth
@@ -46,8 +45,13 @@ open class QuackHolder(open val view: View):  RecyclerView.ViewHolder(view){
         view.texto.text = quack.texto
 
         cargarDatos()
-
         agregarListeners()
+    }
+
+    protected open fun cargarDatos(){
+        cargarLikes()
+        cargarFotoPerfil()
+        cargarQuackConPadre()
     }
 
     protected open fun agregarListeners() {
@@ -62,14 +66,60 @@ open class QuackHolder(open val view: View):  RecyclerView.ViewHolder(view){
         view.setOnClickListener { abrirQuack() }
     }
 
-    protected fun crearLike(){
+    private fun cargarQuackConPadre(){
         CoroutineScope(Dispatchers.IO).launch {
-            val result = LikesDAO.crearLikes(authKey, Like(0, quack.id, 0))
-            cargarDatos()
+            lateinit var padre: Quack
+            if(quack.quackPadre > 0){
+                padre = QuackDAO.obtenerQuackPorId(authKey, quack.quackPadre)
+            }
+
+            CoroutineScope(Dispatchers.Main).launch{
+                if(quack.quackPadre > 0 && padre.estado == "activo"){
+                    view.txtEtiqueta.visibility = View.VISIBLE
+                    view.txtUsuarioPadre.visibility = View.VISIBLE
+                    view.txtUsuarioPadre.text = "@".plus(padre.nombreUsuario)
+                }
+            }
         }
     }
 
-    protected open fun abrirPerfil(){
+    fun cargarFotoPerfil(){
+        CoroutineScope(Dispatchers.IO).launch {
+            val perfil = PerfilDAO.obtener(authKey, quack.idUsuario)
+            CoroutineScope(Dispatchers.Main).launch{
+                Picasso.get()
+                    .load(Rutas.IMAGENES.plus(perfil.imagenRuta))
+                    .transform(CyrclePicasso())
+                    .into(view.fotoPerfil)
+            }
+        }
+    }
+
+    protected fun cargarLikes(){
+        CoroutineScope(Dispatchers.IO).launch {
+            val likes = LikesDAO.obtenerCantidadLikesQuack(authKey, quack.id)
+            val quackLikeado = LikesDAO.comprobarLike(authKey, quack.id)
+
+            CoroutineScope(Dispatchers.Main).launch {
+                view.txtContadorLikes.text = likes.toString()
+
+                if (quackLikeado) {
+                    view.btnLike.setImageResource(R.drawable.like)
+                } else {
+                    view.btnLike.setImageResource(R.drawable.no_like)
+                }
+            }
+        }
+    }
+
+    private fun crearLike(){
+        CoroutineScope(Dispatchers.IO).launch {
+            LikesDAO.crearLikes(authKey, Like(0, quack.id, 0))
+            cargarLikes()
+        }
+    }
+
+    private fun abrirPerfil(){
         val intent = Intent(view.context.applicationContext, PerfilUsuario::class.java)
         intent.putExtra("authKey", authKey)
         intent.putExtra("id", quack.idUsuario.toString())
@@ -78,7 +128,7 @@ open class QuackHolder(open val view: View):  RecyclerView.ViewHolder(view){
         (view.context as Activity).overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
     }
 
-    protected open fun abrirQuack(){
+    private fun abrirQuack(){
         val intent = Intent(view.context.applicationContext, QuackDetalles::class.java)
         intent.putExtra("authKey", authKey)
         intent.putExtra("id", quack.id.toString())
@@ -87,45 +137,12 @@ open class QuackHolder(open val view: View):  RecyclerView.ViewHolder(view){
         (view.context as Activity).overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
     }
 
-    protected open fun abrirResponderQuack() {
+    private fun abrirResponderQuack() {
         val intent = Intent(view.context.applicationContext, QuackRespuesta::class.java)
         intent.putExtra("authKey", authKey)
         intent.putExtra("id", quack.id.toString())
 
         view.context.startActivity(intent)
         (view.context as Activity).overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-    }
-
-    protected open fun cargarDatos(){
-        CoroutineScope(Dispatchers.IO).launch {
-            val perfil = PerfilDAO.obtener(authKey, quack.idUsuario)
-            val likes = LikesDAO.obtenerCantidadLikesQuack(authKey, quack.id)
-            val quackLikeado = LikesDAO.comprobarLike(authKey, quack.id)
-            lateinit var padre: Quack
-
-            if(quack.quackPadre > 0){
-                padre = QuackDAO.obtenerQuackPorId(authKey, quack.quackPadre)
-            }
-
-            CoroutineScope(Dispatchers.Main).launch{
-                view.txtContadorLikes.text = likes.toString()
-                if(quack.quackPadre > 0 && padre.estado == "activo"){
-                    view.txtEtiqueta.visibility = View.VISIBLE
-                    view.txtUsuarioPadre.visibility = View.VISIBLE
-                    view.txtUsuarioPadre.text = "@".plus(padre.nombreUsuario)
-                }
-
-                if (quackLikeado) {
-                    view.btnLike.setImageResource(R.drawable.like)
-                } else {
-                    view.btnLike.setImageResource(R.drawable.no_like)
-                }
-
-                Picasso.get()
-                    .load(Rutas.IMAGENES.plus(perfil.imagenRuta))
-                    .transform(CyrclePicasso())
-                    .into(view.fotoPerfil)
-            }
-        }
     }
 }
