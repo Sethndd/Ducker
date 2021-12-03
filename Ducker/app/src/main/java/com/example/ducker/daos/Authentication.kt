@@ -13,12 +13,12 @@ import java.lang.Exception
 class Authentication {
     companion object{
         private val retrofit : Retrofit = APIService.obtenerRetroFit()
-        private val UserAPI = retrofit.create(AuthenticationAPI::class.java)
+        private val authentication = retrofit.create(AuthenticationAPI::class.java)
 
         suspend fun iniciarSesion(login: Login): String {
             var authKey = ""
             try{
-                val call: Call<Token> = UserAPI.iniciarSesion(login)
+                val call: Call<Token> = authentication.iniciarSesion(login)
                 val respuesta = call.awaitResponse()
 
                 if(respuesta.isSuccessful){
@@ -32,13 +32,12 @@ class Authentication {
 
             return authKey
         }
+
         suspend fun registrar(usuario: Usuario): Int{
             var codigo = 0
-
             try {
-                val call: Call<APIService.Mensaje> = UserAPI.registrarse(usuario)
+                val call: Call<APIService.Mensaje> = authentication.registrarse(usuario)
                 val respuesta = call.awaitResponse()
-
                 codigo = respuesta.code()
             }
             catch (exception: Exception){
@@ -46,6 +45,20 @@ class Authentication {
             }
 
             return codigo
+        }
+
+        suspend fun validarToken(authToken: String): Boolean{
+            var esValido = false
+
+            try {
+                val call : Call<APIService.Mensaje> = authentication.validarAuth(authToken)
+                val response = call.awaitResponse()
+                esValido = response.isSuccessful
+            } catch (exception : Exception) {
+                exception.printStackTrace()
+            }
+
+            return esValido
         }
     }
 }

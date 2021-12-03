@@ -3,6 +3,7 @@ package com.example.ducker.daos
 import com.example.ducker.API.APIService
 import com.example.ducker.API.SeguidosAPI
 import com.example.ducker.data.Seguido
+import com.example.ducker.data.Usuario
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.await
@@ -28,26 +29,26 @@ class SeguidosDAO {
             return respuesta
         }
 
-        suspend fun obtenerSeguidosUsuario(authKey: String, id : Int) : List<Seguido>{
-            var listaSeguidosUsuario : List<Seguido> = listOf()
+        suspend fun obtenerSeguidosUsuario(authKey: String, id : Int) : List<Usuario>{
+            lateinit var usuarios: List<Usuario>
             try {
-                val call : Call<List<Seguido>> = seguidosAPI.obtenerSeguidos(authKey, id)
-                listaSeguidosUsuario = call.await()
+                val call : Call<List<Usuario>> = seguidosAPI.obtenerSeguidos(authKey, id)
+                usuarios = call.await()
             } catch (exception : Exception) {
                 exception.printStackTrace()
             }
-            return listaSeguidosUsuario
+            return usuarios
         }
 
-        suspend fun obtenerSeguidoresUsuario(authKey: String, id : Int) : List<Seguido>{
-            var listaSeguidoresUsuario : List<Seguido> = listOf()
+        suspend fun obtenerSeguidoresUsuario(authKey: String, id : Int) : List<Usuario>{
+            lateinit var usuarios: List<Usuario>
             try {
-                val call : Call<List<Seguido>> = seguidosAPI.obtenerSeguidores(authKey, id)
-                listaSeguidoresUsuario = call.await()
+                val call : Call<List<Usuario>> = seguidosAPI.obtenerSeguidores(authKey, id)
+                usuarios = call.await()
             } catch (exception : Exception) {
                 exception.printStackTrace()
             }
-            return listaSeguidoresUsuario
+            return usuarios
         }
 
         suspend fun obtenerCantidadSeguidores(authKey: String, idSeguidos : Int) : Int {
