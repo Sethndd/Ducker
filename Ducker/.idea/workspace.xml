@@ -13,15 +13,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8a867fe-8522-48b4-954f-15f3f0f91cbd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/QuackDetalles.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/QuackDetalles.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/recyclers/QuackAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/recyclers/QuackAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/recyclers/QuackHilo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/recyclers/QuackHilo.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/recyclers/QuackHolder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/recyclers/QuackHolder.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_quack_detalles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_quack_detalles.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_quack_hijo.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_quack_hijo.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_quack_padre.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_quack_padre.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/Buscador.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/Buscador.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/ModificacionDeUsuario.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/ModificacionDeUsuario.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/PerfilUsuario.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/PerfilUsuario.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_modificacion_de_usuario.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_modificacion_de_usuario.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,10 +66,10 @@
         <option value="Kotlin Data Class" />
         <option value="Kotlin Object" />
         <option value="Kotlin Interface" />
-        <option value="Class" />
         <option value="layoutResourceFile" />
         <option value="resourceFile" />
         <option value="valueResourceFile" />
+        <option value="Class" />
         <option value="Kotlin Class" />
       </list>
     </option>
@@ -117,6 +114,9 @@
   </component>
   <component name="RecentsManager">
     <key name="android.template.112962391">
+      <recent name="com.example.ducker" />
+    </key>
+    <key name="android.template.1515664682">
       <recent name="com.example.ducker" />
     </key>
     <key name="android.template.-1105146706">

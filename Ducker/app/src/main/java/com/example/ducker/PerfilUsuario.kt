@@ -1,5 +1,6 @@
 package com.example.ducker
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ducker.recyclers.QuackAdapter
@@ -29,19 +30,26 @@ class PerfilUsuario : Botonera() {
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        aregarListeners()
+        agregarListeners()
+        cargarDatos()
+    }
+
+    private fun cargarDatos() {
         cargarPerfil()
         cargarQuacks()
         cargarSeguidores()
         cargarBtnPerfil()
     }
 
-    private fun aregarListeners() {
+    private fun agregarListeners() {
         listenerBtnHome(btnMenuPrincipal)
         listenerBtnBuscar(btnBuscador)
         listenerBtnQuack(btnNuevoQuack)
         listenerGuardado(btnGuardados)
         listenerBtnPerfil(btnPerfil)
+
+        linearLayoutSeguidos.setOnClickListener { abrirSeguidosSeguidores("seguidos") }
+        linearLayoutSeguidores.setOnClickListener { abrirSeguidosSeguidores("seguidores") }
     }
 
     private fun cargarPerfil() {
@@ -129,9 +137,23 @@ class PerfilUsuario : Botonera() {
 
     private fun agregarListenerEditar(){
         btnEditarOSeguir.setOnClickListener {
-            println("Voy a editar")
-            //ToDo: abrir ventana de editar perfil
+            val intent = Intent(this, ModificacionDeUsuario::class.java)
+            intent.putExtra("authKey", authKey)
+            intent.putExtra("id", idUsuario.toString())
+            startActivity(intent)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+//            finishAffinity()
         }
+    }
+
+    private fun abrirSeguidosSeguidores(tipo: String){
+        val intent : Intent = Intent(this, SeguidosSeguidores::class.java)
+        intent.putExtra("authKey", authKey)
+        intent.putExtra("tipo", tipo)
+        intent.putExtra("id", idUsuario.toString())
+
+        startActivity(intent)
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
     }
 
     override fun onBackPressed() {
