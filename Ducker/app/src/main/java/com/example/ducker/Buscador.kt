@@ -7,10 +7,10 @@ class Buscador : Botonera() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_buscador)
-        aregarListeners()
+        agregarListeners()
     }
 
-    private fun aregarListeners() {
+    private fun agregarListeners() {
         listenerBtnHome(btnMenuPrincipal)
 //        listenerBtnBuscar(btnBuscador)
         listenerBtnQuack(btnNuevoQuack)
