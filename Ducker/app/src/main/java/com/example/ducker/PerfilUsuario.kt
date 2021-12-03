@@ -31,6 +31,10 @@ class PerfilUsuario : Botonera() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         aregarListeners()
+        cargarDatos()
+    }
+
+    private fun cargarDatos() {
         cargarPerfil()
         cargarQuacks()
         cargarSeguidores()

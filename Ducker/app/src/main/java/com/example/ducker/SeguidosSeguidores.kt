@@ -27,6 +27,7 @@ class SeguidosSeguidores : AppCompatActivity() {
         rvPerfiles.layoutManager = LinearLayoutManager(this)
         cargarPerfiles()
     }
+
     private fun cargarPerfiles(){
         CoroutineScope(Dispatchers.IO).launch {
             lateinit var usuarios : List<Usuario>
@@ -39,5 +40,10 @@ class SeguidosSeguidores : AppCompatActivity() {
                 rvPerfiles.adapter = PerfilAdapter(usuarios, authKey, this@SeguidosSeguidores)
             }
         }
+    }
+
+    override fun onBackPressed() {
+        finish()
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
     }
 }
