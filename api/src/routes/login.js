@@ -29,7 +29,7 @@ router.post('/login', (req, res) =>{
     }
 });
 
-router.post('/register', (req, res) =>{
+router.post('/registrarse', (req, res) =>{
     user = req.body
 
     if(user.hasOwnProperty('correo') && user.hasOwnProperty('contrasena')){
@@ -52,9 +52,8 @@ router.post('/register', (req, res) =>{
     }
 });
 
-//Aux
-router.get('/usersAuth', auth.comprobarToken, (req, res) =>{
-    res.json(req.user)
+router.get('/validarauth', auth.comprobarToken, (req, res) =>{
+    res.status(200).json({Mensaje: 'Comprobado'})
 });
 
 module.exports = router
