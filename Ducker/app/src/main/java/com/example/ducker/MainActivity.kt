@@ -5,8 +5,10 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
-import androidx.appcompat.app.AlertDialog
+import com.example.ducker.daos.Authentication
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private var authKey = ""
@@ -15,18 +17,31 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        leerAuthKey()
+        siguienteActivity()
+    }
+
+    private fun leerAuthKey(){
         val preferences: SharedPreferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE)
         authKey = preferences.getString("authKey", "").toString()
+    }
 
-        if(authKey.equals("")){
-            val intent = Intent(this, Login::class.java)
-            startActivity(intent)
-            finish()
-        }
-        else{
-            val intent = Intent(this, Feed::class.java)
-            startActivity(intent.putExtra("authKey", authKey))
-            finish()
+    private fun siguienteActivity(){
+        val context = this
+        CoroutineScope(Dispatchers.IO).launch{
+            val esValida = Authentication.validarToken(authKey)
+            runOnUiThread {
+                if(esValida){
+                    val intent = Intent(context, Feed::class.java)
+                    startActivity(intent.putExtra("authKey", authKey))
+                    finish()
+                }
+                else{
+                    val intent = Intent(context, Login::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            }
         }
     }
 

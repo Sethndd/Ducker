@@ -41,8 +41,8 @@ class Login : AppCompatActivity() {
                         editor.putString("authKey", authKey)
                         editor.apply()
 
-                        val intent = Intent(context, Feed::class.java)
-                        startActivity(intent.putExtra("authKey", authKey))
+                        val intent = Intent(context, MainActivity::class.java)
+                        startActivity(intent)
                         finish()
                     }
                 }

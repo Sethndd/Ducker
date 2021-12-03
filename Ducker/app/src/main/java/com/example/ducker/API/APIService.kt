@@ -10,7 +10,6 @@ class APIService {
         fun obtenerRetroFit(): Retrofit {
             return Retrofit.Builder()
                 .baseUrl(Rutas.APIDUCKER)
-//                .baseUrl("http://ducker.reww4n.xyz/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }
