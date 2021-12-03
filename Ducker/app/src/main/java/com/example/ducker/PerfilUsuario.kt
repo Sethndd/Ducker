@@ -30,7 +30,7 @@ class PerfilUsuario : Botonera() {
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        aregarListeners()
+        agregarListeners()
         cargarDatos()
     }
 
@@ -41,7 +41,7 @@ class PerfilUsuario : Botonera() {
         cargarBtnPerfil()
     }
 
-    private fun aregarListeners() {
+    private fun agregarListeners() {
         listenerBtnHome(btnMenuPrincipal)
         listenerBtnBuscar(btnBuscador)
         listenerBtnQuack(btnNuevoQuack)
@@ -137,8 +137,12 @@ class PerfilUsuario : Botonera() {
 
     private fun agregarListenerEditar(){
         btnEditarOSeguir.setOnClickListener {
-            println("Voy a editar")
-            //ToDo: abrir ventana de editar perfil
+            val intent = Intent(this, ModificacionDeUsuario::class.java)
+            intent.putExtra("authKey", authKey)
+            intent.putExtra("id", idUsuario.toString())
+            startActivity(intent)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+//            finishAffinity()
         }
     }
 

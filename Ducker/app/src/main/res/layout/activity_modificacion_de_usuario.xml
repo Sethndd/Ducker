@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="125dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_launcher_background" />
@@ -31,7 +32,6 @@
         android:layout_width="240dp"
         android:layout_height="40dp"
         android:layout_marginTop="30dp"
-        android:layout_marginEnd="52dp"
         android:backgroundTint="#FFFFFF"
         android:ems="10"
         android:hint="Nombre"
@@ -39,6 +39,7 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#A8A8A8"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnFotoPerfil" />
 
     <EditText
@@ -46,7 +47,6 @@
         android:layout_width="240dp"
         android:layout_height="40dp"
         android:layout_marginTop="25dp"
-        android:layout_marginEnd="52dp"
         android:backgroundTint="#FFFFFF"
         android:ems="10"
         android:hint="Usuario"
@@ -54,77 +54,76 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#A8A8A8"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputNombre" />
-
-    <EditText
-        android:id="@+id/inputCorreo"
-        android:layout_width="240dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="52dp"
-        android:backgroundTint="#FFFFFF"
-        android:ems="10"
-        android:hint="Correo electrónico"
-        android:inputType="textEmailAddress"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#A8A8A8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputUsuario" />
 
     <EditText
         android:id="@+id/inputFechaNacimiento"
         android:layout_width="240dp"
         android:layout_height="40dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="52dp"
         android:backgroundTint="#FFFFFF"
         android:ems="10"
         android:hint="Fecha de nacimiento"
+        android:layout_marginTop="25dp"
         android:inputType="date"
         android:textColor="#FFFFFF"
         android:textColorHint="#A8A8A8"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputCorreo" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputUsuario" />
 
     <Button
         android:id="@+id/btnCambiarPassword"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:layout_marginEnd="52dp"
         android:backgroundTint="#8957E5"
         android:text="Cambiar contraseña"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputFechaNacimiento" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputFechaNacimiento"/>
 
     <Button
         android:id="@+id/btnEliminarCuenta"
-        android:layout_width="wrap_content"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="68dp"
+        android:layout_marginTop="25dp"
         android:backgroundTint="#FD5757"
         android:text="Eliminar cuenta"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnCambiarPassword" />
 
-    <Button
-        android:id="@+id/btnGuardarCambios"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="68dp"
-        android:backgroundTint="#8957E5"
-        android:text="Guardar cambios"
-        android:textColor="#FFFFFF"
+        android:orientation="horizontal"
+        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCambiarPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/btnEliminarCuenta"
+        tools:layout_editor_absoluteX="0dp">
+
+        <Button
+            android:id="@+id/btnGuardar"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#8957E5"
+            android:layout_marginEnd="70dp"
+            android:text="Guardar"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnCancelar"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#8957E5"
+            android:text="Cancelar"
+            android:textColor="#FFFFFF" />
+
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout3"
