@@ -2,6 +2,7 @@ package com.example.ducker
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -35,6 +36,11 @@ class Login : AppCompatActivity() {
                         Toast.makeText(context, "Usuario o contraseña incorrecta. Intente nuevamente", Toast.LENGTH_SHORT).show()
                     }
                     else{
+                        val preferences: SharedPreferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE)
+                        val editor: SharedPreferences.Editor = preferences.edit()
+                        editor.putString("authKey", authKey)
+                        editor.apply()
+
                         val intent = Intent(context, Feed::class.java)
                         startActivity(intent.putExtra("authKey", authKey))
                         finish()

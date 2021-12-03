@@ -1,6 +1,8 @@
 package com.example.ducker
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
@@ -13,8 +15,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //ToDo Obtener de algun lado del dispositivo (SQLite??????)
-        authKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJjb3JyZW8iOiJzZXRoMjYxMDk5QGdtYWlsLmNvbSIsIm5vbWJyZVByb3BpbyI6IlNldGggTm_DqSBEw61heiBEw61heiIsIm5vbWJyZVVzdWFyaW8iOiJTZXRoIiwidGlwbyI6ImFscGhhIn0sImlhdCI6MTYzNzc5NDYxN30.UWcP6tNnR8jbZhWPB3QWS_p-nRCzJfA5VfpuuDSmKd8"
+        val preferences: SharedPreferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE)
+        authKey = preferences.getString("authKey", "").toString()
 
         if(authKey.equals("")){
             val intent = Intent(this, Login::class.java)
@@ -26,9 +28,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent.putExtra("authKey", authKey))
             finish()
         }
-
-//        val bundle = intent.extras
-//        authKey = bundle?.getString("authKey").toString()
     }
 
+//    fun borrarKey(){
+//        val preferences: SharedPreferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE)
+//        val editor: SharedPreferences.Editor = preferences.edit()
+//        editor.clear()
+//        editor.apply()
+//    }
 }
