@@ -50,9 +50,7 @@ class Feed : Botonera() {
     }
 
     override fun onBackPressed() {
-//        val intent = Intent(this, Feed::class.java)
-//        startActivity(intent.putExtra("authKey", authKey))
-//        overridePendingTransition(R.anim.left_out, R.anim.left_in)
-        finish()
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        moveTaskToBack(true)
     }
 }

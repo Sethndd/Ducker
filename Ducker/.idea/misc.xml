@@ -26,21 +26,22 @@
         <entry key="..\:/Users/dagam/Documents/GitHub/Ducker/Ducker/app/src/main/res/drawable/splash_background.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/dagam/Documents/GitHub/Ducker/Ducker/app/src/main/res/layout/activity_buscador.xml" value="0.33" />
         <entry key="..\:/Users/dagam/Documents/GitHub/Ducker/Ducker/app/src/main/res/layout/activity_feed.xml" value="0.33" />
-        <entry key="..\:/Users/dagam/Documents/GitHub/Ducker/Ducker/app/src/main/res/layout/activity_feed_descubrir.xml" value="0.5" />
+        <entry key="..\:/Users/dagam/Documents/GitHub/Ducker/Ducker/app/src/main/res/layout/activity_feed_descubrir.xml" value="0.3055555555555556" />
         <entry key="..\:/Users/dagam/Documents/GitHub/Ducker/Ducker/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/dagam/Documents/GitHub/Ducker/Ducker/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/dagam/Documents/GitHub/Ducker/Ducker/app/src/main/res/layout/activity_mensaje.xml" value="0.18614130434782608" />
-        <entry key="..\:/Users/dagam/Documents/GitHub/Ducker/Ducker/app/src/main/res/layout/activity_modificacion_de_usuario.xml" value="0.2" />
+        <entry key="..\:/Users/dagam/Documents/GitHub/Ducker/Ducker/app/src/main/res/layout/activity_modificacion_de_usuario.xml" value="0.25" />
         <entry key="..\:/Users/dagam/Documents/GitHub/Ducker/Ducker/app/src/main/res/layout/activity_nuevo_quack.xml" value="0.33" />
         <entry key="..\:/Users/dagam/Documents/GitHub/Ducker/Ducker/app/src/main/res/layout/activity_perfil_usuario.xml" value="0.182518115942029" />
         <entry key="..\:/Users/dagam/Documents/GitHub/Ducker/Ducker/app/src/main/res/layout/activity_quack_detalles.xml" value="0.33" />
         <entry key="..\:/Users/dagam/Documents/GitHub/Ducker/Ducker/app/src/main/res/layout/activity_quack_respuesta.xml" value="0.2" />
-        <entry key="..\:/Users/dagam/Documents/GitHub/Ducker/Ducker/app/src/main/res/layout/activity_registro_de_usuario.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/dagam/Documents/GitHub/Ducker/Ducker/app/src/main/res/layout/activity_registro_de_usuario.xml" value="0.33" />
+        <entry key="..\:/Users/dagam/Documents/GitHub/Ducker/Ducker/app/src/main/res/layout/activity_seguidos_seguidores.xml" value="0.1852355072463768" />
         <entry key="..\:/Users/dagam/Documents/GitHub/Ducker/Ducker/app/src/main/res/layout/activity_splash.xml" value="0.13451086956521738" />
         <entry key="..\:/Users/dagam/Documents/GitHub/Ducker/Ducker/app/src/main/res/layout/item_perfil.xml" value="0.18614130434782608" />
         <entry key="..\:/Users/dagam/Documents/GitHub/Ducker/Ducker/app/src/main/res/layout/item_quack.xml" value="0.3137739345274861" />
         <entry key="..\:/Users/dagam/Documents/GitHub/Ducker/Ducker/app/src/main/res/layout/item_quack_hijo.xml" value="0.5" />
-        <entry key="..\:/Users/dagam/Documents/GitHub/Ducker/Ducker/app/src/main/res/layout/item_quack_padre.xml" value="0.1" />
+        <entry key="..\:/Users/dagam/Documents/GitHub/Ducker/Ducker/app/src/main/res/layout/item_quack_padre.xml" value="0.5" />
         <entry key="..\:/Users/dagam/Documents/GitHub/Ducker/Ducker/app/src/main/res/layout/splash_background.xml" value="0.20380434782608695" />
         <entry key="..\:/Users/dagam/Documents/GitHub/Ducker/Ducker/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14583333333333334" />
         <entry key="app/src/main/res/layout/activity_buscador.xml" value="0.3494791666666667" />

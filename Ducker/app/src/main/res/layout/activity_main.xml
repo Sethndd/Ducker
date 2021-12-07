@@ -32,19 +32,19 @@
         android:text="Siguiendo"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/btnConfiguracion"
+        app:layout_constraintEnd_toStartOf="@+id/btnLogOut"
         app:layout_constraintStart_toEndOf="@+id/btnDescubrir"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/btnConfiguracion"
+        android:id="@+id/btnLogOut"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:backgroundTint="#00FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ajustes" />
+        app:srcCompat="@drawable/log_out" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

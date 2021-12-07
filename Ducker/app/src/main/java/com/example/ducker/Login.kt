@@ -3,6 +3,7 @@ package com.example.ducker
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -22,6 +23,8 @@ class Login : AppCompatActivity() {
     }
 
     private fun agregarListeners() {
+        val sonidoCuack = MediaPlayer.create(this, R.raw.sonido_cuack)
+
         btnIniciarSesion.setOnClickListener {
             val usuario = inputUsuario.text
             val contrasena = inputPassword.text
@@ -41,6 +44,8 @@ class Login : AppCompatActivity() {
                         editor.putString("authKey", authKey)
                         editor.apply()
 
+                        sonidoCuack.start()
+
                         val intent = Intent(context, MainActivity::class.java)
                         startActivity(intent)
                         finish()
@@ -50,9 +55,16 @@ class Login : AppCompatActivity() {
         }
 
         btnCrearCuenta.setOnClickListener {
+            sonidoCuack.start()
             val intent = Intent(this, RegistroDeUsuario::class.java)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
             startActivity(intent)
             finish()
         }
+    }
+
+    override fun onBackPressed() {
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        moveTaskToBack(true)
     }
 }
