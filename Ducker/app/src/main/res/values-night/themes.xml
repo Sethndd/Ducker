@@ -17,4 +17,8 @@
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
+
+    <style name="DatePickerTheme" parent="android:Theme.Material.Light.Dialog">
+        <item name="android:colorAccent">#8957E5</item>
+    </style>
 </resources>
