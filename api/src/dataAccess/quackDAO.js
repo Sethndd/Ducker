@@ -2,12 +2,22 @@ const path = require('path');
 
 const dbConnection = require(path.join(__dirname, 'dbConnection.js'))
 
-function crear(idUsuario, quack, callback){
-    dbConnection.query('call crearQuack(?, ?, ?, ?)', [idUsuario, quack.texto, quack.quackPadre, quack.idAdjunto], (err, rows, fields) =>{
+function crear(idUsuario, quack, listaHastag, callback){
+    dbConnection.query('call crearQuack(?, ?, ?, ?, @idQuack); SELECT @idQuack as id',
+        [idUsuario, quack.texto, quack.quackPadre, quack.idAdjunto], (err, rows, fields) =>{
         if(err){
             return callback(err)
         }
         else{
+            id = rows[1][0].id
+            listaHastag.forEach(hashtag => {
+                dbConnection.query('call crearHashtag(?, ?)', [id, hashtag], (err, rows, fields) =>{
+                    if(err){
+                        return callback(err)
+                    }
+                })
+            })
+
             callback(null, rows)
         }
     })
