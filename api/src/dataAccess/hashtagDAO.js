@@ -1,14 +1,16 @@
 const path = require('path')
 const dbConnection = require(path.join(__dirname, 'dbConnection.js'))
 
-function crear(hashtag, callback){
-    dbConnection.query('call crearHashtag(?, ?)', [hashtag.idQuack, hashtag.hashtag], (err, rows, fields) =>{
-        if(err){
-            return callback(err)
-        }
-        else{
-            callback(null, rows)
-        }
+function crear(idQuack, lista, callback){
+    lista.forEach(hashtag => {
+        dbConnection.query('call crearHashtag(?, ?)', [idQuack, hashtag], (err, rows, fields) =>{
+            if(err){
+                return callback(err)
+            }
+            else{
+                callback(null, rows)
+            }
+        })
     })
 }
 

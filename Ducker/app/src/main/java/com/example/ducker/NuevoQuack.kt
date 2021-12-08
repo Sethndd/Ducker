@@ -1,6 +1,7 @@
 package com.example.ducker
 
 import android.content.Intent
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -26,6 +27,8 @@ class NuevoQuack : AppCompatActivity() {
     }
 
     private fun agregarListeners(){
+        val sonidoCuack = MediaPlayer.create(this, R.raw.sonido_cuack)
+
         btnPublicar.setOnClickListener {
             val textoQuack = txtQuack.text.toString()
             val quack = Quack(0, 0, textoQuack, 0, Date(), "activo", 0, "", "")
@@ -41,6 +44,8 @@ class NuevoQuack : AppCompatActivity() {
                     }
                 }
             }
+
+            sonidoCuack.start()
 
             val intent = Intent(this, Feed::class.java)
             startActivity(intent.putExtra("authKey", authKey))

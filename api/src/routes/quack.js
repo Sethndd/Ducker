@@ -7,9 +7,13 @@ const auth = require(path.join(path.resolve(__dirname, '..'),  '/util', 'auth.js
 
 router.route('/quacks')
     .post(auth.comprobarToken, (req, res) =>{
+        const patronHashtag = /(#+[a-zA-Z0-9(_)]{1,})/g
         const quack = req.body
+
         if(quackValido(quack)){
-            quackDAO.crear(req.user.id, quack, (err, respuesta) =>{
+            hasthags = quack.texto.match(patronHashtag)
+
+            quackDAO.crear(req.user.id, quack, hasthags, (err, respuesta) =>{
                 if(err){
                     console.log(err)
                     res.status(400).json(err)

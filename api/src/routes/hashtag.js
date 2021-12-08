@@ -7,22 +7,6 @@ const hashtagDAO = require(path.join(resolve(__dirname, '..'), 'dataAccess', 'ha
 const auth = require(path.join(path.resolve(__dirname, '..'),  '/util', 'auth.js'))
 
 router.route('/hashtags')
-    .post(auth.comprobarToken, (req, res)=>{
-        const hashtag = req.body
-        if(validarHashtag(hashtag)){
-            hashtagDAO.crear(hashtag, (err, respuesta)=>{
-                if (err){
-                    console.log(err)
-                    res.status(400).json(err)
-                    return
-                }
-                res.status(201).json({Mensaje : 'Hashtag creado!'})
-            })
-        }
-        else {
-            res.status(400).json({Mensaje : 'Faltan datos'})
-        }
-    })
     .get(auth.comprobarToken, (req, res) => {
         hashtagDAO.obtenerPopulares((err, respuesta) => {
             if (err){
@@ -59,14 +43,5 @@ router.route('/hashtags/hashtag/:hashtag')
             res.status(201).json(respuesta)
         })
     })
-
-function validarHashtag(hashtag){
-    var result = false
-    if(hashtag.hasOwnProperty('idQuack')
-    && hashtag.hasOwnProperty('hashtag')){
-        result = true
-    } 
-    return result
-}
 
 module.exports = router
