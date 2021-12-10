@@ -8,4 +8,8 @@ data class Usuario (@SerializedName("id") val idUsuario:Int,
                     @SerializedName("contrasena") val contrasena:String,
                     @SerializedName("nombrePropio") val nombrePropio:String,
                     @SerializedName("nombreUsuario") val nombreUsuario:String,
-                    @SerializedName("fechaNacimiento") val fechaNacimiento:String)
+                    @SerializedName("fechaNacimiento") val fechaNacimiento:String) {
+    override fun toString(): String {
+        return '@' +nombreUsuario
+    }
+}

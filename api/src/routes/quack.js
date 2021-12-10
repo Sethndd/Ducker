@@ -138,6 +138,18 @@ router.route('/quacksseguidos')
         })
     })
 
+router.route('/quackshashtag/:id')
+    .get(auth.comprobarToken, (req, res) => {
+        quackDAO.obtenerPorHashtag(req.params.id, (err, respuesta) => {
+            if (err) {
+                console.log(err)
+                res.status(400).json(err)
+                return
+            }
+            res.status(201).json(respuesta)
+        })
+    })
+
 function quackValido(quack){
     if(quack.hasOwnProperty('texto')
     && quack.hasOwnProperty('quackPadre')
