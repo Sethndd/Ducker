@@ -34,4 +34,7 @@ interface  QuackAPI {
 
     @GET("quacksseguidos")
     fun obtenerQuacksSeguidos(@Header("auth") auth: String): Call<List<Quack>>
+
+    @GET("quackshashtag/{hashtag}")
+    fun obtenerQuacksPorHashtag(@Header("auth") auth: String, @Path("hashtag") hashtag : String) : Call<List<Quack>>
 }

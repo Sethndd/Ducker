@@ -122,4 +122,13 @@ function obtenerSeguidos(id, callback){
     })
 }
 
-module.exports = {crear, obtenerTodos, obtenerPorID, obtenerPorUsuario, eliminar, obtenerPadre, obtenerPadres, obtenerHijos, obtenerSeguidos, obtenerCantidadHijos}
+function obtenerPorHashtag(idHashtag, callback){
+    dbConnection.query('call obtenerQuacksPorHashtag(?)', [idHashtag], (err, rows, fields) => {
+        if (err) {
+            return callback(err)
+        }
+        callback(null, rows[0])
+    })
+}
+
+module.exports = {crear, obtenerTodos, obtenerPorID, obtenerPorUsuario, eliminar, obtenerPadre, obtenerPadres, obtenerHijos, obtenerSeguidos, obtenerCantidadHijos, obtenerPorHashtag}
