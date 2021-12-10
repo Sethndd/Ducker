@@ -1,4 +1,3 @@
-const express = require('express');
 const multer = require("multer");
 
 function errorMulter(err, req, res, next) {

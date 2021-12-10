@@ -13,7 +13,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8a867fe-8522-48b4-954f-15f3f0f91cbd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/../api/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api/src/dataAccess/perfilDAO.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/dataAccess/perfilDAO.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api/src/routes/imagenes.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/routes/imagenes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api/src/util/manejoErrores.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/util/manejoErrores.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -4,7 +4,7 @@ const path = require('path')
 const router = express.Router()
 
 const dirRaiz = path.resolve(__dirname, '..')
-// const perfilDAO = require(dirRaiz, 'dataAccess', 'perfilDAO.js'))
+const perfilDAO = require(path.join(dirRaiz, 'dataAccess', 'perfilDAO.js'))
 const auth = require(path.join(dirRaiz,  '/util', 'auth.js'))
 
 const storage = multer.diskStorage({
@@ -23,15 +23,41 @@ const uploadMulter = multer({
 
 router.route('/imagenPerfil')
     .post(auth.comprobarToken, uploadMulter.single('perfil'), (req, res) => {
-        res.status(200).json({
-            file: req.file.filename
+        perfil = {
+            img: req.file.filename,
+            banner: ''
+        }
+        perfilDAO.actualizar(req.user.id, perfil, (err, respuesta) =>{
+            if(err){
+                console.log(err)
+                res.status(400).json(err)
+
+            }
+            else{
+                res.status(201).json({
+                    file: req.file.filename
+                })
+            }
         })
     })
 
 router.route('/imagenBanner')
     .post(auth.comprobarToken, uploadMulter.single('banner'), (req, res) => {
-        res.status(200).json({
-            file: `/imagenes/${req.file.filename}`
+        perfil = {
+            img: '',
+            banner: req.file.filename
+        }
+        perfilDAO.actualizar(req.user.id, perfil, (err, respuesta) =>{
+            if(err){
+                console.log(err)
+                res.status(400).json(err)
+
+            }
+            else{
+                res.status(201).json({
+                    file: req.file.filename
+                })
+            }
         })
     })
 
