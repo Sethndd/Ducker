@@ -1,5 +1,5 @@
 #Node Commands
-npm install express cors mysql jsonwebtoken bcrypt 
+npm install express cors mysql jsonwebtoken bcrypt multer
 npm install -g nodemon
 
 #Docker commands

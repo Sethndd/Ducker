@@ -2,7 +2,7 @@ const path = require('path')
 const dbConnection = require(path.join(__dirname, 'dbConnection.js'))
 
 function actualizar(idUsuario, perfil, callback){
-    dbConnection.query('call actualizarPerfil(?, ?, ?)', [idUsuario, perfil.imgRuta, perfil.bannerRuta], (err, rows, fields) =>{
+    dbConnection.query('call actualizarPerfil(?, ?, ?)', [idUsuario, perfil.img, perfil.banner], (err, rows, fields) =>{
         if(err){
             return callback(err)
         }
