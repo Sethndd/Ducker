@@ -34,11 +34,13 @@ class MainActivity : AppCompatActivity() {
                 if(esValida){
                     val intent = Intent(context, Feed::class.java)
                     startActivity(intent.putExtra("authKey", authKey))
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
                     finish()
                 }
                 else{
                     val intent = Intent(context, Login::class.java)
                     startActivity(intent)
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
                     finish()
                 }
             }
