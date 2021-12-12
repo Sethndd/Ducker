@@ -10,14 +10,15 @@ function crear(idUsuario, quack, listaHastag, callback){
         }
         else{
             id = rows[1][0].id
-            listaHastag.forEach(hashtag => {
-                dbConnection.query('call crearHashtag(?, ?)', [id, hashtag], (err, rows, fields) =>{
-                    if(err){
-                        return callback(err)
-                    }
+            if(listaHastag){
+                listaHastag.forEach(hashtag => {
+                    dbConnection.query('call crearHashtag(?, ?)', [id, hashtag], (err, rows, fields) =>{
+                        if(err){
+                            return callback(err)
+                        }
+                    })
                 })
-            })
-
+            }
             callback(null, rows)
         }
     })
