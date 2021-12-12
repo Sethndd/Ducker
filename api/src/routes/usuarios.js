@@ -16,6 +16,16 @@ router.route('/usuarios')
             res.status(400).json(err)
         })
     })
+    .delete(auth.comprobarToken, (req, res) =>{
+        usuarioDAO.eliminar(req.user.id)
+        .then(respuesta => {
+            res.status(200).json({ Mensaje : 'Usuario eliminado'})
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(400).json(err)
+        })
+    })
 
 router.route('/usuarios/:id')
     .get(auth.comprobarToken, (req, res) =>{
@@ -56,16 +66,6 @@ router.route('/usuarios/:id')
         else{
             res.status(400).json({Mensaje : 'Faltan datos'})
         }
-    })
-    .delete(auth.comprobarToken, (req, res) =>{
-        usuarioDAO.eliminar(req.user.id)
-        .then(respuesta => {
-            res.status(200).json({ Mensaje : 'Usuario eliminado'})
-        })
-        .catch(err => {
-            console.log(err)
-            res.status(400).json(err)
-        })
     })
 
 function usuarioValido(usuario){

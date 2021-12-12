@@ -4,6 +4,7 @@ const path = require('path');
 const carpeta = path.resolve(__dirname, '..')
 const userController = require(path.join(carpeta,  '/util', 'userController.js'))
 const auth = require(path.join(carpeta,  '/util', 'auth.js'))
+const usuarioDAO = require(path.join(carpeta,  '/dataAccess', 'usuarioDAO.js'))
 
 const router = express.Router();
 
@@ -52,8 +53,36 @@ router.post('/registrarse', (req, res) =>{
     }
 });
 
-router.get('/validarauth', auth.comprobarToken, (req, res) =>{
-    res.status(200).json({Mensaje: 'Comprobado'})
+router.post('/administrador/:id', auth.comprobarToken, (req, res) =>{
+    if(req.user.tipo === 'alpha'){
+        usuarioDAO.crearAdmin(req.params.id)
+        .then(
+            res.status(200).json({Mensje: 'Se ha actualizado correctamente el usuario'})
+        )
+        .catch(err => {
+            console.log(err)
+            res.status(400).json(err)
+        })
+    }
+    else{
+        res.status(403).json({Mensje: 'No cuenta con los derechos para llevar a cabo esta acción'})
+    }
+});
+
+router.get('/validarToken', auth.comprobarToken, (req, res) =>{
+    usuarioDAO.obtener(req.user.id)
+    .then(usuario =>{
+        if(usuario.estado === 'activo'){
+            res.status(200).json({Mensaje: 'Comprobado'})
+        }
+        else{
+            res.status(403).json({Mensaje: 'Usuario no valido'})
+        }
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(400).json(err)
+    })
 });
 
 module.exports = router

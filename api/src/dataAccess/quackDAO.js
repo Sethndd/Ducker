@@ -10,14 +10,15 @@ function crear(idUsuario, quack, listaHastag, callback){
         }
         else{
             id = rows[1][0].id
-            listaHastag.forEach(hashtag => {
-                dbConnection.query('call crearHashtag(?, ?)', [id, hashtag], (err, rows, fields) =>{
-                    if(err){
-                        return callback(err)
-                    }
+            if(listaHastag){
+                listaHastag.forEach(hashtag => {
+                    dbConnection.query('call crearHashtag(?, ?)', [id, hashtag], (err, rows, fields) =>{
+                        if(err){
+                            return callback(err)
+                        }
+                    })
                 })
-            })
-
+            }
             callback(null, rows)
         }
     })
@@ -56,13 +57,13 @@ function obtenerPorUsuario(idUsuario, callback){
     })
 }
 
-function eliminar(id, callback){
-    dbConnection.query('call eliminarQuack(?)', [id] , (err, rows, fields) =>{
+function eliminar(idUsuario, idQuack, callback){
+    dbConnection.query('call eliminarQuack(?, ?, @respuesta); SELECT @respuesta as Mensaje', [idUsuario, idQuack] , (err, rows, fields) =>{
         if(err){
             return callback(err)
         }
         else{
-            callback(null, rows[0])
+            callback(null, rows[1][0])
         }
     })
 }

@@ -29,8 +29,5 @@ function comprobarToken(req, res, callback){
     }
 }
 
-function comprobarNivelToken(req, res, callback){
-    //ToDo: Niveles, Admin o usuario normal
-}
 
-module.exports = {firmar, comprobarToken, comprobarNivelToken}
+module.exports = {firmar, comprobarToken}

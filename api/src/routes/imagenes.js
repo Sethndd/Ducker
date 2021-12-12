@@ -61,4 +61,11 @@ router.route('/imagenBanner')
         })
     })
 
+router.route('/imagenQuack')
+    .post(auth.comprobarToken, uploadMulter.single('banner'), (req, res) => {
+        res.status(201).json({
+            file: req.file.filename
+        })
+    })
+
 module.exports = router
