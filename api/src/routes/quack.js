@@ -40,6 +40,7 @@ router.route('/quacks')
 
 router.route('/quacks/:id')
     .get(auth.comprobarToken, (req, res) => {
+        console.log(req.user)
         quackDAO.obtenerPorID(req.params.id, (err, respuesta) =>{
             if(err){
                 console.log(err)
@@ -50,13 +51,13 @@ router.route('/quacks/:id')
         })
     })
     .delete(auth.comprobarToken, (req, res) => {
-        quackDAO.eliminar(req.params.id, (err, respuesta) =>{
+        quackDAO.eliminar(req.user.id, req.params.id, (err, respuesta) =>{
             if(err){
                 console.log(err)
                 res.status(400).json(err)
                 return
             }
-            res.status(201).json({Mensaje: 'Quack eliminado'})
+            res.status(201).json(respuesta)
         })
     })
 
