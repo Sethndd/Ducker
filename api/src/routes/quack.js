@@ -57,7 +57,12 @@ router.route('/quacks/:id')
                 res.status(400).json(err)
                 return
             }
-            res.status(201).json(respuesta)
+            if(respuesta.Mensaje === 'No tiene los derechos para borrar este quack'){
+                res.status(403).json(respuesta)
+            }
+            else{
+                res.status(201).json(respuesta)
+            }
         })
     })
 
