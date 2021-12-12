@@ -69,7 +69,7 @@ router.post('/administrador/:id', auth.comprobarToken, (req, res) =>{
     }
 });
 
-router.get('/validarauth', auth.comprobarToken, (req, res) =>{
+router.get('/validarToken', auth.comprobarToken, (req, res) =>{
     usuarioDAO.obtener(req.user.id)
     .then(usuario =>{
         if(usuario.estado === 'activo'){
