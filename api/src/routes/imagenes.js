@@ -1,6 +1,7 @@
 const express = require("express")
 const multer = require("multer");
-const path = require('path')
+const path = require('path');
+const { BAD_REQUEST, CREATED } = require("../util/httpResponseCodes");
 const router = express.Router()
 
 const dirRaiz = path.resolve(__dirname, '..')
@@ -9,8 +10,8 @@ const auth = require(path.join(dirRaiz,  '/util', 'auth.js'))
 
 const storage = multer.diskStorage({
     destination: path.join(dirRaiz, '/imagenes'),
-    filename: (req, file, cb) => {
-        return cb(null, `${req.user.id}_${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
+    filename: (req, file, callback) => {
+        return callback(null, `${req.user.id}_${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
     }
 })
 
@@ -30,11 +31,11 @@ router.route('/imagenPerfil')
         perfilDAO.actualizar(req.user.id, perfil, (err, respuesta) =>{
             if(err){
                 console.log(err)
-                res.status(400).json(err)
+                res.status(BAD_REQUEST).json(err)
 
             }
             else{
-                res.status(201).json({
+                res.status(CREATED).json({
                     file: req.file.filename
                 })
             }
@@ -50,11 +51,11 @@ router.route('/imagenBanner')
         perfilDAO.actualizar(req.user.id, perfil, (err, respuesta) =>{
             if(err){
                 console.log(err)
-                res.status(400).json(err)
+                res.status(BAD_REQUEST).json(err)
 
             }
             else{
-                res.status(201).json({
+                res.status(CREATED).json({
                     file: req.file.filename
                 })
             }
@@ -63,7 +64,7 @@ router.route('/imagenBanner')
 
 router.route('/imagenQuack')
     .post(auth.comprobarToken, uploadMulter.single('banner'), (req, res) => {
-        res.status(201).json({
+        res.status(CREATED).json({
             file: req.file.filename
         })
     })
