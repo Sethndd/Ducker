@@ -36,7 +36,7 @@ router.route('/imagenPerfil')
             }
             else{
                 res.status(CREATED).json({
-                    file: req.file.filename
+                    Mensaje: req.file.filename
                 })
             }
         })
@@ -56,16 +56,16 @@ router.route('/imagenBanner')
             }
             else{
                 res.status(CREATED).json({
-                    file: req.file.filename
+                    Mensaje: req.file.filename
                 })
             }
         })
     })
 
 router.route('/imagenQuack')
-    .post(auth.comprobarToken, uploadMulter.single('banner'), (req, res) => {
+    .post(auth.comprobarToken, uploadMulter.single('quack'), (req, res) => {
         res.status(CREATED).json({
-            file: req.file.filename
+            Mensaje: req.file.filename
         })
     })
 

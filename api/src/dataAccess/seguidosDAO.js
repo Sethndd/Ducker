@@ -18,7 +18,7 @@ function crearSeguidos(idUsuarioSeguidor, idUsuarioSeguido) {
 }
 
 function obtenerSeguidores(idUsuarioSeguido) {
-    return new Promise( (reject, resolve) => {
+    return new Promise( (resolve, reject) => {
         dbConnection.query('call obtenerSeguidores(?)', [idUsuarioSeguido], (err, rows, _) => {
             if (err) {
                 reject(err)
