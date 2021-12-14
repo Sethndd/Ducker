@@ -16,6 +16,6 @@ interface AuthenticationAPI {
     @POST("/registrarse/")
     fun registrarse(@Body usuario: Usuario): Call<APIService.Mensaje>
 
-    @GET("validarauth")
+    @GET("validarToken")
     fun validarAuth(@Header("auth") auth: String): Call<APIService.Mensaje>
 }

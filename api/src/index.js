@@ -8,8 +8,6 @@ let DEFAULT_PORT = 1806
 
 app.set('port', process.env.PORT || DEFAULT_PORT);
 
-
-
 //Middleware
 app.use(express.json());
 app.use(cors());
