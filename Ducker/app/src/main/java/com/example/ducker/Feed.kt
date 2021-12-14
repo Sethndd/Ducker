@@ -1,6 +1,8 @@
 package com.example.ducker
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ducker.recyclers.QuackAdapter
@@ -35,6 +37,17 @@ class Feed : Botonera() {
             startActivity(intent.putExtra("authKey", authKey))
             overridePendingTransition(R.anim.right_in, R.anim.right_out)
             finish()
+        }
+
+        btnLogOut.setOnClickListener {
+            val preferences: SharedPreferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE)
+            val editor: SharedPreferences.Editor = preferences.edit()
+            editor.clear()
+            editor.apply()
+
+            val intent = Intent(this, Login::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         }
     }
 

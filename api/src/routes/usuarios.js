@@ -21,6 +21,16 @@ router.route('/usuarios')
             res.status(BAD_REQUEST).json(err)
         })
     })
+    .delete(auth.comprobarToken, (req, res) =>{
+        usuarioDAO.eliminar(req.user.id)
+        .then(respuesta => {
+            res.status(200).json({ Mensaje : 'Usuario eliminado'})
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(400).json(err)
+        })
+    })
 
 router.route('/usuarios/:id')
     .get(auth.comprobarToken, (req, res) => {

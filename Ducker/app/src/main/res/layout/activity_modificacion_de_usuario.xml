@@ -88,7 +88,8 @@
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputFechaNacimiento"/>
+        app:layout_constraintTop_toBottomOf="@+id/inputFechaNacimiento"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/btnEliminarCuenta"
@@ -100,7 +101,8 @@
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCambiarPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/btnCambiarPassword"
+        android:visibility="invisible"/>
 
     <LinearLayout
         android:layout_width="match_parent"

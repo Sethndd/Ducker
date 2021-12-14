@@ -60,8 +60,19 @@ function actualizar(id, usuario) {
     })
 }
 
+function crearAdmin(id){
+    return new Promise((resolve, reject) =>{
+        dbConnection.query('call admin(?);', [id] ,(err, rows, _) =>{
+            if(err){
+                reject(err)
+            }
+            resolve(rows)
+        })
+    })
+}
+
 function eliminar(id) {
-    return new Promise( (resolve, reject) => {
+    return new Promise((resolve, reject) => {
         dbConnection.query('call eliminarUsuario(?);', [id] ,(err, rows, _) => {
             if (err) {
                 reject(err)
@@ -72,4 +83,4 @@ function eliminar(id) {
 }
 
 
-module.exports = {obtenerContrasena, obtenerTodos, obtener, agregar, actualizar, eliminar }
+module.exports = {obtenerContrasena, obtenerTodos, obtener, agregar, actualizar, eliminar, crearAdmin}

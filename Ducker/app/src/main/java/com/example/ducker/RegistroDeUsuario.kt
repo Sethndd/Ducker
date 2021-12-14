@@ -15,6 +15,7 @@ import com.example.ducker.data.Usuario
 import kotlinx.android.synthetic.main.activity_registro_de_usuario.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.consumesAll
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.time.Month
@@ -39,12 +40,13 @@ class RegistroDeUsuario : AppCompatActivity() {
             val contrasena = inputPassword.text.toString()
             val contrasena2 = inputConfirmarPassword.text.toString()
 
+//            val simpleDateFormat = SimpleDateFormat("dd-MM-yyyy")
+//            val dateString: String = simpleDateFormat.format(fechaNacimiento)
+//
+//            println(dateString)
             if(contrasena == contrasena2){
-                //ToDo Recuperar fecha de la GUI
-                val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-                val dateString: String = simpleDateFormat.format(Date())
 
-                val usuario = Usuario(0, correo, contrasena, nombre, usuario, dateString)
+                val usuario = Usuario(0, correo, contrasena, nombre, usuario, fechaNacimiento)
                 val context: Context = this
 
                 CoroutineScope(Dispatchers.IO).launch {
@@ -75,7 +77,7 @@ class RegistroDeUsuario : AppCompatActivity() {
     }
 
     private fun mostrarResultado(ano: Int, mes: Int, dia: Int) {
-        inputFechaNacimiento?.setText("$dia/$mes/$ano")
+        inputFechaNacimiento?.setText("$ano-$mes-$dia")
     }
 
     class DatePickerFragment (val listener: (year:Int, month:Int, day:Int) -> Unit) : DialogFragment(), DatePickerDialog.OnDateSetListener{

@@ -14,35 +14,13 @@
   <component name="ChangeListManager">
     <list default="true" id="d8a867fe-8522-48b4-954f-15f3f0f91cbd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/API/APIService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/API/APIService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/util/Rutas.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ducker/util/Rutas.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/src/dataAccess/dbConnection.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/dataAccess/dbConnection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/src/dataAccess/guardadosDAO.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/dataAccess/guardadosDAO.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/src/dataAccess/hashtagDAO.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/dataAccess/hashtagDAO.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/src/dataAccess/likesDAO.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/dataAccess/likesDAO.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/src/dataAccess/notificacionDAO.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/dataAccess/notificacionDAO.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/src/dataAccess/perfilDAO.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/dataAccess/perfilDAO.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/src/dataAccess/quackDAO.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/dataAccess/quackDAO.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/src/dataAccess/seguidosDAO.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/dataAccess/seguidosDAO.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/src/dataAccess/usuarioDAO.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/dataAccess/usuarioDAO.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/src/routes/guardados.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/routes/guardados.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/src/routes/hashtag.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/routes/hashtag.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/src/routes/likes.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/routes/likes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/src/routes/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/routes/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/src/routes/notificaciones.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/routes/notificaciones.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/src/routes/perfiles.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/routes/perfiles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/src/routes/quack.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/routes/quack.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/src/routes/seguidos.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/routes/seguidos.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/src/routes/usuarios.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/routes/usuarios.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/src/util/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/util/auth.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/angelthetwin/.android/avd/AVD.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\SNDD_\.android\avd\Pixel_2_API_30.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />

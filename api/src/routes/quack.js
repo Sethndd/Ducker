@@ -52,13 +52,18 @@ router.route('/quacks/:id')
         })
     })
     .delete(auth.comprobarToken, (req, res) => {
-        quackDAO.eliminar(req.params.id)
-        .then(_ => {
-            res.status(OK).json({Mensaje: 'Quack eliminado'})
+        quackDAO.eliminar(req.user.id, req.params.id)
+        .then(respuesta => {
+            if (respuesta.Mensaje === 'No tiene los derechos para borrar este quack') {
+                res.status(403).json(respuesta)
+            }
+            else {
+                res.status(201).json(respuesta)
+            }
         })
         .catch(err => {
             console.log(err)
-            res.status(BAD_REQUEST).json(err)
+            res.status(400).json(err)
         })
     })
 
