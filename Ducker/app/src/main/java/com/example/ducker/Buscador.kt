@@ -114,7 +114,6 @@ class Buscador : Botonera() {
             }
             else -> {
                 for (elemento in listaResultados) {
-                    println(elemento.toString())
                     if(elemento.toString().contains(terminoBusqueda as String)) {
                         cargarQuacksBusqueda(elemento)
                     }

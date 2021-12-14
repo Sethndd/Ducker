@@ -1,30 +1,32 @@
 const path = require('path')
 const dbConnection = require(path.join(__dirname, 'dbConnection.js'))
 
-function crear(idQuack, idUsuario, callback){
-    dbConnection.query('call crearQuackGuardado(?, ?)', [idQuack, idUsuario], (err, rows, fields) =>{
-        if(err){
-            return callback(err)
-        }
-        else{
-            callback(null, rows)
-        }
-    })
+//Funciones para la entidad Guardado
+
+function crear(idQuack, idUsuario) {
+    return new Promise( (resolve, reject) => {
+        dbConnection.query('call crearQuackGuardado(?, ?)', [idQuack, idUsuario], (err, rows, _) => {
+            if(err) {
+                reject(err)
+            }
+            else {
+                resolve(rows)
+            }
+        })
+    }) 
 }
 
-function obtenerTodosGuardados(idUsuario, callback){
-    dbConnection.query('call obtenerQuacksGuardados(?)', [idUsuario], (err, rows, fields)=>{
-        if (err){
-            return callback(err)
-        }
-        else {
-            callback(null, rows)
-        }
-    })
+function obtenerTodosGuardados(idUsuario) {
+    return new Promise( (resolve, reject) => {
+        dbConnection.query('call obtenerQuacksGuardados(?)', [idUsuario], (err, rows, _) => {
+            if (err) {
+                reject(err)
+            }
+            else {
+                resolve(rows)
+            }
+        })
+    }) 
 }
 
-function eliminar(id, callback){
-    dbConnection.query('call eliminarQuackGuardado(?)', [id], callback)
-}
-
-module.exports = {crear, obtenerTodosGuardados, eliminar}
+module.exports = {crear, obtenerTodosGuardados}

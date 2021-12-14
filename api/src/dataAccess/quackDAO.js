@@ -1,134 +1,157 @@
 const path = require('path');
-
 const dbConnection = require(path.join(__dirname, 'dbConnection.js'))
 
-function crear(idUsuario, quack, listaHastag, callback){
-    dbConnection.query('call crearQuack(?, ?, ?, ?, @idQuack); SELECT @idQuack as id',
-        [idUsuario, quack.texto, quack.quackPadre, quack.idAdjunto], (err, rows, fields) =>{
-        if(err){
-            return callback(err)
-        }
-        else{
-            id = rows[1][0].id
-            listaHastag.forEach(hashtag => {
-                dbConnection.query('call crearHashtag(?, ?)', [id, hashtag], (err, rows, fields) =>{
-                    if(err){
-                        return callback(err)
-                    }
+// Funciones para la entidad Quack
+
+function crear(idUsuario, quack, listaHastag) {
+    return new Promise( (resolve, reject) => {
+        dbConnection.query('call crearQuack(?, ?, ?, ?, @idQuack); SELECT @idQuack as id',
+            [idUsuario, quack.texto, quack.quackPadre, quack.idAdjunto], (err, rows, _) => {
+            if (err) {
+                reject(err)
+            }
+            else {
+                id = rows[1][0].id
+                listaHastag.forEach(hashtag => {
+                    dbConnection.query('call crearHashtag(?, ?)', [id, hashtag], (err, rows, _) => {
+                        if (err) {
+                            reject(err)
+                        }
+                    })
                 })
-            })
 
-            callback(null, rows)
-        }
-    })
+                resolve(rows)
+            }
+        })
+    }) 
 }
 
-function obtenerTodos(callback){
-    dbConnection.query('call obtenerQuacks();', (err, rows, fields) =>{
-        if(err){
-            return callback(err)
-        }
-        else{
-            callback(null, rows[0])
-        }
-    })
+function obtenerTodos() { 
+    return new Promise( (resolve, reject) => {
+        dbConnection.query('call obtenerQuacks();', (err, rows, _) => {
+            if (err) {
+                reject(err)
+            }
+            else {
+                resolve(rows[0])
+            }
+        })
+    }) 
 }
 
-function obtenerPorID(id, callback){
-    dbConnection.query('call obtenerQuack(?);', [id], (err, rows, fields) =>{
-        if(err){
-            return callback(err)
-        }
-        else{
-            callback(null, rows[0][0])
-        }
-    })
+function obtenerPorID(id) {
+    return new Promise( (resolve, reject) => {
+        dbConnection.query('call obtenerQuack(?);', [id], (err, rows, _) => {
+            if (err) { 
+                reject(err)
+            }
+            else {
+                resolve(rows[0][0])
+            }
+        })
+    }) 
 }
 
-function obtenerPorUsuario(idUsuario, callback){
-    dbConnection.query('call obtenerQuacksUsuario(?)', [idUsuario], (err, rows, fields) =>{
-        if(err){
-            return callback(err)
-        }
-        else{
-            callback(null, rows[0])
-        }
-    })
+function obtenerPorUsuario(idUsuario) {
+    return new Promise( (resolve, reject) => {
+        dbConnection.query('call obtenerQuacksUsuario(?)', [idUsuario], (err, rows, _) => {
+            if (err) {
+                reject(err)
+            }
+            else {
+                resolve(rows[0])
+            }
+        })
+    }) 
 }
 
-function eliminar(id, callback){
-    dbConnection.query('call eliminarQuack(?)', [id] , (err, rows, fields) =>{
-        if(err){
-            return callback(err)
-        }
-        else{
-            callback(null, rows[0])
-        }
-    })
+function eliminar(id) {
+    return new Promise( (resolve, reject) => {
+        dbConnection.query('call eliminarQuack(?)', [id] , (err, rows, _) => {
+            if(err) {
+                reject(err)
+            }
+            else {
+                resolve(rows[0])
+            }
+        })
+    }) 
 }
 
-function obtenerPadre(id, callback){
-    dbConnection.query('call obtenerQuackPadre(?);', [id], (err, rows, fields) =>{
-        if(err){
-            return callback(err)
-        }
-        else{
-            callback(null, rows[0][0])
-        }
-    })
+function obtenerPadre(id) {
+    return new Promise( (resolve, reject) => {
+        dbConnection.query('call obtenerQuackPadre(?);', [id], (err, rows, _) => {
+            if(err) {
+                reject(err)
+            }
+            else { 
+                resolve(rows[0][0])
+            }
+        })
+    }) 
 }
 
-function obtenerPadres(id, callback){
-    dbConnection.query('call obtenerQuacksPadres(?);', [id], (err, rows, fields) =>{
-        if(err){
-            return callback(err)
-        }
-        else{
-            callback(null, rows[0])
-        }
-    })
+function obtenerPadres(id) {
+    return new Promise( (resolve, reject) => {
+        dbConnection.query('call obtenerQuacksPadres(?);', [id], (err, rows, _) => {
+            if (err) {
+                reject(err)
+            }
+            else {
+                resolve(rows[0])
+            }
+        })
+    }) 
 }
 
-function obtenerHijos(id, callback){
-    dbConnection.query('call obtenerQuacksHijos(?);', [id], (err, rows, fields) =>{
-        if(err){
-            return callback(err)
-        }
-        else{
-            callback(null, rows[0])
-        }
-    })
+function obtenerHijos(id) {
+    return new Promise( (resolve, reject) => {
+        dbConnection.query('call obtenerQuacksHijos(?);', [id], (err, rows, _) => {
+            if (err) {
+                reject(err)
+            }
+            else {
+                resolve(rows[0])
+            }
+        })
+    }) 
 }
 
-function obtenerCantidadHijos(id, callback){
-    dbConnection.query('call obtenerCantidadHijosQuack(?);', [id], (err, rows, fields) =>{
-        if(err){
-            return callback(err)
-        }
-        else{
-            callback(null, rows[0][0])
-        }
-    })
+function obtenerCantidadHijos(id) {
+    return new Promise( (resolve, reject) => {
+        dbConnection.query('call obtenerCantidadHijosQuack(?);', [id], (err, rows, _) => {
+            if (err) {
+                reject(err)
+            }
+            else{
+                resolve(rows[0][0])
+            }
+        })
+    }) 
 }
 
-function obtenerSeguidos(id, callback){
-    dbConnection.query('call obtenerQuacksSeguidos(?);', [id], (err, rows, fields) =>{
-        if(err){
-            return callback(err)
-        }
-        else{
-            callback(null, rows[0])
-        }
-    })
+function obtenerSeguidos(id) {
+    return new Promise( (resolve, reject) => {
+        dbConnection.query('call obtenerQuacksSeguidos(?);', [id], (err, rows, _) => {
+            if (err) {
+                reject(err)
+            }
+            else {
+                resolve(rows[0])
+            }
+        })
+    }) 
 }
 
-function obtenerPorHashtag(idHashtag, callback){
-    dbConnection.query('call obtenerQuacksPorHashtag(?)', [idHashtag], (err, rows, fields) => {
-        if (err) {
-            return callback(err)
-        }
-        callback(null, rows[0])
-    })
+function obtenerPorHashtag(idHashtag) {
+    return new Promise( (resolve, reject) => {
+        dbConnection.query('call obtenerQuacksPorHashtag(?)', [idHashtag], (err, rows, _) => {
+            if (err) {
+                reject(err)
+            }
+            resolve(rows[0])
+        })
+    }) 
 }
 
 module.exports = {crear, obtenerTodos, obtenerPorID, obtenerPorUsuario, eliminar, obtenerPadre, obtenerPadres, obtenerHijos, obtenerSeguidos, obtenerCantidadHijos, obtenerPorHashtag}

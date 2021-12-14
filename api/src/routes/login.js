@@ -1,59 +1,58 @@
 const express = require("express");
 const path = require('path');
+const { UNAUTHORIZED, BAD_REQUEST, CREATED, OK, BAD_GATEWAY} = require("../util/httpResponseCodes");
 
 const carpeta = path.resolve(__dirname, '..')
 const userController = require(path.join(carpeta,  '/util', 'userController.js'))
 const auth = require(path.join(carpeta,  '/util', 'auth.js'))
 
+require(path.join(__dirname, '..', 'util', 'httpResponseCodes.js'))
 const router = express.Router();
 
-router.post('/login', (req, res) =>{
-    user = req.body
+// Rutas para la funcionalidad Login
 
-    if(user.hasOwnProperty('correo') && user.hasOwnProperty('contrasena')){
-        userController.validarCredenciales(user.correo, user.contrasena, (err, resultado) =>{
-            if(resultado){
-                delete resultado.contrasena;
-                // auth.sign(user, '120s', (err, token) => {
-                auth.firmar(resultado, (err, token) => {
-                    res.status(200).json({token})
-                })
-            }
-            else{
-                res.status(401).json({Mensaje: 'Correo o contraseña incorrectos'})
-            }
+router.post('/login', (req, res) => {
+    user = req.body
+    if (user.hasOwnProperty('correo') && user.hasOwnProperty('contrasena')) {
+        userController.validarCredenciales(user.correo, user.contrasena)
+        .then(resultado => {
+            delete resultado.contrasena;
+            auth.firmar(resultado, (err, token) => {
+                res.status(OK).json({token})
+            })
+        })
+        .catch(err => {
+            res.status(UNAUTHORIZED).json({Mensaje: 'Correo o contraseña incorrectos'})
         })
     }
-    else{
-        res.status(401).json({Mensaje: 'Datos Faltantes'})
+    else {
+        res.status(UNAUTHORIZED).json({Mensaje: 'Datos Faltantes'})
     }
-});
+})
 
-router.post('/registrarse', (req, res) =>{
+router.post('/registrarse', (req, res) => {
     user = req.body
-
-    if(user.hasOwnProperty('correo') && user.hasOwnProperty('contrasena')){
-        userController.registrarUsuario(user, (err, respuesta) =>{
-            if(err){
-                res.status(502).json(err)
+    if (user.hasOwnProperty('correo') && user.hasOwnProperty('contrasena')) {
+        userController.registrarUsuario(user)
+        .then(respuesta => {
+            if (respuesta.Respuesta === 'Correo electrónico ya registrado') {
+                res.status(BAD_REQUEST).json(respuesta)
             }
-            else{
-                if(respuesta.Respuesta === 'Correo electrónico ya registrado'){
-                    res.status(400).json(respuesta)
-                }
-                else{
-                    res.status(200).json({Mensaje: 'Usuario registrado exitosamente'})
-                }
+            else {
+                res.status(CREATED).json({Mensaje: 'Usuario registrado exitosamente'})
             }
         })
+        .catch(err => {
+            res.status(BAD_GATEWAY).json(err)
+        })
     }
-    else{
-        res.status(401).json({Mensaje: 'Datos Faltantes'})
+    else {
+        res.status(UNAUTHORIZED).json({Mensaje: 'Datos Faltantes'})
     }
-});
+})
 
-router.get('/validarauth', auth.comprobarToken, (req, res) =>{
-    res.status(200).json({Mensaje: 'Comprobado'})
-});
+router.get('/validarauth', auth.comprobarToken, (req, res) => {
+    res.status(OK).json({Mensaje: 'Comprobado'})
+})
 
 module.exports = router

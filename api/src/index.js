@@ -4,7 +4,9 @@ const cors = require('cors');
 
 const app = express();
 
-app.set('port', process.env.PORT || 1806);
+let DEFAULT_PORT = 1806
+
+app.set('port', process.env.PORT || DEFAULT_PORT);
 
 //Middleware
 app.use(express.json());

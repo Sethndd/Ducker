@@ -1,60 +1,57 @@
 const express = require("express")
 const { resolve } = require("path")
 const path = require('path')
+const { CREATED, BAD_REQUEST, OK } = require("../util/httpResponseCodes")
 const router = express.Router()
 
 const guardadosDAO = require(path.join(resolve(__dirname, '..'), 'dataAccess', 'guardadosDAO.js'))
 const auth = require(path.join(path.resolve(__dirname, '..'),  '/util', 'auth.js'))
 
+// Rutas para la entidad Guardado
 
 router.route('/guardados')
-    .post(auth.comprobarToken, (req, res)=>{
-        const idQuack = req.body
-        if(validarIdQuack(idQuack)){
-            guardadosDAO.crear(idQuack.idQuack, req.user.id, (err, respuesta)=>{
-                if (err){
-                    console.log(err)
-                    res.status(400).json(err)
-                    return
-                }
-                res.status(201).json({Mensaje : 'Quack guardado!'})
+    .post(auth.comprobarToken, (req, res) => {
+        let idQuack = req.body
+        if (validarIdQuack(idQuack)) {
+            guardadosDAO.crear(idQuack.idQuack, req.user.id)
+            .then(_ => {
+                res.status(CREATED).json({Mensaje : 'Quack guardado!'})
             })
+            .catch(err => {
+                console.log(err)
+                res.status(BAD_REQUEST).json(err)
+            }) 
         }
         else {
-            res.status(400).json({Mensaje : 'Faltan datos'})
+            res.status(BAD_REQUEST).json({Mensaje : 'Faltan datos'})
         }
     })
 
-    .get(auth.comprobarToken, (req, res) =>{ 
-        guardadosDAO.obtenerTodosGuardados(req.user.id, (err, rows, fields) =>{ 
-            if(err){
-                console.log(err)
-                res.status(400).json(err)
-                return
-            }
-            res.status(200).json(rows[0])
+    .get(auth.comprobarToken, (req, res) => { 
+        guardadosDAO.obtenerTodosGuardados(req.user.id)
+        .then(respuesta => {
+            res.status(OK).json(respuesta)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(BAD_REQUEST).json(err)
         })
     })
 
 router.route('/guardados/:id')
-    .delete(auth.comprobarToken, (req, res) =>{ 
-        guardadosDAO.eliminar([req.params.id], (err, rows, fields) =>{ 
-            
-            if(err){
-                console.log(err)
-                res.status(400).json(err)
-                return
-            }
-            res.status(200).json({Mensaje: 'Eliminado'})
+    .delete(auth.comprobarToken, (req, res) => { 
+        guardadosDAO.eliminar([req.params.id])
+        .then(_ => {
+            res.status(OK).json({Mensaje: 'Eliminado'})
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(BAD_REQUEST).json(err)
         })
     });
 
 function validarIdQuack(idQuack){
-    var result = false
-    if(idQuack.hasOwnProperty('idQuack')){
-        result = true
-    } 
-    return result
+    return idQuack.hasOwnProperty('idQuack')
 }
 
 module.exports = router

@@ -9,7 +9,7 @@ class APIService {
     companion object{
         fun obtenerRetroFit(): Retrofit {
             return Retrofit.Builder()
-                .baseUrl(Rutas.APIDUCKER)
+                .baseUrl(Rutas.LOCALHOST)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }
