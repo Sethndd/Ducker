@@ -1,87 +1,90 @@
 const express = require("express");
 const path = require('path');
+const { UNAUTHORIZED, BAD_REQUEST, CREATED, OK, BAD_GATEWAY, FORBIDEN} = require("../util/httpResponseCodes");
 
 const carpeta = path.resolve(__dirname, '..')
 const userController = require(path.join(carpeta,  '/util', 'userController.js'))
 const auth = require(path.join(carpeta,  '/util', 'auth.js'))
 const usuarioDAO = require(path.join(carpeta,  '/dataAccess', 'usuarioDAO.js'))
 
+require(path.join(__dirname, '..', 'util', 'httpResponseCodes.js'))
 const router = express.Router();
 
-router.post('/login', (req, res) =>{
-    user = req.body
+// Rutas para la funcionalidad Login
 
-    if(user.hasOwnProperty('correo') && user.hasOwnProperty('contrasena')){
-        userController.validarCredenciales(user.correo, user.contrasena, (err, resultado) =>{
-            if(resultado){
-                delete resultado.contrasena;
-                // auth.sign(user, '120s', (err, token) => {
-                auth.firmar(resultado, (err, token) => {
-                    res.status(200).json({token})
-                })
-            }
-            else{
-                res.status(401).json({Mensaje: 'Correo o contraseña incorrectos'})
-            }
+router.post('/login', (req, res) => {
+    user = req.body
+    if (user.hasOwnProperty('correo') && user.hasOwnProperty('contrasena')) {
+        userController.validarCredenciales(user.correo, user.contrasena)
+        .then(resultado => {
+            delete resultado.contrasena;
+            auth.firmar(resultado, (err, token) => {
+                res.status(OK).json({token})
+            })
+        })
+        .catch(err => {
+            res.status(UNAUTHORIZED).json({Mensaje: 'Correo o contraseña incorrectos'})
         })
     }
-    else{
-        res.status(401).json({Mensaje: 'Datos Faltantes'})
+    else {
+        res.status(UNAUTHORIZED).json({Mensaje: 'Datos Faltantes'})
     }
-});
+})
 
-router.post('/registrarse', (req, res) =>{
+router.post('/registrarse', (req, res) => {
     user = req.body
-
-    if(user.hasOwnProperty('correo') && user.hasOwnProperty('contrasena')){
-        userController.registrarUsuario(user, (err, respuesta) =>{
-            if(err){
-                res.status(502).json(err)
+    if (user.hasOwnProperty('correo') && user.hasOwnProperty('contrasena')) {
+        userController.registrarUsuario(user)
+        .then(respuesta => {
+            if (respuesta.Respuesta === 'Correo electrónico ya registrado' || respuesta.Respuesta === 'nombre de usuario ya registrado') {
+                res.status(BAD_REQUEST).json(respuesta)
             }
             else{
-                if(respuesta.Respuesta === 'Correo electrónico ya registrado' || respuesta.Respuesta === 'nombre de usuario ya registrado'){
-                    res.status(400).json(respuesta)
-                }
-                else{
-                    res.status(200).json({Mensaje: 'Usuario registrado exitosamente'})
-                }
+                res.status(OK).json({Mensaje: 'Usuario registrado exitosamente'})
             }
         })
+        .catch(err => {
+            res.status(BAD_GATEWAY).json(err)
+        })
     }
-    else{
-        res.status(401).json({Mensaje: 'Datos Faltantes'})
+    else {
+        res.status(UNAUTHORIZED).json({Mensaje: 'Datos Faltantes'})
     }
-});
+})
 
-router.post('/administrador/:id', auth.comprobarToken, (req, res) =>{
+router.get('/validarauth', auth.comprobarToken, (req, res) => {
+    res.status(OK).json({Mensaje: 'Comprobado'})
+})
+
+router.post('/administrador/:id', auth.comprobarToken, (req, res) => {
     if(req.user.tipo === 'alpha'){
         usuarioDAO.crearAdmin(req.params.id)
         .then(
-            res.status(200).json({Mensje: 'Se ha actualizado correctamente el usuario'})
+            res.status(OK).json({Mensje: 'Se ha actualizado correctamente el usuario'})
         )
         .catch(err => {
             console.log(err)
-            res.status(400).json(err)
+            res.status(BAD_REQUEST).json(err)
         })
     }
     else{
-        res.status(403).json({Mensje: 'No cuenta con los derechos para llevar a cabo esta acción'})
+        res.status(FORBIDEN).json({Mensje: 'No cuenta con los derechos para llevar a cabo esta acción'})
     }
 });
 
-router.get('/validarToken', auth.comprobarToken, (req, res) =>{
+router.get('/validarToken', auth.comprobarToken, (req, res) => {
     usuarioDAO.obtener(req.user.id)
-    .then(usuario =>{
-        if(usuario.estado === 'activo'){
-            res.status(200).json({Mensaje: 'Comprobado'})
+    .then(usuario => {
+        if(usuario.estado === 'activo') {
+            res.status(OK).json({Mensaje: 'Comprobado'})
         }
         else{
-            res.status(403).json({Mensaje: 'Usuario no valido'})
+            res.status(FORBIDEN).json({Mensaje: 'Usuario no valido'})
         }
     })
     .catch(err => {
         console.log(err)
-        res.status(400).json(err)
+        res.status(BAD_REQUEST).json(err)
     })
 });
 

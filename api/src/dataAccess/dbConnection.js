@@ -6,14 +6,13 @@ const mysqlConnection = mysql.createConnection({
     password: 'WeHate2021',
     database: 'ducker',
     multipleStatements: true
-  });
+});
   
-  mysqlConnection.connect(err => {
+mysqlConnection.connect(err => {
     if (err) {
-      console.error(err);
-      return;
+        console.error(err);
+        return;
     }
-    // console.log('db is connected');
-  });
+});
   
-  module.exports = mysqlConnection;
+module.exports = mysqlConnection;

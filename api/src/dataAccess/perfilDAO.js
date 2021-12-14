@@ -1,26 +1,32 @@
 const path = require('path')
 const dbConnection = require(path.join(__dirname, 'dbConnection.js'))
 
-function actualizar(idUsuario, perfil, callback){
-    dbConnection.query('call actualizarPerfil(?, ?, ?)', [idUsuario, perfil.img, perfil.banner], (err, rows, fields) =>{
-        if(err){
-            return callback(err)
-        }
-        else{
-            callback(null, rows)
-        }
-    })
+// Funciones para la entidad Perfil
+
+function actualizar(idUsuario, perfil) {
+    return new Promise( (resolve, reject) => {
+        dbConnection.query('call actualizarPerfil(?, ?, ?)', [idUsuario, perfil.imgRuta, perfil.bannerRuta], (err, rows, _) => {
+            if(err) {
+                reject(err)
+            }
+            else{
+                resolve(rows)
+            }
+        })
+    }) 
 }
 
-function obtenerPerfil(idUsuario, callback){
-    dbConnection.query('call obtenerPerfil(?)', [idUsuario], (err, rows, fields)=>{
-        if (err){
-            return callback(err)
-        }
-        else {
-            callback(null, rows[0][0])
-        }
-    })
+function obtenerPerfil(idUsuario) {
+    return new Promise( (resolve, reject) => {
+        dbConnection.query('call obtenerPerfil(?)', [idUsuario], (err, rows, _) => {
+            if (err) {
+                reject(err)
+            }
+            else {
+                resolve(rows[0][0])
+            }
+        })
+    }) 
 }
 
 
