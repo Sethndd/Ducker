@@ -1,4 +1,4 @@
-# Rettiwt
+# Ducker
 Twitter Academico
 
 Integrantes del proyecto:  
